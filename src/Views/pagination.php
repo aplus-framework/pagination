@@ -10,13 +10,13 @@
 
 	<?php if ($this->currentPage - $this->surround > 1) { ?>
 		<li>
-			<a href="<?= $this->getFirstPageURL(); ?>">First</a>
+			<a href="<?= $this->getFirstPageURL(); ?>"><?= $this->getLanguage()->render('pagination', 'first'); ?></a>
 		</li>
 	<?php } ?>
 
 	<?php if ($this->previousPage > 0) { ?>
 		<li>
-			<a rel="prev" href="<?= $this->getPreviousPageURL(); ?>" title="Previous">&laquo;</a>
+			<a rel="prev" href="<?= $this->getPreviousPageURL(); ?>" title="<?= $this->getLanguage()->render('pagination', 'previous'); ?>">&laquo;</a>
 		</li>
 	<?php } ?>
 
@@ -40,13 +40,13 @@
 
 	<?php if ($this->nextPage && $this->nextPage !== $this->totalPages) { ?>
 		<li>
-			<a rel="next" href="<?= $this->getNextPageURL(); ?>" title="Next">&raquo;</a>
+			<a rel="next" href="<?= $this->getNextPageURL(); ?>" title="<?= $this->getLanguage()->render('pagination', 'next'); ?>">&raquo;</a>
 		</li>
 	<?php } ?>
 
 	<?php if ($this->totalPages && $this->currentPage + $this->surround < $this->totalPages) { ?>
 		<li>
-			<a href="<?= $this->getLastPageURL(); ?>">Last</a>
+			<a href="<?= $this->getLastPageURL(); ?>"><?= $this->getLanguage()->render('pagination', 'last'); ?></a>
 		</li>
 	<?php } ?>
 

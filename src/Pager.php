@@ -1,6 +1,7 @@
 <?php namespace Framework\Pagination;
 
 use Framework\HTTP\URL;
+use Framework\Language\Language;
 
 /**
  * Class Pager.
@@ -44,13 +45,13 @@ class Pager
 	 */
 	protected $views = [
 		// HTML Head
-		'head' => __DIR__ . '/views/head.php',
+		'head' => __DIR__ . '/Views/head.php',
 		// HTTP Header
-		'header' => __DIR__ . '/views/header.php',
+		'header' => __DIR__ . '/Views/header.php',
 		// HTML Previous and Next
-		'pager' => __DIR__ . '/views/pager.php',
+		'pager' => __DIR__ . '/Views/pager.php',
 		// HTML Full
-		'pagination' => __DIR__ . '/views/pagination.php',
+		'pagination' => __DIR__ . '/Views/pagination.php',
 	];
 	/**
 	 * @var URL
@@ -60,6 +61,10 @@ class Pager
 	 * @var string
 	 */
 	protected $query = 'page';
+	/**
+	 * @var Language
+	 */
+	protected $language;
 
 	/**
 	 * Pager constructor.
@@ -74,8 +79,10 @@ class Pager
 		$current_page,
 		int $items_per_page,
 		int $total_items,
-		array $items
+		array $items,
+		Language $language = null
 	) {
+		$this->setLanguage($language ?? new Language('en'));
 		$current_page = $current_page < 1 || ! \is_numeric($current_page) ? 1 : $current_page;
 		$current_page = $current_page > 1000000000000000 ? 1000000000000000 : (int) $current_page;
 		$items_per_page = $items_per_page < 1 ? 1 : $items_per_page;
@@ -103,6 +110,20 @@ class Pager
 	public function __toString() : string
 	{
 		return $this->render();
+	}
+
+	protected function setLanguage(Language $language)
+	{
+		$language->setDirectories(\array_merge([
+			__DIR__ . '/Languages',
+		], $language->getDirectories()));
+		$this->language = $language;
+		return $this;
+	}
+
+	public function getLanguage() : Language
+	{
+		return $this->language;
 	}
 
 	public function addView(string $name, string $filepath)
