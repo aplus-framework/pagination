@@ -69,10 +69,11 @@ class Pager
 	/**
 	 * Pager constructor.
 	 *
-	 * @param int   $current_page
-	 * @param int   $items_per_page
-	 * @param int   $total_items
-	 * @param array $items          Current page items
+	 * @param int           $current_page
+	 * @param int           $items_per_page
+	 * @param int           $total_items
+	 * @param array         $items          Current page items
+	 * @param Language|null $language       Language instance
 	 */
 	public function __construct(
 		// int
@@ -83,33 +84,36 @@ class Pager
 		Language $language = null
 	) {
 		$this->setLanguage($language ?? new Language('en'));
-		$current_page = $current_page < 1 || ! \is_numeric($current_page) ? 1 : $current_page;
-		$current_page = $current_page > 1000000000000000 ? 1000000000000000 : (int) $current_page;
-		$items_per_page = $items_per_page < 1 ? 1 : $items_per_page;
-		$items_per_page = $items_per_page > 1000 ? 1000 : $items_per_page;
-		$previous_page = null;
-		$next_page = null;
-		$total_pages = (int) \ceil($total_items / $items_per_page);
-		if ($current_page > 1 && $current_page - 1 <= $total_pages) {
-			$previous_page = $current_page - 1;
-		} elseif ($current_page > 1 && $total_pages > 1) {
-			$previous_page = $total_pages;
+		$this->currentPage = $this->sanitizePageNumber($current_page);
+		$this->itemsPerPage = $this->sanitizePerPageNumber($items_per_page);
+		$this->totalPages = (int) \ceil($total_items / $this->itemsPerPage);
+		if ($this->currentPage > 1 && $this->currentPage - 1 <= $this->totalPages) {
+			$this->previousPage = $this->currentPage - 1;
+		} elseif ($this->currentPage > 1 && $this->totalPages > 1) {
+			$this->previousPage = $this->totalPages;
 		}
-		if ($current_page < $total_pages) {
-			$next_page = $current_page + 1;
+		if ($this->currentPage < $this->totalPages) {
+			$this->nextPage = $this->currentPage + 1;
 		}
-		$this->currentPage = $current_page;
-		$this->itemsPerPage = $items_per_page;
 		$this->totalItems = $total_items;
 		$this->items = $items;
-		$this->previousPage = $previous_page;
-		$this->nextPage = $next_page;
-		$this->totalPages = $total_pages;
 	}
 
 	public function __toString() : string
 	{
 		return $this->render();
+	}
+
+	protected function sanitizePageNumber($number) : int
+	{
+		$number = $number < 1 || ! \is_numeric($number) ? 1 : $number;
+		return $number > 1000000000000000 ? 1000000000000000 : (int) $number;
+	}
+
+	protected function sanitizePerPageNumber($number) : int
+	{
+		$number = $number < 1 ? 1 : $number;
+		return $number > 1000 ? 1000 : $number;
 	}
 
 	protected function setLanguage(Language $language)
@@ -126,29 +130,33 @@ class Pager
 		return $this->language;
 	}
 
-	public function addView(string $name, string $filepath)
+	public function setView(string $name, string $filepath)
 	{
+		if ( ! \is_file($filepath)) {
+			throw new \InvalidArgumentException('Invalid Pager view filepath: ' . $filepath);
+		}
 		$this->views[$name] = $filepath;
 		return $this;
 	}
 
 	/**
-	 * Get one or all views filepaths.
+	 * Get a view filepath.
 	 *
-	 * @param string|null $name Null to get all, or a string with the view name.
-	 *                          Default names are: head, header, pager and pagination
+	 * @param string $name The view name. Default names are: head, header, pager and pagination
 	 *
-	 * @return array|string
+	 * @return string
 	 */
-	public function getView(string $name = null)
+	public function getView(string $name) : string
 	{
-		if ($name === null) {
-			return $this->views;
-		}
-		if (empty($this->views[$name]) || ! \file_exists($this->views[$name])) {
-			throw new \Exception('Pager view "' . $name . '" not found');
+		if (empty($this->views[$name])) {
+			throw new \InvalidArgumentException('Pager view not found: ' . $name);
 		}
 		return $this->views[$name];
+	}
+
+	public function getViews() : array
+	{
+		return $this->views;
 	}
 
 	/**
@@ -204,7 +212,7 @@ class Pager
 	public function getPageURL(?int $page) : ?string
 	{
 		if (empty($this->url)) {
-			throw new \Exception('You must set the paginated URL first.');
+			throw new \LogicException('The paginated URL was not set');
 		}
 		if (empty($page)) {
 			return null;
