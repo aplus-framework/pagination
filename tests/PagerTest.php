@@ -11,7 +11,7 @@ class PagerTest extends TestCase
 	 */
 	protected $pager;
 
-	protected function setUp()
+	protected function setUp() : void
 	{
 		$this->pager = new Pager(0, 10, 31, [
 			[
