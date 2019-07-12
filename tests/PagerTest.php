@@ -45,6 +45,30 @@ class PagerTest extends TestCase
 		$this->assertEquals('http://localhost/?page=15', $this->pager->getPageURL(15));
 	}
 
+	public function testPageMaxLimit()
+	{
+		$this->pager = new Pager(500, 10, 30, []);
+		$this->pager->setURL('http://localhost');
+		$this->assertEquals('http://localhost/?page=500', $this->pager->getCurrentPageURL());
+		$this->assertEquals('http://localhost/?page=3', $this->pager->getPreviousPageURL());
+		$this->assertEquals('http://localhost/?page=1', $this->pager->getFirstPageURL());
+		$this->assertNull($this->pager->getNextPageURL());
+		$this->assertEquals('http://localhost/?page=3', $this->pager->getLastPageURL());
+		$this->assertEquals('http://localhost/?page=15', $this->pager->getPageURL(15));
+	}
+
+	public function testPageMinLimit()
+	{
+		$this->pager = new Pager(-5, 10, 30, []);
+		$this->pager->setURL('http://localhost');
+		$this->assertEquals('http://localhost/?page=1', $this->pager->getCurrentPageURL());
+		$this->assertNull($this->pager->getPreviousPageURL());
+		$this->assertEquals('http://localhost/?page=1', $this->pager->getFirstPageURL());
+		$this->assertEquals('http://localhost/?page=2', $this->pager->getNextPageURL());
+		$this->assertEquals('http://localhost/?page=3', $this->pager->getLastPageURL());
+		$this->assertEquals('http://localhost/?page=15', $this->pager->getPageURL(15));
+	}
+
 	public function testItems()
 	{
 		$this->assertEquals([
@@ -86,5 +110,62 @@ class PagerTest extends TestCase
 		$this->expectException(\InvalidArgumentException::class);
 		$this->expectExceptionMessage('Pager view not found: foo');
 		$this->pager->getView('foo');
+	}
+
+	/**
+	 * @runInSeparateProcess
+	 */
+	public function testRender()
+	{
+		$this->pager = new Pager(3, 10, 31, []);
+		$this->pager->setURL('http://localhost');
+		$this->assertStringContainsString(
+			'<ul class="pagination">',
+			$this->pager->render()
+		);
+		$this->assertStringContainsString(
+			'<ul class="pagination">',
+			$this->pager->render('pagination')
+		);
+		$this->assertStringContainsString(
+			'<ul class="pagination">',
+			$this->pager->render('pager')
+		);
+		$this->assertStringContainsString(
+			'rel="next"',
+			$this->pager->render('header')
+		);
+		$this->assertStringContainsString(
+			'<link rel="canonical"',
+			$this->pager->render('head')
+		);
+	}
+
+	/**
+	 * @runInSeparateProcess
+	 */
+	public function testToString()
+	{
+		$this->pager->setURL('http://localhost');
+		$this->assertStringContainsString(
+			'<ul class="pagination">',
+			(string) $this->pager
+		);
+	}
+
+	public function testURLNotSet()
+	{
+		$this->expectException(\LogicException::class);
+		$this->expectExceptionMessage('The paginated URL was not set');
+		$this->pager->getCurrentPageURL();
+	}
+
+	public function testJsonSerializable()
+	{
+		$this->pager->setURL('http://localhost');
+		$this->assertEquals(
+			\json_encode($this->pager->get(true)),
+			\json_encode($this->pager)
+		);
 	}
 }

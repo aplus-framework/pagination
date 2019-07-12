@@ -16,6 +16,7 @@
 	],
 	"require": {
 		"php": ">=7.3",
+		"ext-json": "*",
 		"framework/http": "dev-master",
 		"framework/language": "dev-master"
 	},

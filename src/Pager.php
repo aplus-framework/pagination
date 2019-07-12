@@ -6,7 +6,7 @@ use Framework\Language\Language;
 /**
  * Class Pager.
  */
-class Pager
+class Pager implements \JsonSerializable
 {
 	/**
 	 * @var int
@@ -296,5 +296,10 @@ class Pager
 		\ob_start();
 		require $view;
 		return \ob_get_clean();
+	}
+
+	public function jsonSerialize()
+	{
+		return $this->get(true);
 	}
 }
