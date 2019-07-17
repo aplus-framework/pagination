@@ -1,12 +1,12 @@
 {
 	"name": "framework/pagination",
 	"type": "library",
-	"description": "The Pagination package",
+	"description": "The Framework Pagination Library",
 	"keywords": [
 		"pager",
 		"pagination"
 	],
-	"homepage": "https://gitlab.com/the-framework/pagination",
+	"homepage": "https://the-framework.gitlab.io/libraries/pagination.html",
 	"license": "proprietary",
 	"authors": [
 		{
@@ -56,9 +56,9 @@
 	},
 	"support": {
 		"email": "natanfelles@gmail.com",
-		"issues": "https://gitlab.com/the-framework/pagination/issues",
-		"wiki": "https://gitlab.com/the-framework/packages/pagination",
-		"source": "https://gitlab.com/the-framework/pagination",
-		"docs": "https://the-framework.gitlab.io/the-framework/packages/pagination/docs"
+		"issues": "https://gitlab.com/the-framework/libraries/pagination/issues",
+		"wiki": "https://gitlab.com/the-framework/libraries/pagination/wikis",
+		"source": "https://gitlab.com/the-framework/libraries/pagination",
+		"docs": "https://the-framework.gitlab.io/libraries/pagination/docs/"
 	}
 }
