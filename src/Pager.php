@@ -118,10 +118,7 @@ class Pager implements \JsonSerializable
 
 	protected function setLanguage(Language $language)
 	{
-		$language->setDirectories(\array_merge([
-			__DIR__ . '/Languages',
-		], $language->getDirectories()));
-		$this->language = $language;
+		$this->language = $language->addDirectory(__DIR__ . '/Languages');
 		return $this;
 	}
 
