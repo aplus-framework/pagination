@@ -7,7 +7,7 @@
 		"pagination"
 	],
 	"homepage": "https://the-framework.gitlab.io/libraries/pagination.html",
-	"license": "proprietary",
+	"license": "MIT",
 	"authors": [
 		{
 			"name": "Natan Felles",
