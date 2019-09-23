@@ -17,12 +17,12 @@
 	"require": {
 		"php": ">=7.3",
 		"ext-json": "*",
-		"framework/http": "dev-master",
-		"framework/language": "dev-master"
+		"framework/http": "^1.0",
+		"framework/language": "^1.0"
 	},
 	"require-dev": {
 		"ext-xdebug": "*",
-		"framework/coding-standard": "dev-master",
+		"framework/coding-standard": "^1.0",
 		"localheinz/composer-normalize": "^1.2",
 		"phpmd/phpmd": "^2.6",
 		"phpstan/phpstan": "^0.11",
