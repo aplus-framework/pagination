@@ -4,47 +4,47 @@
  */
 ?>
 <ul class="pagination">
-	<?php if ($this->currentPage - $this->surround > 1) { ?>
+	<?php if ($this->currentPage - $this->surround > 1) : ?>
 		<li>
-			<a href="<?= $this->getFirstPageURL(); ?>"><?= $this->getLanguage()
-		->render('pagination', 'first'); ?></a>
+			<a href="<?= $this->getFirstPageURL() ?>"><?= $this->getLanguage()
+		->render('pagination', 'first') ?></a>
 		</li>
-	<?php } ?>
+	<?php endif ?>
 
-	<?php if ($this->previousPage > 0) { ?>
+	<?php if ($this->previousPage > 0) : ?>
 		<li>
-			<a rel="prev" href="<?= $this->getPreviousPageURL(); ?>" title="<?= $this->getLanguage()
-		->render('pagination', 'previous'); ?>">&laquo;</a>
+			<a rel="prev" href="<?= $this->getPreviousPageURL(); ?>" title="<?=
+			$this->getLanguage()->render('pagination', 'previous') ?>">&laquo;</a>
 		</li>
-	<?php } ?>
+	<?php endif ?>
 
-	<?php foreach ($this->getPreviousPagesURLs() as $p => $url) { ?>
+	<?php foreach ($this->getPreviousPagesURLs() as $p => $url) : ?>
 		<li>
-			<a href="<?= $url; ?>"><?= $p; ?></a>
+			<a href="<?= $url; ?>"><?= $p ?></a>
 		</li>
-	<?php } ?>
+	<?php endforeach ?>
 	<li>
-		<a rel="canonical" href="<?= $this->getCurrentPageURL(); ?>" class="active">
-			<?= $this->currentPage; ?>
+		<a rel="canonical" href="<?= $this->getCurrentPageURL() ?>" class="active">
+			<?= $this->currentPage ?>
 		</a>
 	</li>
-	<?php foreach ($this->getNextPagesURLs() as $p => $url) { ?>
+	<?php foreach ($this->getNextPagesURLs() as $p => $url) : ?>
 		<li>
-			<a href="<?= $url; ?>"><?= $p; ?></a>
+			<a href="<?= $url ?>"><?= $p ?></a>
 		</li>
-	<?php } ?>
+	<?php endforeach ?>
 
-	<?php if ($this->nextPage && $this->nextPage !== $this->totalPages) { ?>
+	<?php if ($this->nextPage && $this->nextPage !== $this->totalPages) : ?>
 		<li>
-			<a rel="next" href="<?= $this->getNextPageURL(); ?>" title="<?= $this->getLanguage()
-		->render('pagination', 'next'); ?>">&raquo;</a>
+			<a rel="next" href="<?= $this->getNextPageURL() ?>" title="<?=
+			$this->getLanguage()->render('pagination', 'next') ?>">&raquo;</a>
 		</li>
-	<?php } ?>
+	<?php endif ?>
 
-	<?php if ($this->totalPages && $this->currentPage + $this->surround < $this->totalPages) { ?>
+	<?php if ($this->totalPages && $this->currentPage + $this->surround < $this->totalPages) : ?>
 		<li>
-			<a href="<?= $this->getLastPageURL(); ?>"><?= $this->getLanguage()
-		->render('pagination', 'last'); ?></a>
+			<a href="<?= $this->getLastPageURL() ?>"><?= $this->getLanguage()
+		->render('pagination', 'last') ?></a>
 		</li>
-	<?php } ?>
+	<?php endif ?>
 </ul>
