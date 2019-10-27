@@ -99,6 +99,16 @@ class PagerTest extends TestCase
 		$this->assertEquals($views, $this->pager->getViews());
 	}
 
+	public function testDefaultView()
+	{
+		$this->assertEquals('pagination', $this->pager->getDefaultView());
+		$this->pager->setDefaultView('bootstrap4');
+		$this->assertEquals('bootstrap4', $this->pager->getDefaultView());
+		$this->expectException(\LogicException::class);
+		$this->expectExceptionMessage('Default view is not a valid value');
+		$this->pager->setDefaultView('unknown');
+	}
+
 	public function testSetInvalidViewPath()
 	{
 		$this->expectException(\InvalidArgumentException::class);

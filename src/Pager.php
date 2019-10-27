@@ -56,6 +56,10 @@ class Pager implements \JsonSerializable
 		'bootstrap4' => __DIR__ . '/Views/bootstrap4.php',
 	];
 	/**
+	 * @var string
+	 */
+	protected $defaultView = 'pagination';
+	/**
 	 * @var URL
 	 */
 	protected $url;
@@ -289,12 +293,25 @@ class Pager implements \JsonSerializable
 		];
 	}
 
-	public function render(string $view = 'pagination') : string
+	public function render(string $view = null) : string
 	{
-		$view = $this->getView($view);
+		$view = $this->getView($view ?? $this->getDefaultView());
 		\ob_start();
 		require $view;
 		return \ob_get_clean();
+	}
+
+	public function setDefaultView(string $defaultView) : void
+	{
+		if ( ! \array_key_exists($defaultView, $this->views)) {
+			throw new \LogicException('Default view is not a valid value');
+		}
+		$this->defaultView = $defaultView;
+	}
+
+	public function getDefaultView() : string
+	{
+		return $this->defaultView;
 	}
 
 	public function jsonSerialize()
