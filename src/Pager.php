@@ -52,6 +52,8 @@ class Pager implements \JsonSerializable
 		'pager' => __DIR__ . '/Views/pager.php',
 		// HTML Full
 		'pagination' => __DIR__ . '/Views/pagination.php',
+		// Bootstrap framework 4
+		'bootstrap4' => __DIR__ . '/Views/bootstrap4.php',
 	];
 	/**
 	 * @var URL

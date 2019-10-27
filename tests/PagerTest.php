@@ -90,6 +90,7 @@ class PagerTest extends TestCase
 			'header' => \realpath(__DIR__ . '/../src/Views/header.php'),
 			'pager' => \realpath(__DIR__ . '/../src/Views/pager.php'),
 			'pagination' => \realpath(__DIR__ . '/../src/Views/pagination.php'),
+			'bootstrap4' => \realpath(__DIR__ . '/../src/Views/bootstrap4.php'),
 		];
 		$this->assertEquals($views, $this->pager->getViews());
 		$this->pager->setView('foo', __FILE__);
