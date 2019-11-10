@@ -3,7 +3,7 @@
  * @var \Framework\Pagination\Pager $this
  */
 ?>
-<ul class="pagination">
+<ul class="pagination justify-content-center">
 	<?php if ($this->currentPage - $this->surround > 1) : ?>
 		<li class="page-item">
 			<a class="page-link" href="<?= $this->getFirstPageURL() ?>"><?= $this->getLanguage()
