@@ -103,6 +103,7 @@ class Pager implements \JsonSerializable
 		}
 		$this->totalItems = $total_items;
 		$this->items = $items;
+		$this->prepareURL();
 	}
 
 	public function __toString() : string
@@ -195,6 +196,14 @@ class Pager implements \JsonSerializable
 	public function getItems() : array
 	{
 		return $this->items;
+	}
+
+	protected function prepareURL()
+	{
+		$scheme = \filter_input(\INPUT_SERVER, 'HTTPS') ? 'https://' : 'http://';
+		$host = \filter_input(\INPUT_SERVER, 'HTTP_HOST');
+		$path = \filter_input(\INPUT_SERVER, 'REQUEST_URI');
+		$this->setURL($scheme . $host . $path);
 	}
 
 	/**

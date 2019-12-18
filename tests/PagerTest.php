@@ -1,8 +1,8 @@
 <?php namespace Tests\Pagination;
 
 use Framework\Language\Language;
-use Framework\Pagination\Pager;
 use PHPUnit\Framework\TestCase;
+use Tests\Pagination\PagerMock as Pager;
 
 class PagerTest extends TestCase
 {
@@ -36,7 +36,6 @@ class PagerTest extends TestCase
 
 	public function testPageURL()
 	{
-		$this->pager->setURL('http://localhost');
 		$this->assertEquals('http://localhost/?page=1', $this->pager->getCurrentPageURL());
 		$this->assertNull($this->pager->getPreviousPageURL());
 		$this->assertEquals('http://localhost/?page=1', $this->pager->getFirstPageURL());
@@ -48,7 +47,6 @@ class PagerTest extends TestCase
 	public function testPageMaxLimit()
 	{
 		$this->pager = new Pager(500, 10, 30, []);
-		$this->pager->setURL('http://localhost');
 		$this->assertEquals('http://localhost/?page=500', $this->pager->getCurrentPageURL());
 		$this->assertEquals('http://localhost/?page=3', $this->pager->getPreviousPageURL());
 		$this->assertEquals('http://localhost/?page=1', $this->pager->getFirstPageURL());
@@ -60,7 +58,6 @@ class PagerTest extends TestCase
 	public function testPageMinLimit()
 	{
 		$this->pager = new Pager(-5, 10, 30, []);
-		$this->pager->setURL('http://localhost');
 		$this->assertEquals('http://localhost/?page=1', $this->pager->getCurrentPageURL());
 		$this->assertNull($this->pager->getPreviousPageURL());
 		$this->assertEquals('http://localhost/?page=1', $this->pager->getFirstPageURL());
@@ -129,7 +126,6 @@ class PagerTest extends TestCase
 	public function testRender()
 	{
 		$this->pager = new Pager(3, 10, 31, []);
-		$this->pager->setURL('http://localhost');
 		$this->assertStringContainsString(
 			'<ul class="pagination">',
 			$this->pager->render()
@@ -157,23 +153,14 @@ class PagerTest extends TestCase
 	 */
 	public function testToString()
 	{
-		$this->pager->setURL('http://localhost');
 		$this->assertStringContainsString(
 			'<ul class="pagination">',
 			(string) $this->pager
 		);
 	}
 
-	public function testURLNotSet()
-	{
-		$this->expectException(\LogicException::class);
-		$this->expectExceptionMessage('The paginated URL was not set');
-		$this->pager->getCurrentPageURL();
-	}
-
 	public function testJsonSerializable()
 	{
-		$this->pager->setURL('http://localhost');
 		$this->assertEquals(
 			\json_encode($this->pager->get(true)),
 			\json_encode($this->pager)
