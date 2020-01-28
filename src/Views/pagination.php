@@ -23,11 +23,15 @@
 			<a href="<?= $url ?>"><?= $p ?></a>
 		</li>
 	<?php endforeach ?>
-	<li>
-		<a rel="canonical" href="<?= $this->getCurrentPageURL() ?>" class="active">
-			<?= $this->currentPage ?>
-		</a>
-	</li>
+
+	<?php if ( ! empty($this->getPreviousPagesURLs()) && ! empty($this->getNextPagesURLs())): ?>
+		<li>
+			<a rel="canonical" href="<?= $this->getCurrentPageURL() ?>" class="active">
+				<?= $this->currentPage ?>
+			</a>
+		</li>
+	<?php endif ?>
+
 	<?php foreach ($this->getNextPagesURLs() as $p => $url) : ?>
 		<li>
 			<a href="<?= $url ?>"><?= $p ?></a>

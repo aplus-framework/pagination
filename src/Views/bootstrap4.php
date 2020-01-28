@@ -23,11 +23,15 @@
 			<a class="page-link" href="<?= $url; ?>"><?= $p ?></a>
 		</li>
 	<?php endforeach ?>
-	<li class="page-item active">
-		<a class="page-link" rel="canonical" href="<?= $this->getCurrentPageURL() ?>">
-			<?= $this->currentPage ?>
-		</a>
-	</li>
+
+	<?php if ( ! empty($this->getPreviousPagesURLs()) && ! empty($this->getNextPagesURLs())): ?>
+		<li class="page-item active">
+			<a class="page-link" rel="canonical" href="<?= $this->getCurrentPageURL() ?>">
+				<?= $this->currentPage ?>
+			</a>
+		</li>
+	<?php endif ?>
+
 	<?php foreach ($this->getNextPagesURLs() as $p => $url) : ?>
 		<li class="page-item">
 			<a class="page-link" href="<?= $url ?>"><?= $p ?></a>
