@@ -15,7 +15,7 @@
 		}
 	],
 	"require": {
-		"php": ">=7.3",
+		"php": ">=7.4",
 		"ext-json": "*",
 		"natanfelles/http": "^1.0",
 		"natanfelles/language": "^1.0"

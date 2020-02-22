@@ -8,42 +8,15 @@ use Framework\Language\Language;
  */
 class Pager implements \JsonSerializable
 {
-	/**
-	 * @var int
-	 */
-	protected $currentPage;
-	/**
-	 * @var int|null
-	 */
-	protected $previousPage;
-	/**
-	 * @var int|null
-	 */
-	protected $nextPage;
-	/**
-	 * @var int
-	 */
-	protected $totalPages;
-	/**
-	 * @var int
-	 */
-	protected $totalItems;
-	/**
-	 * @var int
-	 */
-	protected $itemsPerPage;
-	/**
-	 * @var array
-	 */
-	protected $items;
-	/**
-	 * @var int
-	 */
-	protected $surround = 3;
-	/**
-	 * @var array
-	 */
-	protected $views = [
+	protected int $currentPage;
+	protected ?int $previousPage = null;
+	protected ?int $nextPage = null;
+	protected int $totalPages;
+	protected int $totalItems;
+	protected int $itemsPerPage;
+	protected array $items;
+	protected int $surround = 3;
+	protected array $views = [
 		// HTML Head
 		'head' => __DIR__ . '/Views/head.php',
 		// HTTP Header
@@ -55,22 +28,10 @@ class Pager implements \JsonSerializable
 		// Bootstrap framework 4
 		'bootstrap4' => __DIR__ . '/Views/bootstrap4.php',
 	];
-	/**
-	 * @var string
-	 */
-	protected $defaultView = 'pagination';
-	/**
-	 * @var URL
-	 */
-	protected $url;
-	/**
-	 * @var string
-	 */
-	protected $query = 'page';
-	/**
-	 * @var Language
-	 */
-	protected $language;
+	protected string $defaultView = 'pagination';
+	protected ?URL $url = null;
+	protected string $query = 'page';
+	protected Language $language;
 
 	/**
 	 * Pager constructor.

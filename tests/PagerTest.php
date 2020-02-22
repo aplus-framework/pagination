@@ -6,10 +6,7 @@ use Tests\Pagination\PagerMock as Pager;
 
 class PagerTest extends TestCase
 {
-	/**
-	 * @var Pager
-	 */
-	protected $pager;
+	protected Pager $pager;
 
 	protected function setUp() : void
 	{
