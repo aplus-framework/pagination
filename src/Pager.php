@@ -45,6 +45,7 @@ class Pager implements \JsonSerializable
 	 * @param int           $total_items
 	 * @param array         $items          Current page items
 	 * @param Language|null $language       Language instance
+	 * @param string        $url
 	 */
 	public function __construct(
 		// int
@@ -52,7 +53,8 @@ class Pager implements \JsonSerializable
 		int $items_per_page,
 		int $total_items,
 		array $items,
-		Language $language = null
+		Language $language = null,
+		string $url = null
 	) {
 		$this->setLanguage($language ?? new Language('en'));
 		$this->currentPage = $this->sanitizePageNumber($current_page);
@@ -68,7 +70,7 @@ class Pager implements \JsonSerializable
 		}
 		$this->totalItems = $total_items;
 		$this->items = $items;
-		$this->prepareURL();
+		$url ? $this->setURL($url) : $this->prepareURL();
 	}
 
 	public function __toString() : string
