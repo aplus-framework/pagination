@@ -17,7 +17,7 @@
 	"require": {
 		"php": ">=7.4",
 		"ext-json": "*",
-		"natanfelles/http": "^1.0",
+		"natanfelles/http": "^2.0",
 		"natanfelles/language": "^1.0"
 	},
 	"require-dev": {
