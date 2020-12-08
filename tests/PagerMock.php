@@ -8,4 +8,9 @@ class PagerMock extends Pager
 	{
 		$this->setURL('http://localhost');
 	}
+
+	public function setEmptyURL() : void
+	{
+		$this->url = null;
+	}
 }

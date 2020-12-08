@@ -41,6 +41,14 @@ class PagerTest extends TestCase
 		$this->assertEquals('http://localhost/?page=15', $this->pager->getPageURL(15));
 	}
 
+	public function testURLNotSet()
+	{
+		$this->pager->setEmptyURL();
+		$this->expectException(\LogicException::class);
+		$this->expectExceptionMessage('The paginated URL was not set');
+		$this->pager->getPageURL(15);
+	}
+
 	public function testPageMaxLimit()
 	{
 		$this->pager = new Pager(500, 10, 30, []);
