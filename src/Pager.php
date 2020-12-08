@@ -2,11 +2,14 @@
 
 use Framework\HTTP\URL;
 use Framework\Language\Language;
+use InvalidArgumentException;
+use JsonSerializable;
+use LogicException;
 
 /**
  * Class Pager.
  */
-class Pager implements \JsonSerializable
+class Pager implements JsonSerializable
 {
 	protected int $currentPage;
 	protected ?int $previousPage = null;
@@ -14,8 +17,14 @@ class Pager implements \JsonSerializable
 	protected int $totalPages;
 	protected int $totalItems;
 	protected int $itemsPerPage;
+	/**
+	 * @var array|mixed[]
+	 */
 	protected array $items;
 	protected int $surround = 3;
+	/**
+	 * @var array|string[]
+	 */
 	protected array $views = [
 		// HTML Head
 		'head' => __DIR__ . '/Views/head.php',
@@ -40,12 +49,12 @@ class Pager implements \JsonSerializable
 	/**
 	 * Pager constructor.
 	 *
-	 * @param int           $current_page
+	 * @param int|string    $current_page
 	 * @param int           $items_per_page
 	 * @param int           $total_items
-	 * @param array         $items          Current page items
+	 * @param array|mixed[] $items          Current page items
 	 * @param Language|null $language       Language instance
-	 * @param string        $url
+	 * @param string|null   $url
 	 */
 	public function __construct(
 		// int
@@ -78,18 +87,33 @@ class Pager implements \JsonSerializable
 		return $this->render();
 	}
 
+	/**
+	 * @param int|string $number
+	 *
+	 * @return int
+	 */
 	protected function sanitizePageNumber($number) : int
 	{
 		$number = $number < 1 || ! \is_numeric($number) ? 1 : $number;
 		return $number > 1000000000000000 ? 1000000000000000 : (int) $number;
 	}
 
+	/**
+	 * @param int|string $number
+	 *
+	 * @return int
+	 */
 	protected function sanitizePerPageNumber($number) : int
 	{
 		$number = $number < 1 ? 1 : $number;
 		return $number > 1000 ? 1000 : $number;
 	}
 
+	/**
+	 * @param Language $language
+	 *
+	 * @return $this
+	 */
 	protected function setLanguage(Language $language)
 	{
 		$this->language = $language->addDirectory(__DIR__ . '/Languages');
@@ -101,10 +125,16 @@ class Pager implements \JsonSerializable
 		return $this->language;
 	}
 
+	/**
+	 * @param string $name
+	 * @param string $filepath
+	 *
+	 * @return $this
+	 */
 	public function setView(string $name, string $filepath)
 	{
 		if ( ! \is_file($filepath)) {
-			throw new \InvalidArgumentException('Invalid Pager view filepath: ' . $filepath);
+			throw new InvalidArgumentException('Invalid Pager view filepath: ' . $filepath);
 		}
 		$this->views[$name] = $filepath;
 		return $this;
@@ -120,11 +150,14 @@ class Pager implements \JsonSerializable
 	public function getView(string $name) : string
 	{
 		if (empty($this->views[$name])) {
-			throw new \InvalidArgumentException('Pager view not found: ' . $name);
+			throw new InvalidArgumentException('Pager view not found: ' . $name);
 		}
 		return $this->views[$name];
 	}
 
+	/**
+	 * @return array|string[]
+	 */
 	public function getViews() : array
 	{
 		return $this->views;
@@ -149,6 +182,11 @@ class Pager implements \JsonSerializable
 		return $this;
 	}
 
+	/**
+	 * @param string $query
+	 *
+	 * @return $this
+	 */
 	public function setQuery(string $query = 'page')
 	{
 		$this->query = $query;
@@ -160,12 +198,15 @@ class Pager implements \JsonSerializable
 		return $this->query;
 	}
 
+	/**
+	 * @return array|mixed[]
+	 */
 	public function getItems() : array
 	{
 		return $this->items;
 	}
 
-	protected function prepareURL()
+	protected function prepareURL() : void
 	{
 		$scheme = \filter_input(\INPUT_SERVER, 'HTTPS') ? 'https://' : 'http://';
 		$host = \filter_input(\INPUT_SERVER, 'HTTP_HOST');
@@ -174,8 +215,8 @@ class Pager implements \JsonSerializable
 	}
 
 	/**
-	 * @param string     $current_page_url
-	 * @param array|null $allowed_queries
+	 * @param string              $current_page_url
+	 * @param array|string[]|null $allowed_queries
 	 *
 	 * @return $this
 	 */
@@ -191,7 +232,7 @@ class Pager implements \JsonSerializable
 	public function getPageURL(?int $page) : ?string
 	{
 		if (empty($this->url)) {
-			throw new \LogicException('The paginated URL was not set');
+			throw new LogicException('The paginated URL was not set');
 		}
 		if (empty($page)) {
 			return null;
@@ -224,6 +265,9 @@ class Pager implements \JsonSerializable
 		return $this->getPageURL($this->nextPage);
 	}
 
+	/**
+	 * @return array|string[]
+	 */
 	public function getPreviousPagesURLs() : array
 	{
 		$urls = [];
@@ -239,6 +283,9 @@ class Pager implements \JsonSerializable
 		return $urls;
 	}
 
+	/**
+	 * @return array|string[]
+	 */
 	public function getNextPagesURLs() : array
 	{
 		$urls = [];
@@ -254,6 +301,11 @@ class Pager implements \JsonSerializable
 		return $urls;
 	}
 
+	/**
+	 * @param bool $with_urls
+	 *
+	 * @return array|mixed[]
+	 */
 	public function get(bool $with_urls = false) : array
 	{
 		return [
@@ -269,18 +321,23 @@ class Pager implements \JsonSerializable
 		];
 	}
 
+	/**
+	 * @param string|null $view
+	 *
+	 * @return string
+	 */
 	public function render(string $view = null) : string
 	{
 		$view = $this->getView($view ?? $this->getDefaultView());
 		\ob_start();
 		require $view;
-		return \ob_get_clean();
+		return (string) \ob_get_clean();
 	}
 
 	public function setDefaultView(string $defaultView) : void
 	{
 		if ( ! \array_key_exists($defaultView, $this->views)) {
-			throw new \LogicException('Default view is not a valid value');
+			throw new LogicException('Default view is not a valid value');
 		}
 		$this->defaultView = $defaultView;
 	}
