@@ -57,8 +57,7 @@ class Pager implements JsonSerializable
 	 * @param string|null   $url
 	 */
 	public function __construct(
-		// int
-		$current_page,
+		int | string $current_page,
 		int $items_per_page,
 		int $total_items,
 		array $items,
@@ -92,7 +91,7 @@ class Pager implements JsonSerializable
 	 *
 	 * @return int
 	 */
-	protected function sanitizePageNumber($number) : int
+	protected function sanitizePageNumber(int | string $number) : int
 	{
 		$number = $number < 1 || ! \is_numeric($number) ? 1 : $number;
 		return $number > 1000000000000000 ? 1000000000000000 : (int) $number;
@@ -103,7 +102,7 @@ class Pager implements JsonSerializable
 	 *
 	 * @return int
 	 */
-	protected function sanitizePerPageNumber($number) : int
+	protected function sanitizePerPageNumber(int | string $number) : int
 	{
 		$number = $number < 1 ? 1 : $number;
 		return $number > 1000 ? 1000 : $number;
