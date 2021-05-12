@@ -17,8 +17,8 @@
 	"require": {
 		"php": ">=8.0",
 		"ext-json": "*",
-		"natanfelles/http": "^2.0",
-		"natanfelles/language": "^1.0"
+		"natanfelles/http": "^3.0",
+		"natanfelles/language": "^1.2"
 	},
 	"require-dev": {
 		"ext-xdebug": "*",

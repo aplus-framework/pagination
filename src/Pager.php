@@ -236,7 +236,7 @@ class Pager implements JsonSerializable
 		if (empty($page)) {
 			return null;
 		}
-		return $this->url->addQuery($this->getQuery(), $page)->getURL();
+		return $this->url->addQuery($this->getQuery(), $page)->getAsString();
 	}
 
 	public function getCurrentPageURL() : string
