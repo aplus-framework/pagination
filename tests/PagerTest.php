@@ -10,11 +10,29 @@ class PagerTest extends TestCase
 
 	protected function setUp() : void
 	{
+		$_SERVER['HTTP_HOST'] = 'localhost';
+		$_SERVER['REQUEST_URI'] = '/';
 		$this->pager = new Pager(0, 10, 31, [
 			[
 				'id' => 1,
 			],
 		]);
+	}
+
+	/**
+	 * @runInSeparateProcess
+	 */
+	public function testURL()
+	{
+		$_SERVER['HTTPS'] = 'on';
+		$_SERVER['HTTP_HOST'] = 'domain.tld';
+		$_SERVER['REQUEST_URI'] = '/';
+		$pager = new Pager(0, 10, 31, []);
+		$this->assertEquals('https://domain.tld/?page=1', $pager->getCurrentPageURL());
+		$pager = new Pager(5, 20, 31, [], null, 'http://foo.com');
+		$this->assertEquals('http://foo.com/?page=5', $pager->getCurrentPageURL());
+		$pager = new Pager(10, 20, 31, [], null, 'http://foo.com/?page=2');
+		$this->assertEquals('http://foo.com/?page=10', $pager->getCurrentPageURL());
 	}
 
 	public function testQuery()
@@ -43,7 +61,7 @@ class PagerTest extends TestCase
 
 	public function testURLNotSet()
 	{
-		$this->pager->setEmptyURL();
+		$this->pager->url = null;
 		$this->expectException(\LogicException::class);
 		$this->expectExceptionMessage('The paginated URL was not set');
 		$this->pager->getPageURL(15);

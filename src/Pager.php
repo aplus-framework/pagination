@@ -207,10 +207,11 @@ class Pager implements JsonSerializable
 
 	protected function prepareURL() : void
 	{
-		$scheme = \filter_input(\INPUT_SERVER, 'HTTPS') ? 'https://' : 'http://';
-		$host = \filter_input(\INPUT_SERVER, 'HTTP_HOST');
-		$path = \filter_input(\INPUT_SERVER, 'REQUEST_URI');
-		$this->setURL($scheme . $host . $path);
+		$scheme = ((isset($_SERVER['REQUEST_SCHEME']) && $_SERVER['REQUEST_SCHEME'] === 'https')
+			|| (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on'))
+			? 'https'
+			: 'http';
+		$this->setURL($scheme . '://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']);
 	}
 
 	/**
