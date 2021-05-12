@@ -18,12 +18,8 @@ class LanguagesTest extends TestCase
 
 	public function testKeys()
 	{
-		$keys = [
-			'first',
-			'last',
-			'next',
-			'previous',
-		];
+		$keys = require $this->langDir . 'en/pagination.php';
+		$keys = \array_keys($keys);
 		\sort($keys);
 		foreach ($this->getCodes() as $code) {
 			$lines = require $this->langDir . $code . '/pagination.php';
