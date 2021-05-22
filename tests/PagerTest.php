@@ -111,8 +111,11 @@ class PagerTest extends TestCase
 			'pager' => \realpath(__DIR__ . '/../src/Views/pager.php'),
 			'pagination' => \realpath(__DIR__ . '/../src/Views/pagination.php'),
 			'bootstrap4' => \realpath(__DIR__ . '/../src/Views/bootstrap4.php'),
+			'bootstrap4-short' => \realpath(__DIR__ . '/../src/Views/bootstrap4-short.php'),
 			'bulma' => \realpath(__DIR__ . '/../src/Views/bulma.php'),
+			'bulma-short' => \realpath(__DIR__ . '/../src/Views/bulma-short.php'),
 			'semantic-ui' => \realpath(__DIR__ . '/../src/Views/semantic-ui.php'),
+			'semantic-ui-short' => \realpath(__DIR__ . '/../src/Views/semantic-ui-short.php'),
 		];
 		$this->assertEquals($views, $this->pager->getViews());
 		$this->pager->setView('foo', __FILE__);

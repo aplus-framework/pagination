@@ -36,10 +36,13 @@ class Pager implements JsonSerializable
 		'pagination' => __DIR__ . '/Views/pagination.php',
 		// Bootstrap framework 4
 		'bootstrap4' => __DIR__ . '/Views/bootstrap4.php',
-		// Bulma framework
+		'bootstrap4-short' => __DIR__ . '/Views/bootstrap4-short.php',
+		// Bulma framework 0
 		'bulma' => __DIR__ . '/Views/bulma.php',
-		// Semantic UI framework
+		'bulma-short' => __DIR__ . '/Views/bulma-short.php',
+		// Semantic UI framework 2
 		'semantic-ui' => __DIR__ . '/Views/semantic-ui.php',
+		'semantic-ui-short' => __DIR__ . '/Views/semantic-ui-short.php',
 	];
 	protected string $defaultView = 'pagination';
 	protected ?URL $url = null;
