@@ -13,7 +13,7 @@
 
 	<?php if ($this->previousPage > 0) : ?>
 		<li>
-			<a rel="prev" href="<?= $this->getPreviousPageURL(); ?>" title="<?=
+			<a rel="prev" href="<?= $this->getPreviousPageURL() ?>" title="<?=
 			$this->getLanguage()->render('pagination', 'previous') ?>">&laquo;</a>
 		</li>
 	<?php endif ?>

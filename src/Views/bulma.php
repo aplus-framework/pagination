@@ -3,7 +3,7 @@
  * @var \Framework\Pagination\Pager $this
  */
 ?>
-<nav class="pagination">
+<nav class="pagination is-centered">
 	<ul class="pagination-list">
 		<?php if ($this->currentPage - $this->surround > 1) : ?>
 			<li>
