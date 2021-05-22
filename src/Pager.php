@@ -21,7 +21,7 @@ class Pager implements JsonSerializable
 	 * @var array|mixed[]
 	 */
 	protected array $items;
-	protected int $surround = 3;
+	protected int $surround = 2;
 	/**
 	 * @var array|string[]
 	 */

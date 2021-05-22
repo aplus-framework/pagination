@@ -44,7 +44,7 @@ class PagerTest extends TestCase
 
 	public function testSurround()
 	{
-		$this->assertEquals(3, $this->pager->getSurround());
+		$this->assertEquals(2, $this->pager->getSurround());
 		$this->pager->setSurround(5);
 		$this->assertEquals(5, $this->pager->getSurround());
 	}
