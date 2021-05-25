@@ -59,6 +59,21 @@ class PagerTest extends TestCase
 		$this->assertEquals('http://localhost/?page=15', $this->pager->getPageURL(15));
 	}
 
+	/**
+	 * @runInSeparateProcess
+	 */
+	public function testPreviousPagesURLsWithSurroundGreaterThanCurrentPage()
+	{
+		$_SERVER['HTTP_HOST'] = 'domain.tld';
+		$_SERVER['REQUEST_URI'] = '/';
+		$pager = new Pager(3, 10, 100, []);
+		$pager->setSurround(5);
+		$this->assertEquals([
+			1 => 'http://domain.tld/?page=1',
+			2 => 'http://domain.tld/?page=2',
+		], $pager->getPreviousPagesURLs());
+	}
+
 	public function testURLNotSet()
 	{
 		$this->pager->url = null;
