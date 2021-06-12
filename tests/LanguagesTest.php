@@ -2,7 +2,7 @@
 
 use PHPUnit\Framework\TestCase;
 
-class LanguagesTest extends TestCase
+final class LanguagesTest extends TestCase
 {
 	protected string $langDir = __DIR__ . '/../src/Languages/';
 
@@ -16,7 +16,7 @@ class LanguagesTest extends TestCase
 		return $codes;
 	}
 
-	public function testKeys()
+	public function testKeys() : void
 	{
 		$keys = require $this->langDir . 'en/pagination.php';
 		$keys = \array_keys($keys);
@@ -25,7 +25,7 @@ class LanguagesTest extends TestCase
 			$lines = require $this->langDir . $code . '/pagination.php';
 			$lines = \array_keys($lines);
 			\sort($lines);
-			$this->assertEquals($keys, $lines, 'Language: ' . $code);
+			self::assertSame($keys, $lines, 'Language: ' . $code);
 		}
 	}
 }
