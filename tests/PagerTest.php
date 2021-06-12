@@ -4,7 +4,7 @@ use Framework\Language\Language;
 use PHPUnit\Framework\TestCase;
 use Tests\Pagination\PagerMock as Pager;
 
-class PagerTest extends TestCase
+final class PagerTest extends TestCase
 {
 	protected Pager $pager;
 
@@ -22,59 +22,59 @@ class PagerTest extends TestCase
 	/**
 	 * @runInSeparateProcess
 	 */
-	public function testURL()
+	public function testURL() : void
 	{
 		$_SERVER['HTTPS'] = 'on';
 		$_SERVER['HTTP_HOST'] = 'domain.tld';
 		$_SERVER['REQUEST_URI'] = '/';
 		$pager = new Pager(0, 10, 31, []);
-		$this->assertEquals('https://domain.tld/?page=1', $pager->getCurrentPageURL());
+		self::assertSame('https://domain.tld/?page=1', $pager->getCurrentPageURL());
 		$pager = new Pager(5, 20, 31, [], null, 'http://foo.com');
-		$this->assertEquals('http://foo.com/?page=5', $pager->getCurrentPageURL());
+		self::assertSame('http://foo.com/?page=5', $pager->getCurrentPageURL());
 		$pager = new Pager(10, 20, 31, [], null, 'http://foo.com/?page=2');
-		$this->assertEquals('http://foo.com/?page=10', $pager->getCurrentPageURL());
+		self::assertSame('http://foo.com/?page=10', $pager->getCurrentPageURL());
 	}
 
-	public function testQuery()
+	public function testQuery() : void
 	{
-		$this->assertEquals('page', $this->pager->getQuery());
+		self::assertSame('page', $this->pager->getQuery());
 		$this->pager->setQuery('foo');
-		$this->assertEquals('foo', $this->pager->getQuery());
+		self::assertSame('foo', $this->pager->getQuery());
 	}
 
-	public function testSurround()
+	public function testSurround() : void
 	{
-		$this->assertEquals(2, $this->pager->getSurround());
+		self::assertSame(2, $this->pager->getSurround());
 		$this->pager->setSurround(5);
-		$this->assertEquals(5, $this->pager->getSurround());
+		self::assertSame(5, $this->pager->getSurround());
 	}
 
-	public function testPageURL()
+	public function testPageURL() : void
 	{
-		$this->assertEquals('http://localhost/?page=1', $this->pager->getCurrentPageURL());
-		$this->assertNull($this->pager->getPreviousPageURL());
-		$this->assertEquals('http://localhost/?page=1', $this->pager->getFirstPageURL());
-		$this->assertEquals('http://localhost/?page=2', $this->pager->getNextPageURL());
-		$this->assertEquals('http://localhost/?page=4', $this->pager->getLastPageURL());
-		$this->assertEquals('http://localhost/?page=15', $this->pager->getPageURL(15));
+		self::assertSame('http://localhost/?page=1', $this->pager->getCurrentPageURL());
+		self::assertNull($this->pager->getPreviousPageURL());
+		self::assertSame('http://localhost/?page=1', $this->pager->getFirstPageURL());
+		self::assertSame('http://localhost/?page=2', $this->pager->getNextPageURL());
+		self::assertSame('http://localhost/?page=4', $this->pager->getLastPageURL());
+		self::assertSame('http://localhost/?page=15', $this->pager->getPageURL(15));
 	}
 
 	/**
 	 * @runInSeparateProcess
 	 */
-	public function testPreviousPagesURLsWithSurroundGreaterThanCurrentPage()
+	public function testPreviousPagesURLsWithSurroundGreaterThanCurrentPage() : void
 	{
 		$_SERVER['HTTP_HOST'] = 'domain.tld';
 		$_SERVER['REQUEST_URI'] = '/';
 		$pager = new Pager(3, 10, 100, []);
 		$pager->setSurround(5);
-		$this->assertEquals([
+		self::assertSame([
 			1 => 'http://domain.tld/?page=1',
 			2 => 'http://domain.tld/?page=2',
 		], $pager->getPreviousPagesURLs());
 	}
 
-	public function testURLNotSet()
+	public function testURLNotSet() : void
 	{
 		$this->pager->url = null;
 		$this->expectException(\LogicException::class);
@@ -82,43 +82,43 @@ class PagerTest extends TestCase
 		$this->pager->getPageURL(15);
 	}
 
-	public function testPageMaxLimit()
+	public function testPageMaxLimit() : void
 	{
 		$this->pager = new Pager(500, 10, 30, []);
-		$this->assertEquals('http://localhost/?page=500', $this->pager->getCurrentPageURL());
-		$this->assertEquals('http://localhost/?page=3', $this->pager->getPreviousPageURL());
-		$this->assertEquals('http://localhost/?page=1', $this->pager->getFirstPageURL());
-		$this->assertNull($this->pager->getNextPageURL());
-		$this->assertEquals('http://localhost/?page=3', $this->pager->getLastPageURL());
-		$this->assertEquals('http://localhost/?page=15', $this->pager->getPageURL(15));
+		self::assertSame('http://localhost/?page=500', $this->pager->getCurrentPageURL());
+		self::assertSame('http://localhost/?page=3', $this->pager->getPreviousPageURL());
+		self::assertSame('http://localhost/?page=1', $this->pager->getFirstPageURL());
+		self::assertNull($this->pager->getNextPageURL());
+		self::assertSame('http://localhost/?page=3', $this->pager->getLastPageURL());
+		self::assertSame('http://localhost/?page=15', $this->pager->getPageURL(15));
 	}
 
-	public function testPageMinLimit()
+	public function testPageMinLimit() : void
 	{
 		$this->pager = new Pager(-5, 10, 30, []);
-		$this->assertEquals('http://localhost/?page=1', $this->pager->getCurrentPageURL());
-		$this->assertNull($this->pager->getPreviousPageURL());
-		$this->assertEquals('http://localhost/?page=1', $this->pager->getFirstPageURL());
-		$this->assertEquals('http://localhost/?page=2', $this->pager->getNextPageURL());
-		$this->assertEquals('http://localhost/?page=3', $this->pager->getLastPageURL());
-		$this->assertEquals('http://localhost/?page=15', $this->pager->getPageURL(15));
+		self::assertSame('http://localhost/?page=1', $this->pager->getCurrentPageURL());
+		self::assertNull($this->pager->getPreviousPageURL());
+		self::assertSame('http://localhost/?page=1', $this->pager->getFirstPageURL());
+		self::assertSame('http://localhost/?page=2', $this->pager->getNextPageURL());
+		self::assertSame('http://localhost/?page=3', $this->pager->getLastPageURL());
+		self::assertSame('http://localhost/?page=15', $this->pager->getPageURL(15));
 	}
 
-	public function testItems()
+	public function testItems() : void
 	{
-		$this->assertEquals([
+		self::assertSame([
 			[
 				'id' => 1,
 			],
 		], $this->pager->getItems());
 	}
 
-	public function testLanguageInstance()
+	public function testLanguageInstance() : void
 	{
-		$this->assertInstanceOf(Language::class, $this->pager->getLanguage());
+		self::assertInstanceOf(Language::class, $this->pager->getLanguage());
 	}
 
-	public function testViews()
+	public function testViews() : void
 	{
 		$views = [
 			'head' => \realpath(__DIR__ . '/../src/Views/head.php'),
@@ -132,31 +132,31 @@ class PagerTest extends TestCase
 			'semantic-ui' => \realpath(__DIR__ . '/../src/Views/semantic-ui.php'),
 			'semantic-ui-short' => \realpath(__DIR__ . '/../src/Views/semantic-ui-short.php'),
 		];
-		$this->assertEquals($views, $this->pager->getViews());
+		self::assertSame($views, $this->pager->getViews());
 		$this->pager->setView('foo', __FILE__);
-		$this->assertEquals(__FILE__, $this->pager->getView('foo'));
+		self::assertSame(__FILE__, $this->pager->getView('foo'));
 		$views['foo'] = __FILE__;
-		$this->assertEquals($views, $this->pager->getViews());
+		self::assertSame($views, $this->pager->getViews());
 	}
 
-	public function testDefaultView()
+	public function testDefaultView() : void
 	{
-		$this->assertEquals('pagination', $this->pager->getDefaultView());
+		self::assertSame('pagination', $this->pager->getDefaultView());
 		$this->pager->setDefaultView('bootstrap4');
-		$this->assertEquals('bootstrap4', $this->pager->getDefaultView());
+		self::assertSame('bootstrap4', $this->pager->getDefaultView());
 		$this->expectException(\LogicException::class);
 		$this->expectExceptionMessage('Default view is not a valid value');
 		$this->pager->setDefaultView('unknown');
 	}
 
-	public function testSetInvalidViewPath()
+	public function testSetInvalidViewPath() : void
 	{
 		$this->expectException(\InvalidArgumentException::class);
 		$this->expectExceptionMessage('Invalid Pager view filepath: ' . __DIR__ . '/foo');
 		$this->pager->setView('foo', __DIR__ . '/foo');
 	}
 
-	public function testViewNotSet()
+	public function testViewNotSet() : void
 	{
 		$this->expectException(\InvalidArgumentException::class);
 		$this->expectExceptionMessage('Pager view not found: foo');
@@ -166,26 +166,26 @@ class PagerTest extends TestCase
 	/**
 	 * @runInSeparateProcess
 	 */
-	public function testRender()
+	public function testRender() : void
 	{
 		$this->pager = new Pager(3, 10, 31, []);
-		$this->assertStringContainsString(
+		self::assertStringContainsString(
 			'<ul class="pagination">',
 			$this->pager->render()
 		);
-		$this->assertStringContainsString(
+		self::assertStringContainsString(
 			'<ul class="pagination">',
 			$this->pager->render('pagination')
 		);
-		$this->assertStringContainsString(
+		self::assertStringContainsString(
 			'<ul class="pagination">',
 			$this->pager->render('pager')
 		);
-		$this->assertStringContainsString(
+		self::assertStringContainsString(
 			'rel="next"',
 			$this->pager->render('header')
 		);
-		$this->assertStringContainsString(
+		self::assertStringContainsString(
 			'<link rel="canonical"',
 			$this->pager->render('head')
 		);
@@ -194,17 +194,17 @@ class PagerTest extends TestCase
 	/**
 	 * @runInSeparateProcess
 	 */
-	public function testToString()
+	public function testToString() : void
 	{
-		$this->assertStringContainsString(
+		self::assertStringContainsString(
 			'<ul class="pagination">',
 			(string) $this->pager
 		);
 	}
 
-	public function testJsonSerializable()
+	public function testJsonSerializable() : void
 	{
-		$this->assertEquals(
+		self::assertSame(
 			\json_encode($this->pager->get(true)),
 			\json_encode($this->pager)
 		);
