@@ -18,12 +18,12 @@ class Pager implements JsonSerializable
 	protected int $totalItems;
 	protected int $itemsPerPage;
 	/**
-	 * @var array|mixed[]
+	 * @var array<int,mixed>
 	 */
 	protected array $items;
 	protected int $surround = 2;
 	/**
-	 * @var array|string[]
+	 * @var array<string,string>
 	 */
 	protected array $views = [
 		// HTML Head
@@ -52,12 +52,12 @@ class Pager implements JsonSerializable
 	/**
 	 * Pager constructor.
 	 *
-	 * @param int|string    $currentPage
-	 * @param int           $itemsPerPage
-	 * @param int           $total_items
-	 * @param array|mixed[] $items          Current page items
-	 * @param Language|null $language       Language instance
-	 * @param string|null   $url
+	 * @param int|string $currentPage
+	 * @param int $itemsPerPage
+	 * @param int $totalItems
+	 * @param array<int,mixed> $items Current page items
+	 * @param Language|null $language Language instance
+	 * @param string|null $url
 	 */
 	public function __construct(
 		int | string $currentPage,
@@ -147,7 +147,7 @@ class Pager implements JsonSerializable
 	}
 
 	/**
-	 * @return array|string[]
+	 * @return array<string,string>
 	 */
 	public function getViews() : array
 	{
@@ -190,7 +190,7 @@ class Pager implements JsonSerializable
 	}
 
 	/**
-	 * @return array|mixed[]
+	 * @return array<int,mixed>
 	 */
 	public function getItems() : array
 	{
@@ -207,8 +207,8 @@ class Pager implements JsonSerializable
 	}
 
 	/**
-	 * @param string              $currentPageURL
-	 * @param array|string[]|null $allowedQueries
+	 * @param string $currentPageURL
+	 * @param array<int,string>|null $allowedQueries
 	 *
 	 * @return $this
 	 */
@@ -258,7 +258,7 @@ class Pager implements JsonSerializable
 	}
 
 	/**
-	 * @return array|string[]
+	 * @return array<int,string>
 	 */
 	public function getPreviousPagesURLs() : array
 	{
@@ -276,7 +276,7 @@ class Pager implements JsonSerializable
 	}
 
 	/**
-	 * @return array|string[]
+	 * @return array<int,string>
 	 */
 	public function getNextPagesURLs() : array
 	{
@@ -296,7 +296,7 @@ class Pager implements JsonSerializable
 	/**
 	 * @param bool $withURLs
 	 *
-	 * @return array|mixed[]
+	 * @return array<string,mixed>
 	 */
 	public function get(bool $withURLs = false) : array
 	{
