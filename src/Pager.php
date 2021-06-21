@@ -343,9 +343,9 @@ class Pager implements JsonSerializable
 	 */
 	public function render(string $view = null) : string
 	{
-		$view = $this->getView($view ?? $this->getDefaultView());
+		$filename = $this->getView($view ?? $this->getDefaultView());
 		\ob_start();
-		require $view;
+		require_isolated($filename, ['pager' => $this]);
 		return (string) \ob_get_clean();
 	}
 

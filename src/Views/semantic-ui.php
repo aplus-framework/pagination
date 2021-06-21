@@ -1,39 +1,39 @@
 <?php
 /**
- * @var \Framework\Pagination\Pager $this
+ * @var \Framework\Pagination\Pager $pager
  */
 ?>
 <div class="ui container center aligned">
 	<div class="ui pagination menu">
-		<?php if ($this->currentPage - $this->surround > 1) : ?>
-			<a class="item" href="<?= $this->getFirstPageURL() ?>"><?= $this->getLanguage()
+		<?php if ($pager->currentPage - $pager->surround > 1) : ?>
+			<a class="item" href="<?= $pager->getFirstPageURL() ?>"><?= $pager->getLanguage()
 			->render('pagination', 'first') ?></a>
 		<?php endif ?>
 
-		<?php if ($this->previousPage > 0) : ?>
-			<a class="item" rel="prev" href="<?= $this->getPreviousPageURL() ?>" title="<?=
-			$this->getLanguage()->render('pagination', 'previous') ?>">&laquo;</a>
+		<?php if ($pager->previousPage > 0) : ?>
+			<a class="item" rel="prev" href="<?= $pager->getPreviousPageURL() ?>" title="<?=
+			$pager->getLanguage()->render('pagination', 'previous') ?>">&laquo;</a>
 		<?php endif ?>
 
-		<?php foreach ($this->getPreviousPagesURLs() as $p => $url) : ?>
+		<?php foreach ($pager->getPreviousPagesURLs() as $p => $url) : ?>
 			<a class="item" href="<?= $url ?>"><?= $p ?></a>
 		<?php endforeach ?>
 
-		<a class="item active" rel="canonical" href="<?= $this->getCurrentPageURL() ?>">
-			<?= $this->currentPage ?>
+		<a class="item active" rel="canonical" href="<?= $pager->getCurrentPageURL() ?>">
+			<?= $pager->currentPage ?>
 		</a>
 
-		<?php foreach ($this->getNextPagesURLs() as $p => $url) : ?>
+		<?php foreach ($pager->getNextPagesURLs() as $p => $url) : ?>
 			<a class="item" href="<?= $url ?>"><?= $p ?></a>
 		<?php endforeach ?>
 
-		<?php if ($this->nextPage && $this->nextPage !== $this->totalPages) : ?>
-			<a class="item" rel="next" href="<?= $this->getNextPageURL() ?>" title="<?=
-			$this->getLanguage()->render('pagination', 'next') ?>">&raquo;</a>
+		<?php if ($pager->nextPage && $pager->nextPage !== $pager->totalPages) : ?>
+			<a class="item" rel="next" href="<?= $pager->getNextPageURL() ?>" title="<?=
+			$pager->getLanguage()->render('pagination', 'next') ?>">&raquo;</a>
 		<?php endif ?>
 
-		<?php if ($this->totalPages && $this->currentPage + $this->surround < $this->totalPages) : ?>
-			<a class="item" href="<?= $this->getLastPageURL() ?>"><?= $this->getLanguage()
+		<?php if ($pager->totalPages && $pager->currentPage + $pager->surround < $pager->totalPages) : ?>
+			<a class="item" href="<?= $pager->getLastPageURL() ?>"><?= $pager->getLanguage()
 			->render('pagination', 'last') ?></a>
 		<?php endif ?>
 	</div>

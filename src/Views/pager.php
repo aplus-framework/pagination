@@ -1,21 +1,21 @@
 <?php
 /**
- * @var \Framework\Pagination\Pager $this
+ * @var \Framework\Pagination\Pager $pager
  */
 ?>
 <ul class="pagination">
-	<?php if ($this->previousPage > 0) : ?>
+	<?php if ($pager->previousPage > 0) : ?>
 		<li>
-			<a rel="prev" href="<?= $this->getPreviousPageURL() ?>" title="<?= $this->getLanguage()->render('pagination', 'previous') ?>">
-				&laquo; <?= $this->getLanguage()->render('pagination', 'previous') ?>
+			<a rel="prev" href="<?= $pager->getPreviousPageURL() ?>" title="<?= $pager->getLanguage()->render('pagination', 'previous') ?>">
+				&laquo; <?= $pager->getLanguage()->render('pagination', 'previous') ?>
 			</a>
 		</li>
 	<?php endif ?>
 
-	<?php if ($this->nextPage) : ?>
+	<?php if ($pager->nextPage) : ?>
 		<li>
-			<a rel="next" href="<?= $this->getNextPageURL() ?>" title="<?= $this->getLanguage()->render('pagination', 'next') ?>">
-				<?= $this->getLanguage()->render('pagination', 'next') ?> &raquo; </a>
+			<a rel="next" href="<?= $pager->getNextPageURL() ?>" title="<?= $pager->getLanguage()->render('pagination', 'next') ?>">
+				<?= $pager->getLanguage()->render('pagination', 'next') ?> &raquo; </a>
 		</li>
 	<?php endif ?>
 </ul>

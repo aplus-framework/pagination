@@ -1,13 +1,13 @@
 <?php
 /**
- * @var \Framework\Pagination\Pager $this
+ * @var \Framework\Pagination\Pager $pager
  */
 ?>
 
-<?php if ($this->previousPage > 0) : ?>
-	<link rel="prev" href="<?= $this->getPreviousPageURL() ?>">
+<?php if ($pager->previousPage > 0) : ?>
+	<link rel="prev" href="<?= $pager->getPreviousPageURL() ?>">
 <?php endif ?>
-<link rel="canonical" href="<?= $this->getCurrentPageURL() ?>">
-<?php if ($this->nextPage) : ?>
-	<link rel="next" href="<?= $this->getNextPageURL() ?>">
+<link rel="canonical" href="<?= $pager->getCurrentPageURL() ?>">
+<?php if ($pager->nextPage) : ?>
+	<link rel="next" href="<?= $pager->getNextPageURL() ?>">
 <?php endif ?>
