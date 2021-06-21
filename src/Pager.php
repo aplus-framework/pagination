@@ -8,6 +8,12 @@ use LogicException;
 
 /**
  * Class Pager.
+ *
+ * @property-read int $currentPage
+ * @property-read int $nextPage
+ * @property-read int $previousPage
+ * @property-read int $totalPages
+ * @property-read int $surround
  */
 class Pager implements JsonSerializable
 {
@@ -82,6 +88,23 @@ class Pager implements JsonSerializable
 		$this->totalItems = $totalItems;
 		$this->items = $items;
 		$url ? $this->setURL($url) : $this->prepareURL();
+	}
+
+	public function __get(string $name) : mixed
+	{
+		if (\in_array($name, [
+			'currentPage',
+			'nextPage',
+			'previousPage',
+			'totalPages',
+			'surround',
+		], true)) {
+			return $this->{$name};
+		}
+		if (\property_exists($this, $name)) {
+			throw new LogicException("Property not allowed: {$name}");
+		}
+		throw new LogicException("Property not found: {$name}");
 	}
 
 	public function __toString() : string
