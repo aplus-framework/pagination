@@ -40,9 +40,11 @@ class Pager implements JsonSerializable
 		'pager' => __DIR__ . '/Views/pager.php',
 		// HTML Full
 		'pagination' => __DIR__ . '/Views/pagination.php',
-		// Bootstrap framework 4
-		'bootstrap4' => __DIR__ . '/Views/bootstrap4.php',
-		'bootstrap4-short' => __DIR__ . '/Views/bootstrap4-short.php',
+		// Bootstrap framework 4/5
+		'bootstrap' => __DIR__ . '/Views/bootstrap.php',
+		'bootstrap-short' => __DIR__ . '/Views/bootstrap-short.php',
+		'bootstrap4' => __DIR__ . '/Views/bootstrap.php',
+		'bootstrap4-short' => __DIR__ . '/Views/bootstrap-short.php',
 		// Bulma framework 0
 		'bulma' => __DIR__ . '/Views/bulma.php',
 		'bulma-short' => __DIR__ . '/Views/bulma-short.php',
