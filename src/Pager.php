@@ -52,25 +52,25 @@ class Pager implements JsonSerializable
 	/**
 	 * Pager constructor.
 	 *
-	 * @param int|string    $current_page
-	 * @param int           $items_per_page
+	 * @param int|string    $currentPage
+	 * @param int           $itemsPerPage
 	 * @param int           $total_items
 	 * @param array|mixed[] $items          Current page items
 	 * @param Language|null $language       Language instance
 	 * @param string|null   $url
 	 */
 	public function __construct(
-		int | string $current_page,
-		int $items_per_page,
-		int $total_items,
+		int | string $currentPage,
+		int $itemsPerPage,
+		int $totalItems,
 		array $items,
 		Language $language = null,
 		string $url = null
 	) {
 		$this->setLanguage($language ?? new Language('en'));
-		$this->currentPage = $this->sanitizePageNumber($current_page);
-		$this->itemsPerPage = $this->sanitizePageNumber($items_per_page);
-		$this->totalPages = (int) \ceil($total_items / $this->itemsPerPage);
+		$this->currentPage = $this->sanitizePageNumber($currentPage);
+		$this->itemsPerPage = $this->sanitizePageNumber($itemsPerPage);
+		$this->totalPages = (int) \ceil($totalItems / $this->itemsPerPage);
 		if ($this->currentPage > 1 && $this->currentPage - 1 <= $this->totalPages) {
 			$this->previousPage = $this->currentPage - 1;
 		} elseif ($this->currentPage > 1 && $this->totalPages > 1) {
@@ -79,7 +79,7 @@ class Pager implements JsonSerializable
 		if ($this->currentPage < $this->totalPages) {
 			$this->nextPage = $this->currentPage + 1;
 		}
-		$this->totalItems = $total_items;
+		$this->totalItems = $totalItems;
 		$this->items = $items;
 		$url ? $this->setURL($url) : $this->prepareURL();
 	}
@@ -207,17 +207,17 @@ class Pager implements JsonSerializable
 	}
 
 	/**
-	 * @param string              $current_page_url
-	 * @param array|string[]|null $allowed_queries
+	 * @param string              $currentPageURL
+	 * @param array|string[]|null $allowedQueries
 	 *
 	 * @return $this
 	 */
-	public function setURL(string $current_page_url, array $allowed_queries = null)
+	public function setURL(string $currentPageURL, array $allowedQueries = null)
 	{
-		$allowed_queries[] = $this->getQuery();
-		$current_page_url = new URL($current_page_url);
-		$current_page_url->setQuery($current_page_url->getQuery() ?? '', $allowed_queries);
-		$this->url = $current_page_url;
+		$allowedQueries[] = $this->getQuery();
+		$currentPageURL = new URL($currentPageURL);
+		$currentPageURL->setQuery($currentPageURL->getQuery() ?? '', $allowedQueries);
+		$this->url = $currentPageURL;
 		return $this;
 	}
 
@@ -294,18 +294,18 @@ class Pager implements JsonSerializable
 	}
 
 	/**
-	 * @param bool $with_urls
+	 * @param bool $withURLs
 	 *
 	 * @return array|mixed[]
 	 */
-	public function get(bool $with_urls = false) : array
+	public function get(bool $withURLs = false) : array
 	{
 		return [
-			'firstPage' => $with_urls ? $this->getFirstPageURL() : 1,
-			'previousPage' => $with_urls ? $this->getPreviousPageURL() : $this->previousPage,
-			'currentPage' => $with_urls ? $this->getCurrentPageURL() : $this->currentPage,
-			'nextPage' => $with_urls ? $this->getNextPageURL() : $this->nextPage,
-			'lastPage' => $with_urls ? $this->getLastPageURL() : $this->totalPages,
+			'firstPage' => $withURLs ? $this->getFirstPageURL() : 1,
+			'previousPage' => $withURLs ? $this->getPreviousPageURL() : $this->previousPage,
+			'currentPage' => $withURLs ? $this->getCurrentPageURL() : $this->currentPage,
+			'nextPage' => $withURLs ? $this->getNextPageURL() : $this->nextPage,
+			'lastPage' => $withURLs ? $this->getLastPageURL() : $this->totalPages,
 			'totalPages' => $this->totalPages,
 			'itemsPerPage' => $this->itemsPerPage,
 			'totalItems' => $this->totalItems,
