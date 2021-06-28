@@ -132,8 +132,9 @@ final class PagerTest extends TestCase
 		$views = [
 			'head' => \realpath(__DIR__ . '/../src/Views/head.php'),
 			'header' => \realpath(__DIR__ . '/../src/Views/header.php'),
-			'pager' => \realpath(__DIR__ . '/../src/Views/pager.php'),
+			'pager' => \realpath(__DIR__ . '/../src/Views/pagination-short.php'),
 			'pagination' => \realpath(__DIR__ . '/../src/Views/pagination.php'),
+			'pagination-short' => \realpath(__DIR__ . '/../src/Views/pagination-short.php'),
 			'bootstrap' => \realpath(__DIR__ . '/../src/Views/bootstrap.php'),
 			'bootstrap-short' => \realpath(__DIR__ . '/../src/Views/bootstrap-short.php'),
 			'bootstrap4' => \realpath(__DIR__ . '/../src/Views/bootstrap.php'),
@@ -204,6 +205,16 @@ final class PagerTest extends TestCase
 			'<link rel="canonical"',
 			$this->pager->render('head')
 		);
+	}
+
+	/**
+	 * @runInSeparateProcess
+	 */
+	public function testRenderShort() : void
+	{
+		$this->pager->setDefaultView('pagination');
+		self::assertStringContainsString('rel="canonical"', $this->pager->render());
+		self::assertStringNotContainsString('rel="canonical"', $this->pager->renderShort());
 	}
 
 	/**

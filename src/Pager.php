@@ -47,9 +47,10 @@ class Pager implements JsonSerializable
 		// HTTP Header
 		'header' => __DIR__ . '/Views/header.php',
 		// HTML Previous and Next
-		'pager' => __DIR__ . '/Views/pager.php',
+		'pager' => __DIR__ . '/Views/pagination-short.php',
 		// HTML Full
 		'pagination' => __DIR__ . '/Views/pagination.php',
+		'pagination-short' => __DIR__ . '/Views/pagination-short.php',
 		// Bootstrap framework 4/5
 		'bootstrap' => __DIR__ . '/Views/bootstrap.php',
 		'bootstrap-short' => __DIR__ . '/Views/bootstrap-short.php',
@@ -369,6 +370,12 @@ class Pager implements JsonSerializable
 		\ob_start();
 		require_isolated($filename, ['pager' => $this]);
 		return (string) \ob_get_clean();
+	}
+
+	public function renderShort() : string
+	{
+		$view = $this->getDefaultView() . '-short';
+		return $this->render($view);
 	}
 
 	public function setDefaultView(string $defaultView) : void
