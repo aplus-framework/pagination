@@ -137,9 +137,9 @@ class Pager implements JsonSerializable
 	/**
 	 * @param Language $language
 	 *
-	 * @return $this
+	 * @return static
 	 */
-	protected function setLanguage(Language $language)
+	protected function setLanguage(Language $language) : static
 	{
 		$this->language = $language->addDirectory(__DIR__ . '/Languages');
 		return $this;
@@ -154,9 +154,9 @@ class Pager implements JsonSerializable
 	 * @param string $name
 	 * @param string $filepath
 	 *
-	 * @return $this
+	 * @return static
 	 */
-	public function setView(string $name, string $filepath)
+	public function setView(string $name, string $filepath) : static
 	{
 		if ( ! \is_file($filepath)) {
 			throw new InvalidArgumentException('Invalid Pager view filepath: ' . $filepath);
@@ -199,9 +199,9 @@ class Pager implements JsonSerializable
 	/**
 	 * @param int $surround
 	 *
-	 * @return $this
+	 * @return static
 	 */
-	public function setSurround(int $surround)
+	public function setSurround(int $surround) : static
 	{
 		$this->surround = $surround < 0 ? 0 : $surround;
 		return $this;
@@ -210,9 +210,9 @@ class Pager implements JsonSerializable
 	/**
 	 * @param string $query
 	 *
-	 * @return $this
+	 * @return static
 	 */
-	public function setQuery(string $query = 'page')
+	public function setQuery(string $query = 'page') : static
 	{
 		$this->query = $query;
 		return $this;
@@ -244,9 +244,9 @@ class Pager implements JsonSerializable
 	 * @param string $currentPageURL
 	 * @param array<int,string>|null $allowedQueries
 	 *
-	 * @return $this
+	 * @return static
 	 */
-	public function setURL(string $currentPageURL, array $allowedQueries = null)
+	public function setURL(string $currentPageURL, array $allowedQueries = null) : static
 	{
 		$allowedQueries[] = $this->getQuery();
 		$currentPageURL = new URL($currentPageURL);
