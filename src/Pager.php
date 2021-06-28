@@ -12,6 +12,7 @@ namespace Framework\Pagination;
 use Framework\HTTP\URL;
 use Framework\Language\Language;
 use InvalidArgumentException;
+use JetBrains\PhpStorm\Pure;
 use JsonSerializable;
 use LogicException;
 
@@ -128,6 +129,7 @@ class Pager implements JsonSerializable
 	 *
 	 * @return int
 	 */
+	#[Pure]
 	protected function sanitizePageNumber(int | string $number) : int
 	{
 		$number = $number < 1 || ! \is_numeric($number) ? 1 : $number;
@@ -145,6 +147,7 @@ class Pager implements JsonSerializable
 		return $this;
 	}
 
+	#[Pure]
 	public function getLanguage() : Language
 	{
 		return $this->language;
@@ -183,6 +186,7 @@ class Pager implements JsonSerializable
 	/**
 	 * @return array<string,string>
 	 */
+	#[Pure]
 	public function getViews() : array
 	{
 		return $this->views;
@@ -191,6 +195,7 @@ class Pager implements JsonSerializable
 	/**
 	 * @return int
 	 */
+	#[Pure]
 	public function getSurround() : int
 	{
 		return $this->surround;
@@ -218,6 +223,7 @@ class Pager implements JsonSerializable
 		return $this;
 	}
 
+	#[Pure]
 	public function getQuery() : string
 	{
 		return $this->query;
@@ -226,6 +232,7 @@ class Pager implements JsonSerializable
 	/**
 	 * @return array<int,mixed>
 	 */
+	#[Pure]
 	public function getItems() : array
 	{
 		return $this->items;
@@ -368,6 +375,7 @@ class Pager implements JsonSerializable
 		$this->defaultView = $defaultView;
 	}
 
+	#[Pure]
 	public function getDefaultView() : string
 	{
 		return $this->defaultView;
