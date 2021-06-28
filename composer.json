@@ -4,7 +4,10 @@
 	"description": "The Framework Pagination Library",
 	"keywords": [
 		"pager",
-		"pagination"
+		"pagination",
+		"bootstrap",
+		"bulma",
+		"semantic-ui"
 	],
 	"homepage": "https://the-framework.gitlab.io/libraries/pagination.html",
 	"license": "MIT",
@@ -18,14 +21,14 @@
 	"require": {
 		"php": ">=8.0",
 		"ext-json": "*",
-		"natanfelles/http": "^3.4",
-		"natanfelles/isolation": "^1.0",
-		"natanfelles/language": "^1.3"
+		"natanfelles/http": "^3.8",
+		"natanfelles/isolation": "^1.1",
+		"natanfelles/language": "^1.4"
 	},
 	"require-dev": {
 		"ext-xdebug": "*",
 		"ergebnis/composer-normalize": "^2.15",
-		"natanfelles/coding-standard": "^1.6",
+		"natanfelles/coding-standard": "^1.7",
 		"phpmd/phpmd": "^2.10",
 		"phpstan/phpstan": "^0.12",
 		"phpunit/phpunit": "^9.5"
