@@ -385,7 +385,10 @@ class Pager implements JsonSerializable
 		return $this->defaultView;
 	}
 
-	public function jsonSerialize()
+	/**
+	 * @return array<string,mixed>
+	 */
+	public function jsonSerialize() : array
 	{
 		return $this->get(true);
 	}
