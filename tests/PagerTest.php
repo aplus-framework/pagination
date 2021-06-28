@@ -138,10 +138,14 @@ final class PagerTest extends TestCase
 			'bootstrap-short' => \realpath(__DIR__ . '/../src/Views/bootstrap-short.php'),
 			'bootstrap4' => \realpath(__DIR__ . '/../src/Views/bootstrap.php'),
 			'bootstrap4-short' => \realpath(__DIR__ . '/../src/Views/bootstrap-short.php'),
+			'bootstrap5' => \realpath(__DIR__ . '/../src/Views/bootstrap.php'),
+			'bootstrap5-short' => \realpath(__DIR__ . '/../src/Views/bootstrap-short.php'),
 			'bulma' => \realpath(__DIR__ . '/../src/Views/bulma.php'),
 			'bulma-short' => \realpath(__DIR__ . '/../src/Views/bulma-short.php'),
 			'semantic-ui' => \realpath(__DIR__ . '/../src/Views/semantic-ui.php'),
 			'semantic-ui-short' => \realpath(__DIR__ . '/../src/Views/semantic-ui-short.php'),
+			'semantic-ui2' => \realpath(__DIR__ . '/../src/Views/semantic-ui.php'),
+			'semantic-ui2-short' => \realpath(__DIR__ . '/../src/Views/semantic-ui-short.php'),
 		];
 		self::assertSame($views, $this->pager->getViews());
 		$this->pager->setView('foo', __FILE__);
