@@ -8,11 +8,11 @@
  * file that was distributed with this source code.
  */
 /**
- * @var \Framework\Pagination\Pager $pager
+ * @var Framework\Pagination\Pager $pager
  */
 ?>
 <ul class="pagination">
-	<?php if ($pager->previousPage > 0) : ?>
+	<?php if ($pager->getPreviousPage() > 0) : ?>
 		<li>
 			<a rel="prev" href="<?= $pager->getPreviousPageURL() ?>" title="<?= $pager->getLanguage()->render('pagination', 'previous') ?>">
 				&laquo; <?= $pager->getLanguage()->render('pagination', 'previous') ?>
@@ -20,7 +20,7 @@
 		</li>
 	<?php endif ?>
 
-	<?php if ($pager->nextPage) : ?>
+	<?php if ($pager->getNextPage()) : ?>
 		<li>
 			<a rel="next" href="<?= $pager->getNextPageURL() ?>" title="<?= $pager->getLanguage()->render('pagination', 'next') ?>">
 				<?= $pager->getLanguage()->render('pagination', 'next') ?> &raquo; </a>

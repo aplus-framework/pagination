@@ -18,12 +18,6 @@ use LogicException;
 
 /**
  * Class Pager.
- *
- * @property-read int $currentPage
- * @property-read int $nextPage
- * @property-read int $previousPage
- * @property-read int $totalPages
- * @property-read int $surround
  */
 class Pager implements JsonSerializable
 {

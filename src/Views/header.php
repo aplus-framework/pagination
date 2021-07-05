@@ -8,23 +8,21 @@
  * file that was distributed with this source code.
  */
 /**
- * @var \Framework\Pagination\Pager $pager
+ * @var Framework\Pagination\Pager $pager
  *
  * @see https://tools.ietf.org/html/rfc5988
- * @see https://developer.github.com/v3/#pagination
- * @see https://github.com/bcit-ci/CodeIgniter4/pull/622
  */
 /**
  * HTTP Header Link.
  */
 $links = '';
 
-if ($pager->previousPage > 0) {
+if ($pager->getPreviousPage() > 0) {
 	$links .= '<' . $pager->getFirstPageURL() . '>; rel="first",';
 	$links .= '<' . $pager->getPreviousPageURL() . '>; rel="prev"';
 }
 
-if ($pager->nextPage) {
+if ($pager->getNextPage()) {
 	$links .= '<' . $pager->getNextPageURL() . '>; rel="next",';
 	$links .= '<' . $pager->getLastPageURL() . '>; rel="last"';
 }

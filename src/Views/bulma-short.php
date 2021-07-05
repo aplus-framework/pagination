@@ -8,12 +8,12 @@
  * file that was distributed with this source code.
  */
 /**
- * @var \Framework\Pagination\Pager $pager
+ * @var Framework\Pagination\Pager $pager
  */
 ?>
 <nav class="pagination is-centered">
 	<ul class="pagination-list">
-		<?php if ($pager->previousPage > 0) : ?>
+		<?php if ($pager->getPreviousPage() > 0) : ?>
 			<li>
 				<a class="pagination-link" rel="prev" href="<?= $pager->getPreviousPageURL() ?>">
 					<?= $pager->getLanguage()->render('pagination', 'previous') ?>
@@ -21,7 +21,7 @@
 			</li>
 		<?php endif ?>
 
-		<?php if ($pager->nextPage) : ?>
+		<?php if ($pager->getNextPage()) : ?>
 			<li>
 				<a class="pagination-link" rel="next" href="<?= $pager->getNextPageURL() ?>">
 					<?= $pager->getLanguage()->render('pagination', 'next') ?>

@@ -8,14 +8,14 @@
  * file that was distributed with this source code.
  */
 /**
- * @var \Framework\Pagination\Pager $pager
+ * @var Framework\Pagination\Pager $pager
  */
 ?>
 
-<?php if ($pager->previousPage > 0) : ?>
+<?php if ($pager->getPreviousPage() > 0) : ?>
 	<link rel="prev" href="<?= $pager->getPreviousPageURL() ?>">
 <?php endif ?>
 <link rel="canonical" href="<?= $pager->getCurrentPageURL() ?>">
-<?php if ($pager->nextPage) : ?>
+<?php if ($pager->getNextPage()) : ?>
 	<link rel="next" href="<?= $pager->getNextPageURL() ?>">
 <?php endif ?>
