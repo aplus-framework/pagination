@@ -33,10 +33,6 @@ class Pager implements JsonSerializable
 	protected int $totalPages;
 	protected int $totalItems;
 	protected int $itemsPerPage;
-	/**
-	 * @var array<int,mixed>
-	 */
-	protected array $items;
 	protected int $surround = 2;
 	/**
 	 * @var array<string,string>
@@ -78,7 +74,6 @@ class Pager implements JsonSerializable
 	 * @param int|string $currentPage
 	 * @param int $itemsPerPage
 	 * @param int $totalItems
-	 * @param array<int,mixed> $items Current page items
 	 * @param Language|null $language Language instance
 	 * @param string|null $url
 	 */
@@ -86,7 +81,6 @@ class Pager implements JsonSerializable
 		int | string $currentPage,
 		int $itemsPerPage,
 		int $totalItems,
-		array $items,
 		Language $language = null,
 		string $url = null
 	) {
@@ -214,15 +208,6 @@ class Pager implements JsonSerializable
 	public function getQuery() : string
 	{
 		return $this->query;
-	}
-
-	/**
-	 * @return array<int,mixed>
-	 */
-	#[Pure]
-	public function getItems() : array
-	{
-		return $this->items;
 	}
 
 	protected function prepareURL() : void
