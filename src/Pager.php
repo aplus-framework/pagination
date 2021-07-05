@@ -88,10 +88,12 @@ class Pager implements JsonSerializable
 		$this->currentPage = $this->sanitizePageNumber($currentPage);
 		$this->itemsPerPage = $this->sanitizePageNumber($itemsPerPage);
 		$this->totalPages = (int) \ceil($totalItems / $this->itemsPerPage);
-		if ($this->currentPage > 1 && $this->currentPage - 1 <= $this->totalPages) {
-			$this->previousPage = $this->currentPage - 1;
-		} elseif ($this->currentPage > 1 && $this->totalPages > 1) {
-			$this->previousPage = $this->totalPages;
+		if ($this->currentPage > 1) {
+			if ($this->currentPage - 1 <= $this->totalPages) {
+				$this->previousPage = $this->currentPage - 1;
+			} elseif ($this->totalPages > 1) {
+				$this->previousPage = $this->totalPages;
+			}
 		}
 		if ($this->currentPage < $this->totalPages) {
 			$this->nextPage = $this->currentPage + 1;
