@@ -66,14 +66,14 @@ class Pager implements JsonSerializable
 	 * Pager constructor.
 	 *
 	 * @param int|string $currentPage
-	 * @param int $itemsPerPage
+	 * @param int|string $itemsPerPage
 	 * @param int $totalItems
 	 * @param Language|null $language Language instance
 	 * @param string|null $url
 	 */
 	public function __construct(
 		int | string $currentPage,
-		int $itemsPerPage,
+		int | string $itemsPerPage,
 		int $totalItems,
 		Language $language = null,
 		string $url = null
