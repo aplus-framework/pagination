@@ -230,10 +230,7 @@ class Pager implements JsonSerializable
 
 	public function getPageURL(?int $page) : ?string
 	{
-		if (empty($this->url)) {
-			throw new LogicException('The paginated URL was not set');
-		}
-		if (empty($page)) {
+		if ($page === null) {
 			return null;
 		}
 		return $this->url->addQuery($this->getQuery(), $page)->getAsString();
