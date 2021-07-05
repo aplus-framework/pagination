@@ -30,7 +30,7 @@ class Pager implements JsonSerializable
 	protected int $currentPage;
 	protected ?int $previousPage = null;
 	protected ?int $nextPage = null;
-	protected int $totalPages;
+	protected int $lastPage;
 	protected int $itemsPerPage;
 	protected int $surround = 2;
 	/**
@@ -86,15 +86,15 @@ class Pager implements JsonSerializable
 		$this->setLanguage($language ?? new Language('en'));
 		$this->currentPage = $this->sanitizePageNumber($currentPage);
 		$this->itemsPerPage = $this->sanitizePageNumber($itemsPerPage);
-		$this->totalPages = (int) \ceil($totalItems / $this->itemsPerPage);
+		$this->lastPage = (int) \ceil($totalItems / $this->itemsPerPage);
 		if ($this->currentPage > 1) {
-			if ($this->currentPage - 1 <= $this->totalPages) {
+			if ($this->currentPage - 1 <= $this->lastPage) {
 				$this->previousPage = $this->currentPage - 1;
-			} elseif ($this->totalPages > 1) {
-				$this->previousPage = $this->totalPages;
+			} elseif ($this->lastPage > 1) {
+				$this->previousPage = $this->lastPage;
 			}
 		}
-		if ($this->currentPage < $this->totalPages) {
+		if ($this->currentPage < $this->lastPage) {
 			$this->nextPage = $this->currentPage + 1;
 		}
 		isset($url) ? $this->setURL($url) : $this->prepareURL();
@@ -267,7 +267,7 @@ class Pager implements JsonSerializable
 
 	public function getLastPage() : int
 	{
-		return $this->totalPages;
+		return $this->lastPage;
 	}
 
 	public function getLastPageURL() : ?string
@@ -301,7 +301,7 @@ class Pager implements JsonSerializable
 	public function getPreviousPagesURLs() : array
 	{
 		$urls = [];
-		if ($this->currentPage > 1 && $this->currentPage <= $this->totalPages) {
+		if ($this->currentPage > 1 && $this->currentPage <= $this->lastPage) {
 			$range = \range($this->currentPage - $this->surround, $this->currentPage - 1);
 			foreach ($range as $page) {
 				if ($page < 1) {
@@ -319,10 +319,10 @@ class Pager implements JsonSerializable
 	public function getNextPagesURLs() : array
 	{
 		$urls = [];
-		if ($this->currentPage < $this->totalPages) {
+		if ($this->currentPage < $this->lastPage) {
 			$range = \range($this->currentPage + 1, $this->currentPage + $this->surround);
 			foreach ($range as $page) {
-				if ($page > $this->totalPages) {
+				if ($page > $this->lastPage) {
 					break;
 				}
 				$urls[$page] = $this->getPageURL($page);
