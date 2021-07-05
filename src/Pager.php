@@ -68,7 +68,7 @@ class Pager implements JsonSerializable
 		'semantic-ui2-short' => __DIR__ . '/Views/semantic-ui-short.php',
 	];
 	protected string $defaultView = 'pagination';
-	protected ?URL $url = null;
+	protected URL $url;
 	protected string $query = 'page';
 	protected Language $language;
 
@@ -103,25 +103,7 @@ class Pager implements JsonSerializable
 			$this->nextPage = $this->currentPage + 1;
 		}
 		$this->totalItems = $totalItems;
-		$this->items = $items;
-		$url ? $this->setURL($url) : $this->prepareURL();
-	}
-
-	public function __get(string $name) : mixed
-	{
-		if (\in_array($name, [
-			'currentPage',
-			'nextPage',
-			'previousPage',
-			'totalPages',
-			'surround',
-		], true)) {
-			return $this->{$name};
-		}
-		if (\property_exists($this, $name)) {
-			throw new LogicException("Property not allowed: {$name}");
-		}
-		throw new LogicException("Property not found: {$name}");
+		isset($url) ? $this->setURL($url) : $this->prepareURL();
 	}
 
 	public function __toString() : string
