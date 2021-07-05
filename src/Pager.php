@@ -340,22 +340,30 @@ class Pager implements JsonSerializable
 	}
 
 	/**
-	 * @param bool $withURLs
-	 *
-	 * @return array<string,mixed>
+	 * @return array<string,int|null>
 	 */
-	public function get(bool $withURLs = false) : array
+	public function get() : array
 	{
 		return [
-			'firstPage' => $withURLs ? $this->getFirstPageURL() : 1,
-			'previousPage' => $withURLs ? $this->getPreviousPageURL() : $this->previousPage,
-			'currentPage' => $withURLs ? $this->getCurrentPageURL() : $this->currentPage,
-			'nextPage' => $withURLs ? $this->getNextPageURL() : $this->nextPage,
-			'lastPage' => $withURLs ? $this->getLastPageURL() : $this->totalPages,
-			'totalPages' => $this->totalPages,
-			'itemsPerPage' => $this->itemsPerPage,
-			'totalItems' => $this->totalItems,
-			'currentPageItems' => $this->items,
+			'self' => $this->getCurrentPage(),
+			'first' => $this->getFirstPage(),
+			'prev' => $this->getPreviousPage(),
+			'next' => $this->getNextPage(),
+			'last' => $this->getLastPage(),
+		];
+	}
+
+	/**
+	 * @return array<string,string|null>
+	 */
+	public function getWithURL() : array
+	{
+		return [
+			'self' => $this->getCurrentPageURL(),
+			'first' => $this->getFirstPageURL(),
+			'prev' => $this->getPreviousPageURL(),
+			'next' => $this->getNextPageURL(),
+			'last' => $this->getLastPageURL(),
 		];
 	}
 
@@ -397,6 +405,6 @@ class Pager implements JsonSerializable
 	 */
 	public function jsonSerialize() : array
 	{
-		return $this->get(true);
+		return $this->getWithURL();
 	}
 }
