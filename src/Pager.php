@@ -216,11 +216,11 @@ class Pager implements JsonSerializable
 
 	/**
 	 * @param string|URL $currentPageURL
-	 * @param array<int,string>|null $allowedQueries
+	 * @param array<int,string> $allowedQueries
 	 *
 	 * @return static
 	 */
-	public function setURL(string | URL $currentPageURL, array $allowedQueries = null) : static
+	public function setURL(string | URL $currentPageURL, array $allowedQueries = []) : static
 	{
 		if ( ! $currentPageURL instanceof URL) {
 			$currentPageURL = new URL($currentPageURL);
