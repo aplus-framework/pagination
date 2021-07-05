@@ -215,15 +215,17 @@ class Pager implements JsonSerializable
 	}
 
 	/**
-	 * @param string $currentPageURL
+	 * @param string|URL $currentPageURL
 	 * @param array<int,string>|null $allowedQueries
 	 *
 	 * @return static
 	 */
-	public function setURL(string $currentPageURL, array $allowedQueries = null) : static
+	public function setURL(string | URL $currentPageURL, array $allowedQueries = null) : static
 	{
+		if ( ! $currentPageURL instanceof URL) {
+			$currentPageURL = new URL($currentPageURL);
+		}
 		$allowedQueries[] = $this->getQuery();
-		$currentPageURL = new URL($currentPageURL);
 		$currentPageURL->setQuery($currentPageURL->getQuery() ?? '', $allowedQueries);
 		$this->url = $currentPageURL;
 		return $this;
