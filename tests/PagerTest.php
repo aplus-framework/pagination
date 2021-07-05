@@ -10,9 +10,12 @@
 namespace Tests\Pagination;
 
 use Framework\Language\Language;
+use Framework\Pagination\Pager;
 use PHPUnit\Framework\TestCase;
-use Tests\Pagination\PagerMock as Pager;
 
+/**
+ * Class PagerTest.
+ */
 final class PagerTest extends TestCase
 {
 	protected Pager $pager;
@@ -21,11 +24,29 @@ final class PagerTest extends TestCase
 	{
 		$_SERVER['HTTP_HOST'] = 'localhost';
 		$_SERVER['REQUEST_URI'] = '/';
-		$this->pager = new Pager(0, 10, 31, [
-			[
-				'id' => 1,
-			],
-		]);
+		$this->pager = new Pager(0, 10, 31);
+	}
+
+	public function testGet() : void
+	{
+		self::assertSame([
+			'self' => 1,
+			'first' => 1,
+			'prev' => null,
+			'next' => 2,
+			'last' => 4,
+		], $this->pager->get());
+	}
+
+	public function testGetWithURL() : void
+	{
+		self::assertSame([
+			'self' => 'http://localhost/?page=1',
+			'first' => 'http://localhost/?page=1',
+			'prev' => null,
+			'next' => 'http://localhost/?page=2',
+			'last' => 'http://localhost/?page=4',
+		], $this->pager->getWithURL());
 	}
 
 	/**
@@ -36,11 +57,11 @@ final class PagerTest extends TestCase
 		$_SERVER['HTTPS'] = 'on';
 		$_SERVER['HTTP_HOST'] = 'domain.tld';
 		$_SERVER['REQUEST_URI'] = '/';
-		$pager = new Pager(0, 10, 31, []);
+		$pager = new Pager(0, 10, 31);
 		self::assertSame('https://domain.tld/?page=1', $pager->getCurrentPageURL());
-		$pager = new Pager(5, 20, 31, [], null, 'http://foo.com');
+		$pager = new Pager(5, 20, 31, null, 'http://foo.com');
 		self::assertSame('http://foo.com/?page=5', $pager->getCurrentPageURL());
-		$pager = new Pager(10, 20, 31, [], null, 'http://foo.com/?page=2');
+		$pager = new Pager(10, 20, 31, null, 'http://foo.com/?page=2');
 		self::assertSame('http://foo.com/?page=10', $pager->getCurrentPageURL());
 	}
 
@@ -75,7 +96,7 @@ final class PagerTest extends TestCase
 	{
 		$_SERVER['HTTP_HOST'] = 'domain.tld';
 		$_SERVER['REQUEST_URI'] = '/';
-		$pager = new Pager(3, 10, 100, []);
+		$pager = new Pager(3, 10, 100);
 		$pager->setSurround(5);
 		self::assertSame([
 			1 => 'http://domain.tld/?page=1',
@@ -83,17 +104,9 @@ final class PagerTest extends TestCase
 		], $pager->getPreviousPagesURLs());
 	}
 
-	public function testURLNotSet() : void
-	{
-		$this->pager->url = null;
-		$this->expectException(\LogicException::class);
-		$this->expectExceptionMessage('The paginated URL was not set');
-		$this->pager->getPageURL(15);
-	}
-
 	public function testPageMaxLimit() : void
 	{
-		$this->pager = new Pager(500, 10, 30, []);
+		$this->pager = new Pager(500, 10, 30);
 		self::assertSame('http://localhost/?page=500', $this->pager->getCurrentPageURL());
 		self::assertSame('http://localhost/?page=3', $this->pager->getPreviousPageURL());
 		self::assertSame('http://localhost/?page=1', $this->pager->getFirstPageURL());
@@ -104,22 +117,13 @@ final class PagerTest extends TestCase
 
 	public function testPageMinLimit() : void
 	{
-		$this->pager = new Pager(-5, 10, 30, []);
+		$this->pager = new Pager(-5, 10, 30);
 		self::assertSame('http://localhost/?page=1', $this->pager->getCurrentPageURL());
 		self::assertNull($this->pager->getPreviousPageURL());
 		self::assertSame('http://localhost/?page=1', $this->pager->getFirstPageURL());
 		self::assertSame('http://localhost/?page=2', $this->pager->getNextPageURL());
 		self::assertSame('http://localhost/?page=3', $this->pager->getLastPageURL());
 		self::assertSame('http://localhost/?page=15', $this->pager->getPageURL(15));
-	}
-
-	public function testItems() : void
-	{
-		self::assertSame([
-			[
-				'id' => 1,
-			],
-		], $this->pager->getItems());
 	}
 
 	public function testLanguageInstance() : void
@@ -184,7 +188,7 @@ final class PagerTest extends TestCase
 	 */
 	public function testRender() : void
 	{
-		$this->pager = new Pager(3, 10, 31, []);
+		$this->pager = new Pager(3, 10, 31);
 		self::assertStringContainsString(
 			'<ul class="pagination">',
 			$this->pager->render()
@@ -231,7 +235,7 @@ final class PagerTest extends TestCase
 	public function testJsonSerializable() : void
 	{
 		self::assertSame(
-			\json_encode($this->pager->get(true)),
+			\json_encode($this->pager->getWithURL()),
 			\json_encode($this->pager)
 		);
 	}
