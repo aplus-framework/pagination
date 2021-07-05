@@ -31,7 +31,6 @@ class Pager implements JsonSerializable
 	protected ?int $previousPage = null;
 	protected ?int $nextPage = null;
 	protected int $totalPages;
-	protected int $totalItems;
 	protected int $itemsPerPage;
 	protected int $surround = 2;
 	/**
@@ -98,7 +97,6 @@ class Pager implements JsonSerializable
 		if ($this->currentPage < $this->totalPages) {
 			$this->nextPage = $this->currentPage + 1;
 		}
-		$this->totalItems = $totalItems;
 		isset($url) ? $this->setURL($url) : $this->prepareURL();
 	}
 
