@@ -122,7 +122,7 @@ class Pager implements JsonSerializable
 	 *
 	 * @return static
 	 */
-	protected function setLanguage(Language $language) : static
+	public function setLanguage(Language $language) : static
 	{
 		$this->language = $language->addDirectory(__DIR__ . '/Languages');
 		return $this;
