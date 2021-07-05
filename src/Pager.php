@@ -253,7 +253,7 @@ class Pager implements JsonSerializable
 		return 1;
 	}
 
-	public function getFirstPageURL() : ?string
+	public function getFirstPageURL() : string
 	{
 		return $this->getPageURL($this->getFirstPage());
 	}
@@ -264,7 +264,7 @@ class Pager implements JsonSerializable
 		return $this->lastPage;
 	}
 
-	public function getLastPageURL() : ?string
+	public function getLastPageURL() : string
 	{
 		return $this->getPageURL($this->getLastPage());
 	}
@@ -354,10 +354,10 @@ class Pager implements JsonSerializable
 	 */
 	#[ArrayShape([
 		'self' => 'string',
-		'first' => 'null|string',
-		'prev' => 'null|string',
-		'next' => 'null|string',
-		'last' => 'null|string',
+		'first' => 'string',
+		'prev' => 'string|null',
+		'next' => 'string|null',
+		'last' => 'string',
 	])]
 	public function getWithURL() : array
 	{
