@@ -389,7 +389,10 @@ class Pager implements JsonSerializable
 
 	public function renderShort() : string
 	{
-		$view = $this->getDefaultView() . '-short';
+		$view = $this->getDefaultView();
+		if ( ! \str_ends_with($view, '-short')) {
+			$view .= '-short';
+		}
 		return $this->render($view);
 	}
 
