@@ -12,6 +12,7 @@ namespace Framework\Pagination;
 use Framework\HTTP\URL;
 use Framework\Language\Language;
 use InvalidArgumentException;
+use JetBrains\PhpStorm\ArrayShape;
 use JetBrains\PhpStorm\Pure;
 use JsonSerializable;
 use LogicException;
@@ -246,6 +247,7 @@ class Pager implements JsonSerializable
 		return $this->getPageURL($this->currentPage);
 	}
 
+	#[Pure]
 	public function getFirstPage() : int
 	{
 		return 1;
@@ -256,6 +258,7 @@ class Pager implements JsonSerializable
 		return $this->getPageURL($this->getFirstPage());
 	}
 
+	#[Pure]
 	public function getLastPage() : int
 	{
 		return $this->lastPage;
@@ -266,6 +269,7 @@ class Pager implements JsonSerializable
 		return $this->getPageURL($this->getLastPage());
 	}
 
+	#[Pure]
 	public function getPreviousPage() : ?int
 	{
 		return $this->previousPage;
@@ -276,6 +280,7 @@ class Pager implements JsonSerializable
 		return $this->getPageURL($this->getPreviousPage());
 	}
 
+	#[Pure]
 	public function getNextPage() : ?int
 	{
 		return $this->nextPage;
@@ -325,6 +330,14 @@ class Pager implements JsonSerializable
 	/**
 	 * @return array<string,int|null>
 	 */
+	#[ArrayShape([
+		'self' => 'int',
+		'first' => 'int',
+		'prev' => 'int|null',
+		'next' => 'int|null',
+		'last' => 'int',
+	])]
+	#[Pure]
 	public function get() : array
 	{
 		return [
@@ -339,6 +352,13 @@ class Pager implements JsonSerializable
 	/**
 	 * @return array<string,string|null>
 	 */
+	#[ArrayShape([
+		'self' => 'string',
+		'first' => 'null|string',
+		'prev' => 'null|string',
+		'next' => 'null|string',
+		'last' => 'null|string',
+	])]
 	public function getWithURL() : array
 	{
 		return [
