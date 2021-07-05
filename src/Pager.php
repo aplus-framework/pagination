@@ -278,29 +278,54 @@ class Pager implements JsonSerializable
 		return $this->url->addQuery($this->getQuery(), $page)->getAsString();
 	}
 
+	public function getCurrentPage() : int
+	{
+		return $this->currentPage;
+	}
+
 	public function getCurrentPageURL() : string
 	{
 		return $this->getPageURL($this->currentPage);
 	}
 
+	public function getFirstPage() : int
+	{
+		return 1;
+	}
+
 	public function getFirstPageURL() : ?string
 	{
-		return $this->getPageURL(1);
+		return $this->getPageURL($this->getFirstPage());
+	}
+
+	public function getLastPage() : int
+	{
+		return $this->totalPages;
 	}
 
 	public function getLastPageURL() : ?string
 	{
-		return $this->getPageURL($this->totalPages);
+		return $this->getPageURL($this->getLastPage());
+	}
+
+	public function getPreviousPage() : ?int
+	{
+		return $this->previousPage;
 	}
 
 	public function getPreviousPageURL() : ?string
 	{
-		return $this->getPageURL($this->previousPage);
+		return $this->getPageURL($this->getPreviousPage());
+	}
+
+	public function getNextPage() : ?int
+	{
+		return $this->nextPage;
 	}
 
 	public function getNextPageURL() : ?string
 	{
-		return $this->getPageURL($this->nextPage);
+		return $this->getPageURL($this->getNextPage());
 	}
 
 	/**
