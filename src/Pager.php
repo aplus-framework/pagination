@@ -222,9 +222,9 @@ class Pager implements JsonSerializable
 	 */
 	public function setURL(string | URL $currentPageURL, array $allowedQueries = []) : static
 	{
-		if ( ! $currentPageURL instanceof URL) {
-			$currentPageURL = new URL($currentPageURL);
-		}
+		$currentPageURL = $currentPageURL instanceof URL
+			? clone $currentPageURL
+			: new URL($currentPageURL);
 		$allowedQueries[] = $this->getQuery();
 		$currentPageURL->setQuery($currentPageURL->getQuery() ?? '', $allowedQueries);
 		$this->url = $currentPageURL;

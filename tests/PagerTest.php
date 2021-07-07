@@ -9,6 +9,7 @@
  */
 namespace Tests\Pagination;
 
+use Framework\HTTP\URL;
 use Framework\Language\Language;
 use Framework\Pagination\Pager;
 use PHPUnit\Framework\TestCase;
@@ -52,7 +53,7 @@ final class PagerTest extends TestCase
 	/**
 	 * @runInSeparateProcess
 	 */
-	public function testURL() : void
+	public function testPrepareURL() : void
 	{
 		$_SERVER['HTTPS'] = 'on';
 		$_SERVER['HTTP_HOST'] = 'domain.tld';
@@ -63,6 +64,15 @@ final class PagerTest extends TestCase
 		self::assertSame('http://foo.com/?page=5', $pager->getCurrentPageURL());
 		$pager = new Pager(10, 20, 31, null, 'http://foo.com/?page=2');
 		self::assertSame('http://foo.com/?page=10', $pager->getCurrentPageURL());
+	}
+
+	public function testClonedURL() : void
+	{
+		self::assertSame('http://localhost/', $this->pager->getURL()->getAsString());
+		$url = new URL('http://domain.tld/foo?page=2');
+		$this->pager->setURL($url);
+		self::assertSame('http://domain.tld/foo?page=2', $this->pager->getURL()->getAsString());
+		self::assertNotSame($url, $this->pager->getURL());
 	}
 
 	public function testQuery() : void
