@@ -82,6 +82,27 @@ final class PagerTest extends TestCase
 		self::assertSame('foo', $this->pager->getQuery());
 	}
 
+	public function testSetAllowedQueries() : void
+	{
+		$this->pager->setURL(
+			'http://domain.tld/slug?url=hello.com&page=8&perPage=10&order=desc&foo=bar'
+		);
+		self::assertSame(
+			'http://domain.tld/slug?page=8',
+			$this->pager->getURL()->getAsString()
+		);
+		$this->pager->setAllowedQueries(['order', 'perPage']);
+		self::assertSame(
+			'http://domain.tld/slug?page=8&perPage=10&order=desc',
+			$this->pager->getURL()->getAsString()
+		);
+		$this->pager->setAllowedQueries(['order']);
+		self::assertSame(
+			'http://domain.tld/slug?page=8&order=desc',
+			$this->pager->getURL()->getAsString()
+		);
+	}
+
 	public function testSurround() : void
 	{
 		self::assertSame(2, $this->pager->getSurround());

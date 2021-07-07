@@ -59,6 +59,7 @@ class Pager implements JsonSerializable
 	];
 	protected string $defaultView = 'pagination';
 	protected URL $url;
+	protected string $oldURL;
 	protected string $query = 'page';
 	protected Language $language;
 
@@ -205,6 +206,17 @@ class Pager implements JsonSerializable
 		return $this->query;
 	}
 
+	/**
+	 * @param array<int,string> $allowed
+	 *
+	 * @return $this
+	 */
+	public function setAllowedQueries(array $allowed) : static
+	{
+		$this->setURL($this->oldURL, $allowed);
+		return $this;
+	}
+
 	protected function prepareURL() : void
 	{
 		$scheme = ((isset($_SERVER['REQUEST_SCHEME']) && $_SERVER['REQUEST_SCHEME'] === 'https')
@@ -225,6 +237,7 @@ class Pager implements JsonSerializable
 		$currentPageURL = $currentPageURL instanceof URL
 			? clone $currentPageURL
 			: new URL($currentPageURL);
+		$this->oldURL = $currentPageURL->getAsString();
 		$allowedQueries[] = $this->getQuery();
 		$currentPageURL->setQuery($currentPageURL->getQuery() ?? '', $allowedQueries);
 		$this->url = $currentPageURL;
