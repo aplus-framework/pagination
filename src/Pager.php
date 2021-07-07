@@ -231,6 +231,11 @@ class Pager implements JsonSerializable
 		return $this;
 	}
 
+	public function getURL() : URL
+	{
+		return $this->url;
+	}
+
 	public function getPageURL(?int $page) : ?string
 	{
 		if (empty($page)) {
