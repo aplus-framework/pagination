@@ -415,8 +415,15 @@ class Pager implements JsonSerializable
 	}
 
 	/**
-	 * @return array<string,mixed>
+	 * @return array<string,string|null>
 	 */
+	#[ArrayShape([
+		'self' => 'string',
+		'first' => 'string',
+		'prev' => 'string|null',
+		'next' => 'string|null',
+		'last' => 'string',
+	])]
 	public function jsonSerialize() : array
 	{
 		return $this->getWithURL();
