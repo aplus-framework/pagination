@@ -8,12 +8,11 @@
  * file that was distributed with this source code.
  */
 /**
- * @var Framework\Pagination\Pager $pager
+ * HTTP Header Link.
  *
  * @see https://tools.ietf.org/html/rfc5988
- */
-/**
- * HTTP Header Link.
+ *
+ * @var Framework\Pagination\Pager $pager
  */
 $links = '';
 
@@ -23,6 +22,9 @@ if ($pager->getPreviousPage() > 0) {
 }
 
 if ($pager->getNextPage()) {
+	if ($links !== '') {
+		$links .= ',';
+	}
 	$links .= '<' . $pager->getNextPageURL() . '>; rel="next",';
 	$links .= '<' . $pager->getLastPageURL() . '>; rel="last"';
 }
