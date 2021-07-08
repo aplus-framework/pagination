@@ -80,8 +80,8 @@ class Pager implements JsonSerializable
 		string $url = null
 	) {
 		$this->setLanguage($language ?? new Language('en'));
-		$this->currentPage = $this->sanitizePageNumber($currentPage);
-		$this->itemsPerPage = $this->sanitizePageNumber($itemsPerPage);
+		$this->currentPage = static::sanitizePageNumber($currentPage);
+		$this->itemsPerPage = static::sanitizePageNumber($itemsPerPage);
 		$this->lastPage = (int) \ceil($totalItems / $this->itemsPerPage);
 		if ($this->currentPage > 1) {
 			if ($this->currentPage - 1 <= $this->lastPage) {
@@ -99,18 +99,6 @@ class Pager implements JsonSerializable
 	public function __toString() : string
 	{
 		return $this->render();
-	}
-
-	/**
-	 * @param int|string $number
-	 *
-	 * @return int
-	 */
-	#[Pure]
-	protected function sanitizePageNumber(int | string $number) : int
-	{
-		$number = $number < 1 || ! \is_numeric($number) ? 1 : $number;
-		return $number > \PHP_INT_MAX ? \PHP_INT_MAX : (int) $number;
 	}
 
 	/**
@@ -432,5 +420,17 @@ class Pager implements JsonSerializable
 	public function jsonSerialize() : array
 	{
 		return $this->getWithURL();
+	}
+
+	/**
+	 * @param int|string $number
+	 *
+	 * @return int
+	 */
+	#[Pure]
+	public static function sanitizePageNumber(int | string $number) : int
+	{
+		$number = $number < 1 || ! \is_numeric($number) ? 1 : $number;
+		return $number > \PHP_INT_MAX ? \PHP_INT_MAX : (int) $number;
 	}
 }
