@@ -21,8 +21,8 @@
 	"require": {
 		"php": ">=8.0",
 		"ext-json": "*",
+		"natanfelles/helpers": "^2.1",
 		"natanfelles/http": "^3.8",
-		"natanfelles/isolation": "^1.1",
 		"natanfelles/language": "^1.4"
 	},
 	"require-dev": {
