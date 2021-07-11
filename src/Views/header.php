@@ -17,16 +17,16 @@
 $links = '';
 
 if ($pager->getPreviousPage() > 0) {
-	$links .= '<' . $pager->getFirstPageURL() . '>; rel="first",';
-	$links .= '<' . $pager->getPreviousPageURL() . '>; rel="prev"';
+    $links .= '<' . $pager->getFirstPageURL() . '>; rel="first",';
+    $links .= '<' . $pager->getPreviousPageURL() . '>; rel="prev"';
 }
 
 if ($pager->getNextPage()) {
-	if ($links !== '') {
-		$links .= ',';
-	}
-	$links .= '<' . $pager->getNextPageURL() . '>; rel="next",';
-	$links .= '<' . $pager->getLastPageURL() . '>; rel="last"';
+    if ($links !== '') {
+        $links .= ',';
+    }
+    $links .= '<' . $pager->getNextPageURL() . '>; rel="next",';
+    $links .= '<' . $pager->getLastPageURL() . '>; rel="last"';
 }
 
 echo $links;

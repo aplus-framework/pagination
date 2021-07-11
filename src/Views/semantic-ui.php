@@ -15,12 +15,12 @@
 	<div class="ui pagination menu">
 		<?php if ($pager->getCurrentPage() - $pager->getSurround() > 1) : ?>
 			<a class="item" href="<?= $pager->getFirstPageURL() ?>"><?= $pager->getLanguage()
-			->render('pagination', 'first') ?></a>
+		    ->render('pagination', 'first') ?></a>
 		<?php endif ?>
 
 		<?php if ($pager->getPreviousPage() > 0) : ?>
 			<a class="item" rel="prev" href="<?= $pager->getPreviousPageURL() ?>" title="<?=
-			$pager->getLanguage()->render('pagination', 'previous') ?>">&laquo;</a>
+            $pager->getLanguage()->render('pagination', 'previous') ?>">&laquo;</a>
 		<?php endif ?>
 
 		<?php foreach ($pager->getPreviousPagesURLs() as $p => $url) : ?>
@@ -37,14 +37,14 @@
 
 		<?php if ($pager->getNextPage() && $pager->getNextPage() !== $pager->getLastPage()) : ?>
 			<a class="item" rel="next" href="<?= $pager->getNextPageURL() ?>" title="<?=
-			$pager->getLanguage()->render('pagination', 'next') ?>">&raquo;</a>
+            $pager->getLanguage()->render('pagination', 'next') ?>">&raquo;</a>
 		<?php endif ?>
 
 		<?php if ($pager->getLastPage()
-			&& $pager->getCurrentPage() + $pager->getSurround() < $pager->getLastPage()
-		) : ?>
+            && $pager->getCurrentPage() + $pager->getSurround() < $pager->getLastPage()
+        ) : ?>
 			<a class="item" href="<?= $pager->getLastPageURL() ?>"><?= $pager->getLanguage()
-			->render('pagination', 'last') ?></a>
+		    ->render('pagination', 'last') ?></a>
 		<?php endif ?>
 	</div>
 </div>

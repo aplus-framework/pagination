@@ -8,8 +8,8 @@
  * file that was distributed with this source code.
  */
 return [
-	'first' => 'Primera',
-	'last' => 'Última',
-	'next' => 'Siguiente',
-	'previous' => 'Anterior',
+    'first' => 'Primera',
+    'last' => 'Última',
+    'next' => 'Siguiente',
+    'previous' => 'Anterior',
 ];

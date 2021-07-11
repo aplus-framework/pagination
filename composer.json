@@ -1,61 +1,61 @@
 {
-	"name": "natanfelles/pagination",
-	"type": "library",
-	"description": "The Framework Pagination Library",
-	"keywords": [
-		"pager",
-		"pagination",
-		"bootstrap",
-		"bulma",
-		"semantic-ui"
-	],
-	"homepage": "https://the-framework.gitlab.io/libraries/pagination.html",
-	"license": "MIT",
-	"authors": [
-		{
-			"name": "Natan Felles",
-			"email": "natanfelles@gmail.com",
-			"homepage": "https://natanfelles.github.io"
-		}
-	],
-	"require": {
-		"php": ">=8.0",
-		"ext-json": "*",
-		"natanfelles/helpers": "^2.1",
-		"natanfelles/http": "^3.8",
-		"natanfelles/language": "^1.4"
-	},
-	"require-dev": {
-		"ext-xdebug": "*",
-		"ergebnis/composer-normalize": "^2.15",
-		"jetbrains/phpstorm-attributes": "^1.0",
-		"natanfelles/coding-standard": "^1.7",
-		"phpmd/phpmd": "^2.10",
-		"phpstan/phpstan": "^0.12",
-		"phpunit/phpunit": "^9.5"
-	},
-	"config": {
-		"optimize-autoloader": true,
-		"preferred-install": "dist",
-		"sort-packages": true
-	},
-	"autoload": {
-		"psr-4": {
-			"Framework\\Pagination\\": "src/"
-		}
-	},
-	"autoload-dev": {
-		"psr-4": {
-			"Tests\\Pagination\\": "tests/"
-		}
-	},
-	"minimum-stability": "dev",
-	"prefer-stable": true,
-	"support": {
-		"email": "natanfelles@gmail.com",
-		"issues": "https://gitlab.com/the-framework/libraries/pagination/issues",
-		"wiki": "https://gitlab.com/the-framework/libraries/pagination/wikis",
-		"source": "https://gitlab.com/the-framework/libraries/pagination",
-		"docs": "https://the-framework.gitlab.io/libraries/pagination/docs/"
-	}
+    "name": "natanfelles/pagination",
+    "type": "library",
+    "description": "The Framework Pagination Library",
+    "keywords": [
+        "pager",
+        "pagination",
+        "bootstrap",
+        "bulma",
+        "semantic-ui"
+    ],
+    "homepage": "https://the-framework.gitlab.io/libraries/pagination.html",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Natan Felles",
+            "email": "natanfelles@gmail.com",
+            "homepage": "https://natanfelles.github.io"
+        }
+    ],
+    "require": {
+        "php": ">=8.0",
+        "ext-json": "*",
+        "natanfelles/helpers": "^2.1",
+        "natanfelles/http": "^3.8",
+        "natanfelles/language": "^1.4"
+    },
+    "require-dev": {
+        "ext-xdebug": "*",
+        "ergebnis/composer-normalize": "^2.15",
+        "jetbrains/phpstorm-attributes": "^1.0",
+        "natanfelles/coding-standard": "^1.7",
+        "phpmd/phpmd": "^2.10",
+        "phpstan/phpstan": "^0.12",
+        "phpunit/phpunit": "^9.5"
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
+        "sort-packages": true
+    },
+    "autoload": {
+        "psr-4": {
+            "Framework\\Pagination\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\Pagination\\": "tests/"
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "support": {
+        "email": "natanfelles@gmail.com",
+        "issues": "https://gitlab.com/the-framework/libraries/pagination/issues",
+        "wiki": "https://gitlab.com/the-framework/libraries/pagination/wikis",
+        "source": "https://gitlab.com/the-framework/libraries/pagination",
+        "docs": "https://the-framework.gitlab.io/libraries/pagination/docs/"
+    }
 }

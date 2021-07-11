@@ -15,14 +15,14 @@
 	<?php if ($pager->getCurrentPage() - $pager->getSurround() > 1) : ?>
 		<li>
 			<a href="<?= $pager->getFirstPageURL() ?>"><?= $pager->getLanguage()
-		->render('pagination', 'first') ?></a>
+	    ->render('pagination', 'first') ?></a>
 		</li>
 	<?php endif ?>
 
 	<?php if ($pager->getPreviousPage() > 0) : ?>
 		<li>
 			<a rel="prev" href="<?= $pager->getPreviousPageURL() ?>" title="<?=
-			$pager->getLanguage()->render('pagination', 'previous') ?>">&laquo;</a>
+            $pager->getLanguage()->render('pagination', 'previous') ?>">&laquo;</a>
 		</li>
 	<?php endif ?>
 
@@ -47,16 +47,16 @@
 	<?php if ($pager->getNextPage() && $pager->getNextPage() !== $pager->getLastPage()) : ?>
 		<li>
 			<a rel="next" href="<?= $pager->getNextPageURL() ?>" title="<?=
-			$pager->getLanguage()->render('pagination', 'next') ?>">&raquo;</a>
+            $pager->getLanguage()->render('pagination', 'next') ?>">&raquo;</a>
 		</li>
 	<?php endif ?>
 
 	<?php if ($pager->getLastPage()
-		&& $pager->getCurrentPage() + $pager->getSurround() < $pager->getLastPage()
-	) : ?>
+        && $pager->getCurrentPage() + $pager->getSurround() < $pager->getLastPage()
+    ) : ?>
 		<li>
 			<a href="<?= $pager->getLastPageURL() ?>"><?= $pager->getLanguage()
-		->render('pagination', 'last') ?></a>
+	    ->render('pagination', 'last') ?></a>
 		</li>
 	<?php endif ?>
 </ul>
