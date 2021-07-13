@@ -1,7 +1,7 @@
 {
-    "name": "natanfelles/pagination",
+    "name": "aplus/pagination",
     "type": "library",
-    "description": "The Framework Pagination Library",
+    "description": "Aplus Framework Pagination Library",
     "keywords": [
         "pager",
         "pagination",
@@ -9,7 +9,7 @@
         "bulma",
         "semantic-ui"
     ],
-    "homepage": "https://the-framework.gitlab.io/libraries/pagination.html",
+    "homepage": "https://aplus-framework.com/docs/pagination",
     "license": "MIT",
     "authors": [
         {
@@ -53,9 +53,9 @@
     "prefer-stable": true,
     "support": {
         "email": "natanfelles@gmail.com",
-        "issues": "https://gitlab.com/the-framework/libraries/pagination/issues",
-        "wiki": "https://gitlab.com/the-framework/libraries/pagination/wikis",
-        "source": "https://gitlab.com/the-framework/libraries/pagination",
-        "docs": "https://the-framework.gitlab.io/libraries/pagination/docs/"
+        "issues": "https://gitlab.com/aplus-framework/libraries/pagination/issues",
+        "wiki": "https://gitlab.com/aplus-framework/libraries/pagination/wikis",
+        "source": "https://gitlab.com/aplus-framework/libraries/pagination",
+        "docs": "https://aplus-framework.gitlab.io/libraries/pagination/docs/"
     }
 }
