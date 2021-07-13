@@ -1,4 +1,4 @@
-# The Framework Pagination Library
+# Aplus Framework Pagination Library
 
 - [Homepage](https://the-framework.gitlab.io/libraries/pagination.html)
 - [API Documentation](https://the-framework.gitlab.io/libraries/pagination/docs/)
