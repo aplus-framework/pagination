@@ -12,4 +12,4 @@ use Framework\CodingStandard\Finder;
 
 return (new Config())->setFinder(
     Finder::create()->in(__DIR__)
-)->setDefaultHeaderComment('The Framework Pagination Library');
+)->setDefaultHeaderComment('Aplus Framework Pagination Library');
