@@ -15,7 +15,7 @@
     <?php if ($pager->getCurrentPage() - $pager->getSurround() > 1) : ?>
         <li>
             <a href="<?= $pager->getFirstPageUrl() ?>"><?= $pager->getLanguage()
-                    ->render('pagination', 'first') ?></a>
+        ->render('pagination', 'first') ?></a>
         </li>
     <?php endif ?>
 
@@ -54,7 +54,7 @@
     ) : ?>
         <li>
             <a href="<?= $pager->getLastPageUrl() ?>"><?= $pager->getLanguage()
-                    ->render('pagination', 'last') ?></a>
+        ->render('pagination', 'last') ?></a>
         </li>
     <?php endif ?>
 </ul>

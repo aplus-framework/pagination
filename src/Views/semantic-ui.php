@@ -15,7 +15,7 @@
     <div class="ui pagination menu">
         <?php if ($pager->getCurrentPage() - $pager->getSurround() > 1) : ?>
             <a class="item" href="<?= $pager->getFirstPageUrl() ?>"><?= $pager->getLanguage()
-                    ->render('pagination', 'first') ?></a>
+            ->render('pagination', 'first') ?></a>
         <?php endif ?>
 
         <?php if ($pager->getPreviousPage() > 0) : ?>
@@ -44,7 +44,7 @@
             && $pager->getCurrentPage() + $pager->getSurround() < $pager->getLastPage()
         ) : ?>
             <a class="item" href="<?= $pager->getLastPageUrl() ?>"><?= $pager->getLanguage()
-                    ->render('pagination', 'last') ?></a>
+            ->render('pagination', 'last') ?></a>
         <?php endif ?>
     </div>
 </div>
