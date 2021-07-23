@@ -9,7 +9,6 @@
  */
 namespace Framework\Pagination;
 
-use Framework\Helpers\Isolation;
 use Framework\HTTP\URL;
 use Framework\Language\Language;
 use InvalidArgumentException;
@@ -57,6 +56,11 @@ class Pager implements JsonSerializable
         'semantic-ui-short' => __DIR__ . '/Views/semantic-ui-short.php',
         'semantic-ui2' => __DIR__ . '/Views/semantic-ui.php',
         'semantic-ui2-short' => __DIR__ . '/Views/semantic-ui-short.php',
+        // Tailwindcss
+        'tailwindcss' => __DIR__ . '/Views/tailwindcss.php',
+        'tailwindcss-short' => __DIR__ . '/Views/tailwindcss-short.php',
+        'tailwindcss2' => __DIR__ . '/Views/tailwindcss.php',
+        'tailwindcss2-short' => __DIR__ . '/Views/tailwindcss-short.php',
     ];
     protected string $defaultView = 'pagination';
     protected URL $url;
@@ -389,7 +393,8 @@ class Pager implements JsonSerializable
     {
         $filename = $this->getView($view ?? $this->getDefaultView());
         \ob_start();
-        Isolation::require($filename, ['pager' => $this]);
+        $pager = $this;
+        require $filename;
         return (string) \ob_get_clean();
     }
 

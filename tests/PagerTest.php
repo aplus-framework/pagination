@@ -182,6 +182,10 @@ final class PagerTest extends TestCase
             'semantic-ui-short' => \realpath(__DIR__ . '/../src/Views/semantic-ui-short.php'),
             'semantic-ui2' => \realpath(__DIR__ . '/../src/Views/semantic-ui.php'),
             'semantic-ui2-short' => \realpath(__DIR__ . '/../src/Views/semantic-ui-short.php'),
+            'tailwindcss' => \realpath(__DIR__ . '/../src/Views/tailwindcss.php'),
+            'tailwindcss-short' => \realpath(__DIR__ . '/../src/Views/tailwindcss-short.php'),
+            'tailwindcss2' => \realpath(__DIR__ . '/../src/Views/tailwindcss.php'),
+            'tailwindcss2-short' => \realpath(__DIR__ . '/../src/Views/tailwindcss-short.php'),
         ];
         self::assertSame($views, $this->pager->getViews());
         $this->pager->setView('foo', __FILE__);
