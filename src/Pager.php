@@ -51,6 +51,11 @@ class Pager implements JsonSerializable
         // Bulma framework 0
         'bulma' => __DIR__ . '/Views/bulma.php',
         'bulma-short' => __DIR__ . '/Views/bulma-short.php',
+        // Foundation
+        'foundation' => __DIR__ . '/Views/foundation.php',
+        'foundation-short' => __DIR__ . '/Views/foundation-short.php',
+        'foundation6' => __DIR__ . '/Views/foundation.php',
+        'foundation6-short' => __DIR__ . '/Views/foundation-short.php',
         // Semantic UI framework 2
         'semantic-ui' => __DIR__ . '/Views/semantic-ui.php',
         'semantic-ui-short' => __DIR__ . '/Views/semantic-ui-short.php',
