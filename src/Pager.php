@@ -61,11 +61,11 @@ class Pager implements JsonSerializable
         'semantic-ui-short' => __DIR__ . '/Views/semantic-ui-short.php',
         'semantic-ui2' => __DIR__ . '/Views/semantic-ui.php',
         'semantic-ui2-short' => __DIR__ . '/Views/semantic-ui-short.php',
-        // Tailwindcss
-        'tailwindcss' => __DIR__ . '/Views/tailwindcss.php',
-        'tailwindcss-short' => __DIR__ . '/Views/tailwindcss-short.php',
-        'tailwindcss2' => __DIR__ . '/Views/tailwindcss.php',
-        'tailwindcss2-short' => __DIR__ . '/Views/tailwindcss-short.php',
+        // Tailwind
+        'tailwind' => __DIR__ . '/Views/tailwind.php',
+        'tailwind-short' => __DIR__ . '/Views/tailwind-short.php',
+        'tailwind2' => __DIR__ . '/Views/tailwind.php',
+        'tailwind2-short' => __DIR__ . '/Views/tailwind-short.php',
     ];
     protected string $defaultView = 'pagination';
     protected URL $url;
