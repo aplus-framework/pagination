@@ -9,6 +9,7 @@
  */
 namespace Framework\Pagination;
 
+use Framework\Helpers\Isolation;
 use Framework\HTTP\URL;
 use Framework\Language\Language;
 use InvalidArgumentException;
@@ -398,8 +399,7 @@ class Pager implements JsonSerializable
     {
         $filename = $this->getView($view ?? $this->getDefaultView());
         \ob_start();
-        $pager = $this;
-        require $filename;
+        Isolation::require($filename, ['pager' => $this]);
         return (string) \ob_get_clean();
     }
 
