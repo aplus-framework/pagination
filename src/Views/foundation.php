@@ -1,6 +1,6 @@
 <?php
 /*
- * This file is part of The Framework Pagination Library.
+ * This file is part of Aplus Framework Pagination Library.
  *
  * (c) Natan Felles <natanfelles@gmail.com>
  *
