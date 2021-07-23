@@ -12,19 +12,19 @@
  */
 ?>
 <ul class="pagination justify-content-center">
-	<?php if ($pager->getPreviousPage() > 0) : ?>
-		<li class="page-item">
-			<a class="page-link" rel="prev" href="<?= $pager->getPreviousPageUrl() ?>">
-				<?= $pager->getLanguage()->render('pagination', 'previous') ?>
-			</a>
-		</li>
-	<?php endif ?>
+    <?php if ($pager->getPreviousPage() > 0) : ?>
+        <li class="page-item">
+            <a class="page-link" rel="prev" href="<?= $pager->getPreviousPageUrl() ?>">
+                <?= $pager->getLanguage()->render('pagination', 'previous') ?>
+            </a>
+        </li>
+    <?php endif ?>
 
-	<?php if ($pager->getNextPage()) : ?>
-		<li class="page-item">
-			<a class="page-link" rel="next" href="<?= $pager->getNextPageUrl() ?>">
-				<?= $pager->getLanguage()->render('pagination', 'next') ?>
-			</a>
-		</li>
-	<?php endif ?>
+    <?php if ($pager->getNextPage()) : ?>
+        <li class="page-item">
+            <a class="page-link" rel="next" href="<?= $pager->getNextPageUrl() ?>">
+                <?= $pager->getLanguage()->render('pagination', 'next') ?>
+            </a>
+        </li>
+    <?php endif ?>
 </ul>

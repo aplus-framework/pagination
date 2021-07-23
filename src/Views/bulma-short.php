@@ -12,21 +12,21 @@
  */
 ?>
 <nav class="pagination is-centered">
-	<ul class="pagination-list">
-		<?php if ($pager->getPreviousPage() > 0) : ?>
-			<li>
-				<a class="pagination-link" rel="prev" href="<?= $pager->getPreviousPageUrl() ?>">
-					<?= $pager->getLanguage()->render('pagination', 'previous') ?>
-				</a>
-			</li>
-		<?php endif ?>
+    <ul class="pagination-list">
+        <?php if ($pager->getPreviousPage() > 0) : ?>
+            <li>
+                <a class="pagination-link" rel="prev" href="<?= $pager->getPreviousPageUrl() ?>">
+                    <?= $pager->getLanguage()->render('pagination', 'previous') ?>
+                </a>
+            </li>
+        <?php endif ?>
 
-		<?php if ($pager->getNextPage()) : ?>
-			<li>
-				<a class="pagination-link" rel="next" href="<?= $pager->getNextPageUrl() ?>">
-					<?= $pager->getLanguage()->render('pagination', 'next') ?>
-				</a>
-			</li>
-		<?php endif ?>
-	</ul>
+        <?php if ($pager->getNextPage()) : ?>
+            <li>
+                <a class="pagination-link" rel="next" href="<?= $pager->getNextPageUrl() ?>">
+                    <?= $pager->getLanguage()->render('pagination', 'next') ?>
+                </a>
+            </li>
+        <?php endif ?>
+    </ul>
 </nav>
