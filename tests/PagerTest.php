@@ -39,7 +39,7 @@ final class PagerTest extends TestCase
         ], $this->pager->get());
     }
 
-    public function testGetWithURL() : void
+    public function testGetWithUrl() : void
     {
         self::assertSame([
             'self' => 'http://localhost/?page=1',
@@ -47,32 +47,32 @@ final class PagerTest extends TestCase
             'prev' => null,
             'next' => 'http://localhost/?page=2',
             'last' => 'http://localhost/?page=4',
-        ], $this->pager->getWithURL());
+        ], $this->pager->getWithUrl());
     }
 
     /**
      * @runInSeparateProcess
      */
-    public function testPrepareURL() : void
+    public function testPrepareUrl() : void
     {
         $_SERVER['HTTPS'] = 'on';
         $_SERVER['HTTP_HOST'] = 'domain.tld';
         $_SERVER['REQUEST_URI'] = '/';
         $pager = new Pager(0, 10, 31);
-        self::assertSame('https://domain.tld/?page=1', $pager->getCurrentPageURL());
+        self::assertSame('https://domain.tld/?page=1', $pager->getCurrentPageUrl());
         $pager = new Pager(5, 20, 31, null, 'http://foo.com');
-        self::assertSame('http://foo.com/?page=5', $pager->getCurrentPageURL());
+        self::assertSame('http://foo.com/?page=5', $pager->getCurrentPageUrl());
         $pager = new Pager(10, 20, 31, null, 'http://foo.com/?page=2');
-        self::assertSame('http://foo.com/?page=10', $pager->getCurrentPageURL());
+        self::assertSame('http://foo.com/?page=10', $pager->getCurrentPageUrl());
     }
 
-    public function testClonedURL() : void
+    public function testClonedUrl() : void
     {
-        self::assertSame('http://localhost/', $this->pager->getURL()->getAsString());
+        self::assertSame('http://localhost/', $this->pager->getUrl()->getAsString());
         $url = new URL('http://domain.tld/foo?page=2');
-        $this->pager->setURL($url);
-        self::assertSame('http://domain.tld/foo?page=2', $this->pager->getURL()->getAsString());
-        self::assertNotSame($url, $this->pager->getURL());
+        $this->pager->setUrl($url);
+        self::assertSame('http://domain.tld/foo?page=2', $this->pager->getUrl()->getAsString());
+        self::assertNotSame($url, $this->pager->getUrl());
     }
 
     public function testQuery() : void
@@ -84,22 +84,22 @@ final class PagerTest extends TestCase
 
     public function testSetAllowedQueries() : void
     {
-        $this->pager->setURL(
-            'http://domain.tld/slug?url=hello.com&page=8&perPage=10&order=desc&foo=bar'
+        $this->pager->setUrl(
+            'http://domain.tld/slug?Url=hello.com&page=8&perPage=10&order=desc&foo=bar'
         );
         self::assertSame(
             'http://domain.tld/slug?page=8',
-            $this->pager->getURL()->getAsString()
+            $this->pager->getUrl()->getAsString()
         );
         $this->pager->setAllowedQueries(['order', 'perPage']);
         self::assertSame(
             'http://domain.tld/slug?page=8&perPage=10&order=desc',
-            $this->pager->getURL()->getAsString()
+            $this->pager->getUrl()->getAsString()
         );
         $this->pager->setAllowedQueries(['order']);
         self::assertSame(
             'http://domain.tld/slug?page=8&order=desc',
-            $this->pager->getURL()->getAsString()
+            $this->pager->getUrl()->getAsString()
         );
     }
 
@@ -110,20 +110,20 @@ final class PagerTest extends TestCase
         self::assertSame(5, $this->pager->getSurround());
     }
 
-    public function testPageURL() : void
+    public function testPageUrl() : void
     {
-        self::assertSame('http://localhost/?page=1', $this->pager->getCurrentPageURL());
-        self::assertNull($this->pager->getPreviousPageURL());
-        self::assertSame('http://localhost/?page=1', $this->pager->getFirstPageURL());
-        self::assertSame('http://localhost/?page=2', $this->pager->getNextPageURL());
-        self::assertSame('http://localhost/?page=4', $this->pager->getLastPageURL());
-        self::assertSame('http://localhost/?page=15', $this->pager->getPageURL(15));
+        self::assertSame('http://localhost/?page=1', $this->pager->getCurrentPageUrl());
+        self::assertNull($this->pager->getPreviousPageUrl());
+        self::assertSame('http://localhost/?page=1', $this->pager->getFirstPageUrl());
+        self::assertSame('http://localhost/?page=2', $this->pager->getNextPageUrl());
+        self::assertSame('http://localhost/?page=4', $this->pager->getLastPageUrl());
+        self::assertSame('http://localhost/?page=15', $this->pager->getPageUrl(15));
     }
 
     /**
      * @runInSeparateProcess
      */
-    public function testPreviousPagesURLsWithSurroundGreaterThanCurrentPage() : void
+    public function testPreviousPagesUrlsWithSurroundGreaterThanCurrentPage() : void
     {
         $_SERVER['HTTP_HOST'] = 'domain.tld';
         $_SERVER['REQUEST_URI'] = '/';
@@ -132,29 +132,29 @@ final class PagerTest extends TestCase
         self::assertSame([
             1 => 'http://domain.tld/?page=1',
             2 => 'http://domain.tld/?page=2',
-        ], $pager->getPreviousPagesURLs());
+        ], $pager->getPreviousPagesUrls());
     }
 
     public function testPageMaxLimit() : void
     {
         $this->pager = new Pager(500, 10, 30);
-        self::assertSame('http://localhost/?page=500', $this->pager->getCurrentPageURL());
-        self::assertSame('http://localhost/?page=3', $this->pager->getPreviousPageURL());
-        self::assertSame('http://localhost/?page=1', $this->pager->getFirstPageURL());
-        self::assertNull($this->pager->getNextPageURL());
-        self::assertSame('http://localhost/?page=3', $this->pager->getLastPageURL());
-        self::assertSame('http://localhost/?page=15', $this->pager->getPageURL(15));
+        self::assertSame('http://localhost/?page=500', $this->pager->getCurrentPageUrl());
+        self::assertSame('http://localhost/?page=3', $this->pager->getPreviousPageUrl());
+        self::assertSame('http://localhost/?page=1', $this->pager->getFirstPageUrl());
+        self::assertNull($this->pager->getNextPageUrl());
+        self::assertSame('http://localhost/?page=3', $this->pager->getLastPageUrl());
+        self::assertSame('http://localhost/?page=15', $this->pager->getPageUrl(15));
     }
 
     public function testPageMinLimit() : void
     {
         $this->pager = new Pager(-5, 10, 30);
-        self::assertSame('http://localhost/?page=1', $this->pager->getCurrentPageURL());
-        self::assertNull($this->pager->getPreviousPageURL());
-        self::assertSame('http://localhost/?page=1', $this->pager->getFirstPageURL());
-        self::assertSame('http://localhost/?page=2', $this->pager->getNextPageURL());
-        self::assertSame('http://localhost/?page=3', $this->pager->getLastPageURL());
-        self::assertSame('http://localhost/?page=15', $this->pager->getPageURL(15));
+        self::assertSame('http://localhost/?page=1', $this->pager->getCurrentPageUrl());
+        self::assertNull($this->pager->getPreviousPageUrl());
+        self::assertSame('http://localhost/?page=1', $this->pager->getFirstPageUrl());
+        self::assertSame('http://localhost/?page=2', $this->pager->getNextPageUrl());
+        self::assertSame('http://localhost/?page=3', $this->pager->getLastPageUrl());
+        self::assertSame('http://localhost/?page=15', $this->pager->getPageUrl(15));
     }
 
     public function testLanguageInstance() : void
@@ -266,7 +266,7 @@ final class PagerTest extends TestCase
     public function testJsonSerializable() : void
     {
         self::assertSame(
-            \json_encode($this->pager->getWithURL()),
+            \json_encode($this->pager->getWithUrl()),
             \json_encode($this->pager)
         );
     }
