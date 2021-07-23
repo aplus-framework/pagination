@@ -44,7 +44,7 @@
 		</li>
 	<?php endforeach ?>
 
-	<?php if ($pager->getNextPage() && $pager->getNextPage() !== $pager->getLastPage()) : ?>
+	<?php if ($pager->getNextPage() && $pager->getNextPage() < $pager->getLastPage() + 1) : ?>
 		<li class="page-item">
 			<a class="page-link" rel="next" href="<?= $pager->getNextPageURL() ?>" title="<?=
             $pager->getLanguage()->render('pagination', 'next') ?>">&raquo;</a>

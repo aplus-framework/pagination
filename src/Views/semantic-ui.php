@@ -35,7 +35,7 @@
 			<a class="item" href="<?= $url ?>"><?= $p ?></a>
 		<?php endforeach ?>
 
-		<?php if ($pager->getNextPage() && $pager->getNextPage() !== $pager->getLastPage()) : ?>
+		<?php if ($pager->getNextPage() && $pager->getNextPage() < $pager->getLastPage() + 1) : ?>
 			<a class="item" rel="next" href="<?= $pager->getNextPageURL() ?>" title="<?=
             $pager->getLanguage()->render('pagination', 'next') ?>">&raquo;</a>
 		<?php endif ?>
