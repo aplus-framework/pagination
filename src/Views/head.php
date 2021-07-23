@@ -13,9 +13,9 @@
 ?>
 
 <?php if ($pager->getPreviousPage() > 0) : ?>
-	<link rel="prev" href="<?= $pager->getPreviousPageURL() ?>">
+	<link rel="prev" href="<?= $pager->getPreviousPageUrl() ?>">
 <?php endif ?>
-<link rel="canonical" href="<?= $pager->getCurrentPageURL() ?>">
+<link rel="canonical" href="<?= $pager->getCurrentPageUrl() ?>">
 <?php if ($pager->getNextPage()) : ?>
-	<link rel="next" href="<?= $pager->getNextPageURL() ?>">
+	<link rel="next" href="<?= $pager->getNextPageUrl() ?>">
 <?php endif ?>

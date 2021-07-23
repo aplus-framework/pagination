@@ -14,13 +14,13 @@
 <div class="ui container center aligned">
 	<div class="ui pagination menu">
 		<?php if ($pager->getPreviousPage() > 0) : ?>
-			<a class="item" rel="prev" href="<?= $pager->getPreviousPageURL() ?>">
+			<a class="item" rel="prev" href="<?= $pager->getPreviousPageUrl() ?>">
 				<?= $pager->getLanguage()->render('pagination', 'previous') ?>
 			</a>
 		<?php endif ?>
 
 		<?php if ($pager->getNextPage()) : ?>
-			<a class="item" rel="next" href="<?= $pager->getNextPageURL() ?>">
+			<a class="item" rel="next" href="<?= $pager->getNextPageUrl() ?>">
 				<?= $pager->getLanguage()->render('pagination', 'next') ?>
 			</a>
 		<?php endif ?>

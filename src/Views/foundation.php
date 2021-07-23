@@ -14,19 +14,19 @@
 <ul class="pagination text-center">
 	<?php if ($pager->getCurrentPage() - $pager->getSurround() > 1) : ?>
         <li>
-            <a href="<?= $pager->getFirstPageURL() ?>"><?= $pager->getLanguage()
+            <a href="<?= $pager->getFirstPageUrl() ?>"><?= $pager->getLanguage()
 	    ->render('pagination', 'first') ?></a>
         </li>
 	<?php endif ?>
 
 	<?php if ($pager->getPreviousPage() > 0) : ?>
         <li>
-            <a href="<?= $pager->getPreviousPageURL() ?>" rel="prev" title="<?=
+            <a href="<?= $pager->getPreviousPageUrl() ?>" rel="prev" title="<?=
             $pager->getLanguage()->render('pagination', 'previous') ?>">&laquo;</a>
         </li>
 	<?php endif ?>
 
-	<?php foreach ($pager->getPreviousPagesURLs() as $p => $url) : ?>
+	<?php foreach ($pager->getPreviousPagesUrls() as $p => $url) : ?>
         <li>
             <a href="<?= $url ?>"><?= $p ?></a>
         </li>
@@ -36,7 +36,7 @@
         <?= $pager->getCurrentPage() ?>
     </li>
 
-	<?php foreach ($pager->getNextPagesURLs() as $p => $url) : ?>
+	<?php foreach ($pager->getNextPagesUrls() as $p => $url) : ?>
         <li>
             <a href="<?= $url ?>"><?= $p ?></a>
         </li>
@@ -44,7 +44,7 @@
 
 	<?php if ($pager->getNextPage() && $pager->getNextPage() < $pager->getLastPage() + 1) : ?>
         <li>
-            <a href="<?= $pager->getNextPageURL() ?>" rel="next" title="<?=
+            <a href="<?= $pager->getNextPageUrl() ?>" rel="next" title="<?=
             $pager->getLanguage()->render('pagination', 'next') ?>">&raquo;</a>
         </li>
 	<?php endif ?>
@@ -53,7 +53,7 @@
         && $pager->getCurrentPage() + $pager->getSurround() < $pager->getLastPage()
     ) : ?>
         <li>
-            <a href="<?= $pager->getLastPageURL() ?>"><?= $pager->getLanguage()
+            <a href="<?= $pager->getLastPageUrl() ?>"><?= $pager->getLanguage()
 	    ->render('pagination', 'last') ?></a>
         </li>
 	<?php endif ?>
