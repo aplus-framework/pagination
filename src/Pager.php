@@ -20,6 +20,8 @@ use LogicException;
 
 /**
  * Class Pager.
+ *
+ * @package pagination
  */
 class Pager implements JsonSerializable
 {
