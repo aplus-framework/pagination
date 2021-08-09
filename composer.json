@@ -11,7 +11,7 @@
         "tailwind",
         "foundation"
     ],
-    "homepage": "https://aplus-framework.com/docs/pagination",
+    "homepage": "https://docs.aplus-framework.com/guides/libraries/pagination/",
     "license": "MIT",
     "authors": [
         {
@@ -58,6 +58,6 @@
         "issues": "https://gitlab.com/aplus-framework/libraries/pagination/issues",
         "wiki": "https://gitlab.com/aplus-framework/libraries/pagination/wikis",
         "source": "https://gitlab.com/aplus-framework/libraries/pagination",
-        "docs": "https://aplus-framework.gitlab.io/libraries/pagination/docs/"
+        "docs": "https://docs.aplus-framework.com/guides/libraries/pagination/"
     }
 }
