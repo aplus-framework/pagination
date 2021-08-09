@@ -1,7 +1,6 @@
 # Aplus Framework Pagination Library
 
-- [Homepage](https://aplus-framework.com/docs/pagination)
-- [API Documentation](https://aplus-framework.gitlab.io/libraries/pagination/docs/)
+- [Documentation](https://docs.aplus-framework.com/guides/libraries/pagination/)
 
 [![Pipeline](https://gitlab.com/aplus-framework/libraries/pagination/badges/master/pipeline.svg)](https://gitlab.com/aplus-framework/libraries/pagination/-/pipelines?scope=branches)
 [![Coverage](https://gitlab.com/aplus-framework/libraries/pagination/badges/master/coverage.svg?job=test:php)](https://aplus-framework.gitlab.io/libraries/pagination/coverage/)
