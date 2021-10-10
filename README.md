@@ -1,3 +1,5 @@
+<a href="https://gitlab.com/aplus-framework/libraries/pagination"><img src="https://gitlab.com/aplus-framework/libraries/pagination/-/raw/master/guide/image.png" alt="Aplus Framework Pagination Library" align="right" width="100"></a>
+
 # Aplus Framework Pagination Library
 
 - [User Guide](https://docs.aplus-framework.com/guides/libraries/pagination/index.html)
