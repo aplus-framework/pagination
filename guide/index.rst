@@ -1,6 +1,9 @@
 Pagination
 ==========
 
+.. image:: image.png
+    :alt: Aplus Framework Pagination Library
+
 Aplus Framework Pagination Library.
 
 - `Installation`_
