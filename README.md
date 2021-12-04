@@ -2,6 +2,7 @@
 
 # Aplus Framework Pagination Library
 
+- [Homepage](https://aplus-framework.com/packages/pagination)
 - [User Guide](https://docs.aplus-framework.com/guides/libraries/pagination/index.html)
 - [API Documentation](https://docs.aplus-framework.com/packages/pagination.html)
 
