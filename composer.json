@@ -11,7 +11,7 @@
         "tailwind",
         "foundation"
     ],
-    "homepage": "https://docs.aplus-framework.com/guides/libraries/pagination/",
+    "homepage": "https://aplus-framework.com/packages/pagination",
     "license": "MIT",
     "authors": [
         {
@@ -56,13 +56,13 @@
     "support": {
         "email": "support@aplus-framework.com",
         "issues": "https://gitlab.com/aplus-framework/libraries/pagination/issues",
-        "wiki": "https://gitlab.com/aplus-framework/libraries/pagination/wikis",
+        "forum": "https://aplus-framework.com/forum",
         "source": "https://gitlab.com/aplus-framework/libraries/pagination",
         "docs": "https://docs.aplus-framework.com/guides/libraries/pagination/"
     },
     "funding": [
         {
-            "type": "other",
+            "type": "Aplus Sponsor",
             "url": "https://aplus-framework.com/sponsor"
         }
     ]
