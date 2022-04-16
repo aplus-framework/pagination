@@ -281,4 +281,45 @@ final class PagerTest extends TestCase
             \json_encode($this->pager)
         );
     }
+
+    /**
+     * @return array<array<string>>
+     */
+    public function viewsProvider() : array
+    {
+        return [
+            ['pagination'],
+            ['bootstrap'],
+            ['bulma'],
+            ['foundation'],
+            ['semantic-ui'],
+            ['tailwind'],
+        ];
+    }
+
+    /**
+     * @dataProvider viewsProvider
+     * @runInSeparateProcess
+     */
+    public function testPaginationViews(string $view) : void
+    {
+        $pager = new Pager(4, 10, 100);
+        $contents = $pager->render($view);
+        self::assertStringContainsString('First', $contents);
+        self::assertStringContainsString('Previous', $contents);
+        self::assertStringContainsString('Next', $contents);
+        self::assertStringContainsString('Last', $contents);
+    }
+
+    /**
+     * @dataProvider viewsProvider
+     * @runInSeparateProcess
+     */
+    public function testShortViews(string $view) : void
+    {
+        $pager = new Pager(4, 10, 100);
+        $contents = $pager->render($view . '-short');
+        self::assertStringContainsString('Previous', $contents);
+        self::assertStringContainsString('Next', $contents);
+    }
 }

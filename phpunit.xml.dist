@@ -8,9 +8,6 @@
         <include>
             <directory suffix=".php">src</directory>
         </include>
-        <exclude>
-            <directory>src/Views</directory>
-        </exclude>
         <report>
             <clover outputFile="build/coverage/clover.xml"/>
             <html outputDirectory="build/coverage"/>
