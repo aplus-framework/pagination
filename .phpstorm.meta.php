@@ -18,8 +18,6 @@ registerArgumentsSet(
     'pagination-short',
     'bootstrap',
     'bootstrap-short',
-    'bootstrap4',
-    'bootstrap4-short',
     'bootstrap5',
     'bootstrap5-short',
     'bulma',
@@ -34,8 +32,8 @@ registerArgumentsSet(
     'semantic-ui2-short',
     'tailwind',
     'tailwind-short',
-    'tailwind2',
-    'tailwind2-short',
+    'tailwind3',
+    'tailwind3-short',
 );
 expectedArguments(
     \Framework\Pagination\Pager::getView(),
