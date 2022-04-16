@@ -160,6 +160,11 @@ final class PagerTest extends TestCase
     public function testLanguageInstance() : void
     {
         self::assertInstanceOf(Language::class, $this->pager->getLanguage());
+        $language = new Language();
+        $this->pager->setLanguage($language);
+        self::assertSame($language, $this->pager->getLanguage());
+        $pager = new Pager(3, 10, 100, $language);
+        self::assertSame($language, $pager->getLanguage());
     }
 
     public function testViews() : void

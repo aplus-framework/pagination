@@ -10,13 +10,14 @@
 /**
  * @var Framework\Pagination\Pager $pager
  */
+$language = $pager->getLanguage();
 ?>
 <ul class="pagination">
     <?php if ($pager->getPreviousPage() > 0) : ?>
         <li>
             <a rel="prev" href="<?= $pager->getPreviousPageUrl() ?>" title="<?= $pager->getLanguage()
         ->render('pagination', 'previous') ?>">
-                &laquo; <?= $pager->getLanguage()->render('pagination', 'previous') ?>
+                &laquo; <?= $language->render('pagination', 'previous') ?>
             </a>
         </li>
     <?php endif ?>
@@ -25,7 +26,7 @@
         <li>
             <a rel="next" href="<?= $pager->getNextPageUrl() ?>" title="<?= $pager->getLanguage()
         ->render('pagination', 'next') ?>">
-                <?= $pager->getLanguage()->render('pagination', 'next') ?> &raquo; </a>
+                <?= $language->render('pagination', 'next') ?> &raquo; </a>
         </li>
     <?php endif ?>
 </ul>

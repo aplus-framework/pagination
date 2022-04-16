@@ -10,6 +10,7 @@
 /**
  * @var Framework\Pagination\Pager $pager
  */
+$language = $pager->getLanguage();
 ?>
 <nav class="pagination is-centered">
     <ul class="pagination-list">
@@ -23,7 +24,7 @@
         <?php if ($pager->getPreviousPage() > 0) : ?>
             <li>
                 <a class="pagination-link" rel="prev" href="<?= $pager->getPreviousPageUrl(); ?>" title="<?=
-                $pager->getLanguage()->render('pagination', 'previous') ?>">&laquo;</a>
+                $language->render('pagination', 'previous') ?>">&laquo;</a>
             </li>
         <?php endif ?>
 
@@ -48,7 +49,7 @@
         <?php if ($pager->getNextPage() && $pager->getNextPage() < $pager->getLastPage() + 1) : ?>
             <li>
                 <a class="pagination-link" rel="next" href="<?= $pager->getNextPageUrl() ?>" title="<?=
-                $pager->getLanguage()->render('pagination', 'next') ?>">&raquo;</a>
+                $language->render('pagination', 'next') ?>">&raquo;</a>
             </li>
         <?php endif ?>
 

@@ -90,7 +90,9 @@ class Pager implements JsonSerializable
         Language $language = null,
         string $url = null
     ) {
-        $this->setLanguage($language ?? new Language('en'));
+        if ($language) {
+            $this->setLanguage($language);
+        }
         $this->currentPage = static::sanitizePageNumber($currentPage);
         $this->itemsPerPage = static::sanitizePageNumber($itemsPerPage);
         $this->lastPage = (int) \ceil($totalItems / $this->itemsPerPage);
@@ -114,19 +116,25 @@ class Pager implements JsonSerializable
     }
 
     /**
-     * @param Language $language
+     * @param Language|null $language
      *
      * @return static
      */
-    public function setLanguage(Language $language) : static
+    public function setLanguage(Language $language = null) : static
     {
-        $this->language = $language->addDirectory(__DIR__ . '/Languages');
+        $this->language = $language ?? new Language();
+        $this->language->addDirectory(__DIR__ . '/Languages');
         return $this;
     }
 
-    #[Pure]
+    /**
+     * @return Language
+     */
     public function getLanguage() : Language
     {
+        if ( ! isset($this->language)) {
+            $this->setLanguage();
+        }
         return $this->language;
     }
 

@@ -10,6 +10,7 @@
 /**
  * @var Framework\Pagination\Pager $pager
  */
+$language = $pager->getLanguage();
 ?>
 <div class="ui container center aligned">
     <div class="ui pagination menu">
@@ -20,7 +21,7 @@
 
         <?php if ($pager->getPreviousPage() > 0) : ?>
             <a class="item" rel="prev" href="<?= $pager->getPreviousPageUrl() ?>" title="<?=
-            $pager->getLanguage()->render('pagination', 'previous') ?>">&laquo;</a>
+            $language->render('pagination', 'previous') ?>">&laquo;</a>
         <?php endif ?>
 
         <?php foreach ($pager->getPreviousPagesUrls() as $p => $url) : ?>
@@ -37,7 +38,7 @@
 
         <?php if ($pager->getNextPage() && $pager->getNextPage() < $pager->getLastPage() + 1) : ?>
             <a class="item" rel="next" href="<?= $pager->getNextPageUrl() ?>" title="<?=
-            $pager->getLanguage()->render('pagination', 'next') ?>">&raquo;</a>
+            $language->render('pagination', 'next') ?>">&raquo;</a>
         <?php endif ?>
 
         <?php if ($pager->getLastPage()

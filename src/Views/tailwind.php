@@ -10,6 +10,7 @@
 /**
  * @var Framework\Pagination\Pager $pager
  */
+$language = $pager->getLanguage();
 $hasFirst = $pager->getCurrentPage() - $pager->getSurround() > 1;
 $hasLast = $pager->getLastPage()
     && $pager->getCurrentPage() + $pager->getSurround() < $pager->getLastPage();
@@ -19,7 +20,7 @@ $hasPrev = $pager->getPreviousPage() > 0;
     <nav class="relative z-0 inline-flex rounded-md shadow-sm -space-x-px">
         <?php if ($hasFirst) : ?>
             <a href="<?= $pager->getFirstPageUrl() ?>" class="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
-                <?= $pager->getLanguage()->render('pagination', 'first') ?>
+                <?= $language->render('pagination', 'first') ?>
             </a>
         <?php endif ?>
 
@@ -70,7 +71,7 @@ $hasPrev = $pager->getPreviousPage() > 0;
 
         <?php if ($hasLast) : ?>
             <a href="<?= $pager->getLastPageUrl() ?>" class="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
-                <?= $pager->getLanguage()->render('pagination', 'last') ?>
+                <?= $language->render('pagination', 'last') ?>
             </a>
         <?php endif ?>
     </nav>
