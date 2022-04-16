@@ -172,8 +172,6 @@ final class PagerTest extends TestCase
             'pagination-short' => \realpath(__DIR__ . '/../src/Views/pagination-short.php'),
             'bootstrap' => \realpath(__DIR__ . '/../src/Views/bootstrap.php'),
             'bootstrap-short' => \realpath(__DIR__ . '/../src/Views/bootstrap-short.php'),
-            'bootstrap4' => \realpath(__DIR__ . '/../src/Views/bootstrap.php'),
-            'bootstrap4-short' => \realpath(__DIR__ . '/../src/Views/bootstrap-short.php'),
             'bootstrap5' => \realpath(__DIR__ . '/../src/Views/bootstrap.php'),
             'bootstrap5-short' => \realpath(__DIR__ . '/../src/Views/bootstrap-short.php'),
             'bulma' => \realpath(__DIR__ . '/../src/Views/bulma.php'),
@@ -188,8 +186,8 @@ final class PagerTest extends TestCase
             'semantic-ui2-short' => \realpath(__DIR__ . '/../src/Views/semantic-ui-short.php'),
             'tailwind' => \realpath(__DIR__ . '/../src/Views/tailwind.php'),
             'tailwind-short' => \realpath(__DIR__ . '/../src/Views/tailwind-short.php'),
-            'tailwind2' => \realpath(__DIR__ . '/../src/Views/tailwind.php'),
-            'tailwind2-short' => \realpath(__DIR__ . '/../src/Views/tailwind-short.php'),
+            'tailwind3' => \realpath(__DIR__ . '/../src/Views/tailwind.php'),
+            'tailwind3-short' => \realpath(__DIR__ . '/../src/Views/tailwind-short.php'),
         ];
         self::assertSame($views, $this->pager->getViews());
         $this->pager->setView('foo', __FILE__);
@@ -201,8 +199,8 @@ final class PagerTest extends TestCase
     public function testDefaultView() : void
     {
         self::assertSame('pagination', $this->pager->getDefaultView());
-        $this->pager->setDefaultView('bootstrap4');
-        self::assertSame('bootstrap4', $this->pager->getDefaultView());
+        $this->pager->setDefaultView('bootstrap');
+        self::assertSame('bootstrap', $this->pager->getDefaultView());
         $this->expectException(\LogicException::class);
         $this->expectExceptionMessage('Default view is not a valid value');
         $this->pager->setDefaultView('unknown');

@@ -44,31 +44,29 @@ class Pager implements JsonSerializable
         // HTML Full
         'pagination' => __DIR__ . '/Views/pagination.php',
         'pagination-short' => __DIR__ . '/Views/pagination-short.php',
-        // Bootstrap framework 4/5
+        // Bootstrap 5
         'bootstrap' => __DIR__ . '/Views/bootstrap.php',
         'bootstrap-short' => __DIR__ . '/Views/bootstrap-short.php',
-        'bootstrap4' => __DIR__ . '/Views/bootstrap.php',
-        'bootstrap4-short' => __DIR__ . '/Views/bootstrap-short.php',
         'bootstrap5' => __DIR__ . '/Views/bootstrap.php',
         'bootstrap5-short' => __DIR__ . '/Views/bootstrap-short.php',
-        // Bulma framework 0
+        // Bulma 0
         'bulma' => __DIR__ . '/Views/bulma.php',
         'bulma-short' => __DIR__ . '/Views/bulma-short.php',
-        // Foundation
+        // Foundation 6
         'foundation' => __DIR__ . '/Views/foundation.php',
         'foundation-short' => __DIR__ . '/Views/foundation-short.php',
         'foundation6' => __DIR__ . '/Views/foundation.php',
         'foundation6-short' => __DIR__ . '/Views/foundation-short.php',
-        // Semantic UI framework 2
+        // Semantic UI 2
         'semantic-ui' => __DIR__ . '/Views/semantic-ui.php',
         'semantic-ui-short' => __DIR__ . '/Views/semantic-ui-short.php',
         'semantic-ui2' => __DIR__ . '/Views/semantic-ui.php',
         'semantic-ui2-short' => __DIR__ . '/Views/semantic-ui-short.php',
-        // Tailwind
+        // Tailwind CSS 3
         'tailwind' => __DIR__ . '/Views/tailwind.php',
         'tailwind-short' => __DIR__ . '/Views/tailwind-short.php',
-        'tailwind2' => __DIR__ . '/Views/tailwind.php',
-        'tailwind2-short' => __DIR__ . '/Views/tailwind-short.php',
+        'tailwind3' => __DIR__ . '/Views/tailwind.php',
+        'tailwind3-short' => __DIR__ . '/Views/tailwind-short.php',
     ];
     protected string $defaultView = 'pagination';
     protected URL $url;
