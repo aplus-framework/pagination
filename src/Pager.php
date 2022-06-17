@@ -93,10 +93,10 @@ class Pager implements JsonSerializable
         if ($language) {
             $this->setLanguage($language);
         }
-        $this->currentPage = static::sanitizePageNumber($currentPage);
-        $this->itemsPerPage = static::sanitizePageNumber($itemsPerPage);
+        $this->currentPage = static::sanitize($currentPage);
+        $this->itemsPerPage = static::sanitize($itemsPerPage);
         $this->lastPage = (int) \ceil($totalItems / $this->itemsPerPage);
-        $this->lastPage = static::sanitizePageNumber($this->lastPage);
+        $this->lastPage = static::sanitize($this->lastPage);
         if ($this->currentPage > 1) {
             if ($this->currentPage - 1 <= $this->lastPage) {
                 $this->previousPage = $this->currentPage - 1;
@@ -459,5 +459,24 @@ class Pager implements JsonSerializable
     {
         $number = $number < 1 || ! \is_numeric($number) ? 1 : $number;
         return $number > \PHP_INT_MAX ? \PHP_INT_MAX : (int) $number;
+    }
+
+    /**
+     * Sanitize a number.
+     *
+     * @param mixed $number
+     *
+     * @return int
+     */
+    #[Pure]
+    public static function sanitize(mixed $number) : int
+    {
+        if ( ! \is_numeric($number)) {
+            return 1;
+        }
+        if ($number < 1) {
+            return 1;
+        }
+        return $number >= \PHP_INT_MAX ? \PHP_INT_MAX : (int) $number;
     }
 }

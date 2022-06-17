@@ -322,4 +322,13 @@ final class PagerTest extends TestCase
         self::assertStringContainsString('Previous', $contents);
         self::assertStringContainsString('Next', $contents);
     }
+
+    public function testSanitize() : void
+    {
+        self::assertSame(1, Pager::sanitize([]));
+        self::assertSame(1, Pager::sanitize(-5));
+        self::assertSame(1, Pager::sanitize('-' . \PHP_INT_MIN . '123'));
+        self::assertSame(\PHP_INT_MAX, Pager::sanitize(\PHP_INT_MAX . '123'));
+        self::assertSame(\PHP_INT_MAX - 1, Pager::sanitize(\PHP_INT_MAX - 1));
+    }
 }
