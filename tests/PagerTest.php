@@ -299,6 +299,7 @@ final class PagerTest extends TestCase
 
     /**
      * @dataProvider viewsProvider
+     *
      * @runInSeparateProcess
      */
     public function testPaginationViews(string $view) : void
@@ -313,6 +314,7 @@ final class PagerTest extends TestCase
 
     /**
      * @dataProvider viewsProvider
+     *
      * @runInSeparateProcess
      */
     public function testShortViews(string $view) : void

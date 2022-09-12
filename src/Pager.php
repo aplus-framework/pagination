@@ -456,6 +456,7 @@ class Pager implements JsonSerializable
      * @return int
      *
      * @deprecated Use sanitize method
+     *
      * @codeCoverageIgnore
      */
     #[Deprecated(
