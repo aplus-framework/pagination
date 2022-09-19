@@ -207,7 +207,7 @@ final class PagerTest extends TestCase
         $this->pager->setDefaultView('bootstrap');
         self::assertSame('bootstrap', $this->pager->getDefaultView());
         $this->expectException(\LogicException::class);
-        $this->expectExceptionMessage('Default view is not a valid value');
+        $this->expectExceptionMessage('Default view "unknown" is not a valid value');
         $this->pager->setDefaultView('unknown');
     }
 

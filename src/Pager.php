@@ -424,7 +424,9 @@ class Pager implements JsonSerializable
     public function setDefaultView(string $defaultView) : void
     {
         if ( ! \array_key_exists($defaultView, $this->views)) {
-            throw new LogicException('Default view is not a valid value');
+            throw new LogicException(
+                'Default view "' . $defaultView . '" is not a valid value'
+            );
         }
         $this->defaultView = $defaultView;
     }
