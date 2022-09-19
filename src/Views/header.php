@@ -16,7 +16,7 @@
  */
 $links = '';
 
-if ($pager->getPreviousPage() > 0) {
+if ($pager->getPreviousPage()) {
     $links .= '<' . $pager->getFirstPageUrl() . '>; rel="first",';
     $links .= '<' . $pager->getPreviousPageUrl() . '>; rel="prev"';
 }

@@ -14,7 +14,7 @@ $language = $pager->getLanguage();
 ?>
 <nav class="pagination is-centered">
     <ul class="pagination-list">
-        <?php if ($pager->getPreviousPage() > 0) : ?>
+        <?php if ($pager->getPreviousPage()) : ?>
             <li>
                 <a class="pagination-link" rel="prev" href="<?= $pager->getPreviousPageUrl() ?>">
                     <?= $language->render('pagination', 'previous') ?>

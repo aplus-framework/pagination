@@ -19,7 +19,7 @@ $language = $pager->getLanguage();
             ->render('pagination', 'first') ?></a>
         <?php endif ?>
 
-        <?php if ($pager->getPreviousPage() > 0) : ?>
+        <?php if ($pager->getPreviousPage()) : ?>
             <a class="item" rel="prev" href="<?= $pager->getPreviousPageUrl() ?>" title="<?=
             $language->render('pagination', 'previous') ?>">&laquo;</a>
         <?php endif ?>

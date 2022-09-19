@@ -14,7 +14,7 @@ $language = $pager->getLanguage();
 $hasFirst = $pager->getCurrentPage() - $pager->getSurround() > 1;
 $hasLast = $pager->getLastPage()
     && $pager->getCurrentPage() + $pager->getSurround() < $pager->getLastPage();
-$hasPrev = $pager->getPreviousPage() > 0;
+$hasPrev = $pager->getPreviousPage();
 ?>
 <div class="text-center">
     <nav class="relative z-0 inline-flex rounded-md shadow-sm -space-x-px">

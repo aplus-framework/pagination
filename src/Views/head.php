@@ -12,7 +12,7 @@
  */
 ?>
 
-<?php if ($pager->getPreviousPage() > 0) : ?>
+<?php if ($pager->getPreviousPage()) : ?>
     <link rel="prev" href="<?= $pager->getPreviousPageUrl() ?>">
 <?php endif ?>
 <link rel="canonical" href="<?= $pager->getCurrentPageUrl() ?>">

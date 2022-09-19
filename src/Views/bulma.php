@@ -21,7 +21,7 @@ $language = $pager->getLanguage();
             </li>
         <?php endif ?>
 
-        <?php if ($pager->getPreviousPage() > 0) : ?>
+        <?php if ($pager->getPreviousPage()) : ?>
             <li>
                 <a class="pagination-link" rel="prev" href="<?= $pager->getPreviousPageUrl(); ?>" title="<?=
                 $language->render('pagination', 'previous') ?>">&laquo;</a>
@@ -30,7 +30,7 @@ $language = $pager->getLanguage();
 
         <?php foreach ($pager->getPreviousPagesUrls() as $p => $url) : ?>
             <li>
-                <a class="pagination-link" href="<?= $url; ?>"><?= $p ?></a>
+                <a class="pagination-link" href="<?= $url ?>"><?= $p ?></a>
             </li>
         <?php endforeach ?>
 

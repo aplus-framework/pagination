@@ -13,7 +13,7 @@
 $language = $pager->getLanguage();
 ?>
 <ul class="pagination justify-content-center">
-    <?php if ($pager->getPreviousPage() > 0) : ?>
+    <?php if ($pager->getPreviousPage()) : ?>
         <li class="page-item">
             <a class="page-link" rel="prev" href="<?= $pager->getPreviousPageUrl() ?>">
                 <?= $language->render('pagination', 'previous') ?>

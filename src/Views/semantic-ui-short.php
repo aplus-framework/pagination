@@ -14,7 +14,7 @@ $language = $pager->getLanguage();
 ?>
 <div class="ui container center aligned">
     <div class="ui pagination menu">
-        <?php if ($pager->getPreviousPage() > 0) : ?>
+        <?php if ($pager->getPreviousPage()) : ?>
             <a class="item" rel="prev" href="<?= $pager->getPreviousPageUrl() ?>">
                 <?= $language->render('pagination', 'previous') ?>
             </a>
