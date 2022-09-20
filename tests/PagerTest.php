@@ -185,6 +185,10 @@ final class PagerTest extends TestCase
             'foundation-short' => \realpath(__DIR__ . '/../src/Views/foundation-short.php'),
             'foundation6' => \realpath(__DIR__ . '/../src/Views/foundation.php'),
             'foundation6-short' => \realpath(__DIR__ . '/../src/Views/foundation-short.php'),
+            'materialize' => \realpath(__DIR__ . '/../src/Views/materialize.php'),
+            'materialize-short' => \realpath(__DIR__ . '/../src/Views/materialize-short.php'),
+            'materialize1' => \realpath(__DIR__ . '/../src/Views/materialize.php'),
+            'materialize1-short' => \realpath(__DIR__ . '/../src/Views/materialize-short.php'),
             'semantic-ui' => \realpath(__DIR__ . '/../src/Views/semantic-ui.php'),
             'semantic-ui-short' => \realpath(__DIR__ . '/../src/Views/semantic-ui-short.php'),
             'semantic-ui2' => \realpath(__DIR__ . '/../src/Views/semantic-ui.php'),
@@ -292,6 +296,7 @@ final class PagerTest extends TestCase
             ['bootstrap'],
             ['bulma'],
             ['foundation'],
+            ['materialize'],
             ['semantic-ui'],
             ['tailwind'],
         ];

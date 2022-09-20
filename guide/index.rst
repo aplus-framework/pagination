@@ -162,6 +162,7 @@ The Aplus Framework Pagination Library works with the following front-end framew
 - `Bootstrap <https://getbootstrap.com/>`_
 - `Bulma <https://bulma.io/>`_
 - `Foundation <https://get.foundation/>`_
+- `Materialize <https://materializecss.com/>`_
 - `Semantic UI <https://semantic-ui.com/>`_
 - `Tailwind <https://tailwindcss.com/>`_
 
