@@ -63,6 +63,11 @@ class Pager implements JsonSerializable
         'materialize-short' => __DIR__ . '/Views/materialize-short.php',
         'materialize1' => __DIR__ . '/Views/materialize.php',
         'materialize1-short' => __DIR__ . '/Views/materialize-short.php',
+        // Primer 20
+        'primer' => __DIR__ . '/Views/primer.php',
+        'primer-short' => __DIR__ . '/Views/primer-short.php',
+        'primer20' => __DIR__ . '/Views/primer.php',
+        'primer20-short' => __DIR__ . '/Views/primer-short.php',
         // Semantic UI 2
         'semantic-ui' => __DIR__ . '/Views/semantic-ui.php',
         'semantic-ui-short' => __DIR__ . '/Views/semantic-ui-short.php',

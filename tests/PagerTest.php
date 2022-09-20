@@ -189,6 +189,10 @@ final class PagerTest extends TestCase
             'materialize-short' => \realpath(__DIR__ . '/../src/Views/materialize-short.php'),
             'materialize1' => \realpath(__DIR__ . '/../src/Views/materialize.php'),
             'materialize1-short' => \realpath(__DIR__ . '/../src/Views/materialize-short.php'),
+            'primer' => \realpath(__DIR__ . '/../src/Views/primer.php'),
+            'primer-short' => \realpath(__DIR__ . '/../src/Views/primer-short.php'),
+            'primer20' => \realpath(__DIR__ . '/../src/Views/primer.php'),
+            'primer20-short' => \realpath(__DIR__ . '/../src/Views/primer-short.php'),
             'semantic-ui' => \realpath(__DIR__ . '/../src/Views/semantic-ui.php'),
             'semantic-ui-short' => \realpath(__DIR__ . '/../src/Views/semantic-ui-short.php'),
             'semantic-ui2' => \realpath(__DIR__ . '/../src/Views/semantic-ui.php'),
@@ -297,6 +301,7 @@ final class PagerTest extends TestCase
             ['bulma'],
             ['foundation'],
             ['materialize'],
+            ['primer'],
             ['semantic-ui'],
             ['tailwind'],
         ];
@@ -315,6 +320,68 @@ final class PagerTest extends TestCase
         self::assertStringContainsString('Previous', $contents);
         self::assertStringContainsString('Next', $contents);
         self::assertStringContainsString('Last', $contents);
+    }
+
+    /**
+     * @return array<array<string>>
+     */
+    public function previousDisabledProvider() : array
+    {
+        return [
+            ['primer', 'aria-disabled="true"'],
+            ['primer-short', 'aria-disabled="true"'],
+        ];
+    }
+
+    /**
+     * @dataProvider previousDisabledProvider
+     *
+     * @runInSeparateProcess
+     *
+     * @param string $view
+     * @param string $needle
+     */
+    public function testPreviousIsDisabled(string $view, string $needle) : void
+    {
+        $pager = new Pager(1, 10, 100);
+        $contents = $pager->render($view);
+        self::assertStringContainsString($needle, $contents);
+    }
+
+    /**
+     * @return array<array<string>>
+     */
+    public function nextDisabledProvider() : array
+    {
+        return [
+            ['primer', 'aria-disabled="true"'],
+            ['primer-short', 'aria-disabled="true"'],
+        ];
+    }
+
+    /**
+     * @dataProvider nextDisabledProvider
+     *
+     * @runInSeparateProcess
+     *
+     * @param string $view
+     * @param string $needle
+     */
+    public function testNextIsDisabled(string $view, string $needle) : void
+    {
+        $pager = new Pager(10, 10, 100);
+        $contents = $pager->render($view);
+        self::assertStringContainsString($needle, $contents);
+    }
+
+    /**
+     * @runInSeparateProcess
+     */
+    public function testPrimerGap() : void
+    {
+        $pager = new Pager(5, 10, 100);
+        $contents = $pager->render('primer');
+        self::assertStringContainsString('<span class="gap">…</span>', $contents);
     }
 
     /**
