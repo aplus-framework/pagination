@@ -42,6 +42,10 @@ registerArgumentsSet(
     'tailwind-short',
     'tailwind3',
     'tailwind3-short',
+    'w3',
+    'w3-short',
+    'w34',
+    'w34-short',
 );
 expectedArguments(
     \Framework\Pagination\Pager::getView(),

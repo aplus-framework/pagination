@@ -201,6 +201,10 @@ final class PagerTest extends TestCase
             'tailwind-short' => \realpath(__DIR__ . '/../src/Views/tailwind-short.php'),
             'tailwind3' => \realpath(__DIR__ . '/../src/Views/tailwind.php'),
             'tailwind3-short' => \realpath(__DIR__ . '/../src/Views/tailwind-short.php'),
+            'w3' => \realpath(__DIR__ . '/../src/Views/w3.php'),
+            'w3-short' => \realpath(__DIR__ . '/../src/Views/w3-short.php'),
+            'w34' => \realpath(__DIR__ . '/../src/Views/w3.php'),
+            'w34-short' => \realpath(__DIR__ . '/../src/Views/w3-short.php'),
         ];
         self::assertSame($views, $this->pager->getViews());
         $this->pager->setView('foo', __FILE__);
@@ -304,6 +308,7 @@ final class PagerTest extends TestCase
             ['primer'],
             ['semantic-ui'],
             ['tailwind'],
+            ['w3'],
         ];
     }
 

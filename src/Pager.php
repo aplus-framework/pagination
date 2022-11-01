@@ -78,6 +78,11 @@ class Pager implements JsonSerializable
         'tailwind-short' => __DIR__ . '/Views/tailwind-short.php',
         'tailwind3' => __DIR__ . '/Views/tailwind.php',
         'tailwind3-short' => __DIR__ . '/Views/tailwind-short.php',
+        // W3.CSS 4
+        'w3' => __DIR__ . '/Views/w3.php',
+        'w3-short' => __DIR__ . '/Views/w3-short.php',
+        'w34' => __DIR__ . '/Views/w3.php',
+        'w34-short' => __DIR__ . '/Views/w3-short.php',
     ];
     protected string $defaultView = 'pagination';
     protected URL $url;

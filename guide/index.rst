@@ -166,6 +166,7 @@ The Aplus Framework Pagination Library works with the following front-end framew
 - `Primer <https://primer.style/>`_
 - `Semantic UI <https://semantic-ui.com/>`_
 - `Tailwind <https://tailwindcss.com/>`_
+- `W3.CSS <https://www.w3schools.com/w3css/default.asp/>`_
 
 Note that it is necessary to load links from CSS files.
 
