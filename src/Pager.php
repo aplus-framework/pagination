@@ -261,7 +261,7 @@ class Pager implements JsonSerializable
         $currentPageUrl = $currentPageUrl instanceof URL
             ? clone $currentPageUrl
             : new URL($currentPageUrl);
-        $this->oldUrl = $currentPageUrl->getAsString();
+        $this->oldUrl = $currentPageUrl->toString();
         $allowedQueries[] = $this->getQuery();
         $currentPageUrl->setQuery($currentPageUrl->getQuery() ?? '', $allowedQueries);
         $this->url = $currentPageUrl;
@@ -278,7 +278,7 @@ class Pager implements JsonSerializable
         if ($page === null || $page === 0) {
             return null;
         }
-        return $this->url->addQuery($this->getQuery(), $page)->getAsString();
+        return $this->url->addQuery($this->getQuery(), $page)->toString();
     }
 
     public function getCurrentPage() : int
