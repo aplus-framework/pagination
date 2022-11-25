@@ -31,6 +31,7 @@ class Pager implements JsonSerializable
     protected ?int $nextPage = null;
     protected int $lastPage;
     protected int $itemsPerPage;
+    protected int $totalItems;
     protected int $surround = 2;
     /**
      * @var array<string,string>
@@ -109,19 +110,20 @@ class Pager implements JsonSerializable
         if ($language) {
             $this->setLanguage($language);
         }
-        $this->currentPage = static::sanitize($currentPage);
-        $this->itemsPerPage = static::sanitize($itemsPerPage);
-        $this->lastPage = (int) \ceil($totalItems / $this->itemsPerPage);
-        $this->lastPage = static::sanitize($this->lastPage);
-        if ($this->currentPage > 1) {
-            if ($this->currentPage - 1 <= $this->lastPage) {
-                $this->previousPage = $this->currentPage - 1;
-            } elseif ($this->lastPage > 1) {
-                $this->previousPage = $this->lastPage;
+        $this->setCurrentPage(static::sanitize($currentPage))
+            ->setItemsPerPage(static::sanitize($itemsPerPage))
+            ->setTotalItems($totalItems);
+        $lastPage = (int) \ceil($this->getTotalItems() / $this->getItemsPerPage());
+        $this->setLastPage(static::sanitize($lastPage));
+        if ($this->getCurrentPage() > 1) {
+            if ($this->getCurrentPage() - 1 <= $this->getLastPage()) {
+                $this->setPreviousPage($this->getCurrentPage() - 1);
+            } elseif ($this->getLastPage() > 1) {
+                $this->setPreviousPage($this->getLastPage());
             }
         }
-        if ($this->currentPage < $this->lastPage) {
-            $this->nextPage = $this->currentPage + 1;
+        if ($this->getCurrentPage() < $this->getLastPage()) {
+            $this->setNextPage($this->getCurrentPage() + 1);
         }
         isset($url) ? $this->setUrl($url) : $this->prepareUrl();
     }
@@ -129,6 +131,52 @@ class Pager implements JsonSerializable
     public function __toString() : string
     {
         return $this->render();
+    }
+
+    /**
+     * @since 3.5
+     *
+     * @return int
+     */
+    public function getItemsPerPage() : int
+    {
+        return $this->itemsPerPage;
+    }
+
+    /**
+     * @since 3.5
+     *
+     * @param int $itemsPerPage
+     *
+     * @return static
+     */
+    protected function setItemsPerPage(int $itemsPerPage) : static
+    {
+        $this->itemsPerPage = $itemsPerPage;
+        return $this;
+    }
+
+    /**
+     * @since 3.5
+     *
+     * @return int
+     */
+    public function getTotalItems() : int
+    {
+        return $this->totalItems;
+    }
+
+    /**
+     * @since 3.5
+     *
+     * @param int $totalItems
+     *
+     * @return static
+     */
+    protected function setTotalItems(int $totalItems) : static
+    {
+        $this->totalItems = $totalItems;
+        return $this;
     }
 
     /**
@@ -286,6 +334,19 @@ class Pager implements JsonSerializable
         return $this->currentPage;
     }
 
+    /**
+     * @since 3.5
+     *
+     * @param int $currentPage
+     *
+     * @return static
+     */
+    protected function setCurrentPage(int $currentPage) : static
+    {
+        $this->currentPage = $currentPage;
+        return $this;
+    }
+
     public function getCurrentPageUrl() : string
     {
         return $this->getPageUrl($this->currentPage);
@@ -308,6 +369,19 @@ class Pager implements JsonSerializable
         return $this->lastPage;
     }
 
+    /**
+     * @since 3.5
+     *
+     * @param int $lastPage
+     *
+     * @return static
+     */
+    protected function setLastPage(int $lastPage) : static
+    {
+        $this->lastPage = $lastPage;
+        return $this;
+    }
+
     public function getLastPageUrl() : string
     {
         return $this->getPageUrl($this->getLastPage());
@@ -319,6 +393,19 @@ class Pager implements JsonSerializable
         return $this->previousPage;
     }
 
+    /**
+     * @since 3.5
+     *
+     * @param int $previousPage
+     *
+     * @return static
+     */
+    protected function setPreviousPage(int $previousPage) : static
+    {
+        $this->previousPage = $previousPage;
+        return $this;
+    }
+
     public function getPreviousPageUrl() : ?string
     {
         return $this->getPageUrl($this->getPreviousPage());
@@ -328,6 +415,19 @@ class Pager implements JsonSerializable
     public function getNextPage() : ?int
     {
         return $this->nextPage;
+    }
+
+    /**
+     * @since 3.5
+     *
+     * @param int $nextPage
+     *
+     * @return static
+     */
+    protected function setNextPage(int $nextPage) : static
+    {
+        $this->nextPage = $nextPage;
+        return $this;
     }
 
     public function getNextPageUrl() : ?string
