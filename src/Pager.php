@@ -18,13 +18,14 @@ use JetBrains\PhpStorm\Deprecated;
 use JetBrains\PhpStorm\Pure;
 use JsonSerializable;
 use LogicException;
+use Stringable;
 
 /**
  * Class Pager.
  *
  * @package pagination
  */
-class Pager implements JsonSerializable
+class Pager implements JsonSerializable, Stringable
 {
     protected int $currentPage;
     protected ?int $previousPage = null;
