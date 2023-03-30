@@ -215,7 +215,7 @@ See an example setting the ``bulma`` view to default:
 
 .. code-block:: php
 
-    $pager->setDefaultView('bulma');
+    $pager->setDefaultView('bulma'); // static
 
 And the call to render:
 
@@ -249,7 +249,7 @@ If you need to use a different view style, add the view name and filepath:
 
     $name = 'my-pager';
     $filepath = __DIR__ . '/Views/my-pager.php';
-    $pager->setView($name, $filepath);
+    $pager->setView($name, $filepath); // static
 
 And then you can render it:
 
@@ -276,7 +276,7 @@ Or when needed via the ``setLanguage`` method:
 
 .. code-block:: php
 
-    $pager->setLanguage($language);
+    $pager->setLanguage($language); // static
 
 After setting the language, it is possible to render the pagination.
 
@@ -315,7 +315,7 @@ Or whenever you want via the ``setUrl`` method:
 
 .. code-block:: php
 
-    $pager->setUrl($url);
+    $pager->setUrl($url); // static
 
 JSON-Encoding
 -------------
