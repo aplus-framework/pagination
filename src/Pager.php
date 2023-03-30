@@ -282,7 +282,7 @@ class Pager implements JsonSerializable, Stringable
     /**
      * @param array<int,string> $allowed
      *
-     * @return $this
+     * @return static
      */
     public function setAllowedQueries(array $allowed) : static
     {
@@ -290,13 +290,14 @@ class Pager implements JsonSerializable, Stringable
         return $this;
     }
 
-    protected function prepareUrl() : void
+    protected function prepareUrl() : static
     {
         $scheme = ((isset($_SERVER['REQUEST_SCHEME']) && $_SERVER['REQUEST_SCHEME'] === 'https')
             || (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on'))
             ? 'https'
             : 'http';
         $this->setUrl($scheme . '://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']);
+        return $this;
     }
 
     /**
@@ -537,7 +538,7 @@ class Pager implements JsonSerializable, Stringable
         return $this->render($view);
     }
 
-    public function setDefaultView(string $defaultView) : void
+    public function setDefaultView(string $defaultView) : static
     {
         if ( ! \array_key_exists($defaultView, $this->views)) {
             throw new LogicException(
@@ -545,6 +546,7 @@ class Pager implements JsonSerializable, Stringable
             );
         }
         $this->defaultView = $defaultView;
+        return $this;
     }
 
     #[Pure]
