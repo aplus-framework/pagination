@@ -22,9 +22,9 @@
     "homepage": "https://aplus-framework.com/packages/pagination",
     "support": {
         "email": "support@aplus-framework.com",
-        "issues": "https://gitlab.com/aplus-framework/libraries/pagination/issues",
+        "issues": "https://github.com/aplus-framework/pagination/issues",
         "forum": "https://aplus-framework.com/forum",
-        "source": "https://gitlab.com/aplus-framework/libraries/pagination",
+        "source": "https://github.com/aplus-framework/pagination",
         "docs": "https://docs.aplus-framework.com/guides/libraries/pagination/"
     },
     "funding": [
