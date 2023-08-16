@@ -280,11 +280,12 @@ class Pager implements JsonSerializable, Stringable
     }
 
     /**
-     * @param array<int,string> $allowed
+     * @param array<string>|null $allowed List of queries, an empty array
+     *  to allow only the default or null to allow all
      *
      * @return static
      */
-    public function setAllowedQueries(array $allowed) : static
+    public function setAllowedQueries(array | null $allowed) : static
     {
         $this->setUrl($this->oldUrl, $allowed);
         return $this;
@@ -302,18 +303,24 @@ class Pager implements JsonSerializable, Stringable
 
     /**
      * @param string|URL $currentPageUrl
-     * @param array<int,string> $allowedQueries
+     * @param array<string>|null $allowedQueries List of queries, an empty array
+     * to allow only the default or null to allow all
      *
      * @return static
      */
-    public function setUrl(string | URL $currentPageUrl, array $allowedQueries = []) : static
+    public function setUrl(string | URL $currentPageUrl, array $allowedQueries = null) : static
     {
         $currentPageUrl = $currentPageUrl instanceof URL
             ? clone $currentPageUrl
             : new URL($currentPageUrl);
         $this->oldUrl = $currentPageUrl->toString();
-        $allowedQueries[] = $this->getQuery();
-        $currentPageUrl->setQuery($currentPageUrl->getQuery() ?? '', $allowedQueries);
+        if ($allowedQueries !== null) {
+            $allowedQueries[] = $this->getQuery();
+        }
+        $currentPageUrl->setQuery(
+            $currentPageUrl->getQuery() ?? '',
+            $allowedQueries ?? []
+        );
         $this->url = $currentPageUrl;
         return $this;
     }
