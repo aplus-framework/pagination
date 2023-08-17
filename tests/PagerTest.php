@@ -88,18 +88,28 @@ final class PagerTest extends TestCase
             'http://domain.tld/slug?Url=hello.com&page=8&perPage=10&order=desc&foo=bar'
         );
         self::assertSame(
+            'http://domain.tld/slug?Url=hello.com&page=8&perPage=10&order=desc&foo=bar',
+            $this->pager->getUrl()->toString()
+        );
+        $this->pager->setAllowedQueries(null);
+        self::assertSame(
+            'http://domain.tld/slug?Url=hello.com&page=8&perPage=10&order=desc&foo=bar',
+            $this->pager->getUrl()->toString()
+        );
+        $this->pager->setAllowedQueries([]);
+        self::assertSame(
             'http://domain.tld/slug?page=8',
-            $this->pager->getUrl()->getAsString()
+            $this->pager->getUrl()->toString()
         );
         $this->pager->setAllowedQueries(['order', 'perPage']);
         self::assertSame(
             'http://domain.tld/slug?page=8&perPage=10&order=desc',
-            $this->pager->getUrl()->getAsString()
+            $this->pager->getUrl()->toString()
         );
         $this->pager->setAllowedQueries(['order']);
         self::assertSame(
             'http://domain.tld/slug?page=8&order=desc',
-            $this->pager->getUrl()->getAsString()
+            $this->pager->getUrl()->toString()
         );
     }
 
