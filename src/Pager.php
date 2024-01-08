@@ -197,7 +197,7 @@ class Pager implements JsonSerializable, Stringable
      */
     public function getLanguage() : Language
     {
-        if ( ! isset($this->language)) {
+        if (!isset($this->language)) {
             $this->setLanguage();
         }
         return $this->language;
@@ -211,7 +211,7 @@ class Pager implements JsonSerializable, Stringable
      */
     public function setView(string $name, string $filepath) : static
     {
-        if ( ! \is_file($filepath)) {
+        if (!\is_file($filepath)) {
             throw new InvalidArgumentException('Invalid Pager view filepath: ' . $filepath);
         }
         $this->views[$name] = $filepath;
@@ -539,7 +539,7 @@ class Pager implements JsonSerializable, Stringable
     public function renderShort() : string
     {
         $view = $this->getDefaultView();
-        if ( ! \str_ends_with($view, '-short')) {
+        if (!\str_ends_with($view, '-short')) {
             $view .= '-short';
         }
         return $this->render($view);
@@ -547,7 +547,7 @@ class Pager implements JsonSerializable, Stringable
 
     public function setDefaultView(string $defaultView) : static
     {
-        if ( ! \array_key_exists($defaultView, $this->views)) {
+        if (!\array_key_exists($defaultView, $this->views)) {
             throw new LogicException(
                 'Default view "' . $defaultView . '" is not a valid value'
             );
@@ -596,7 +596,7 @@ class Pager implements JsonSerializable, Stringable
             'Method ' . __METHOD__ . ' is deprecated',
             \E_USER_DEPRECATED
         );
-        $number = $number < 1 || ! \is_numeric($number) ? 1 : $number;
+        $number = $number < 1 || !\is_numeric($number) ? 1 : $number;
         return $number > \PHP_INT_MAX ? \PHP_INT_MAX : (int) $number;
     }
 
@@ -610,7 +610,7 @@ class Pager implements JsonSerializable, Stringable
     #[Pure]
     public static function sanitize(mixed $number) : int
     {
-        if ( ! \is_numeric($number)) {
+        if (!\is_numeric($number)) {
             return 1;
         }
         if ($number < 1) {
