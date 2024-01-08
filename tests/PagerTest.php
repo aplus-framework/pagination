@@ -295,24 +295,6 @@ final class PagerTest extends TestCase
     }
 
     /**
-     * @return array<array<string>>
-     */
-    public function viewsProvider() : array
-    {
-        return [
-            ['pagination'],
-            ['bootstrap'],
-            ['bulma'],
-            ['foundation'],
-            ['materialize'],
-            ['primer'],
-            ['semantic-ui'],
-            ['tailwind'],
-            ['w3'],
-        ];
-    }
-
-    /**
      * @dataProvider viewsProvider
      *
      * @runInSeparateProcess
@@ -328,17 +310,6 @@ final class PagerTest extends TestCase
     }
 
     /**
-     * @return array<array<string>>
-     */
-    public function previousDisabledProvider() : array
-    {
-        return [
-            ['primer', 'aria-disabled="true"'],
-            ['primer-short', 'aria-disabled="true"'],
-        ];
-    }
-
-    /**
      * @dataProvider previousDisabledProvider
      *
      * @runInSeparateProcess
@@ -351,17 +322,6 @@ final class PagerTest extends TestCase
         $pager = new Pager(1, 10, 100);
         $contents = $pager->render($view);
         self::assertStringContainsString($needle, $contents);
-    }
-
-    /**
-     * @return array<array<string>>
-     */
-    public function nextDisabledProvider() : array
-    {
-        return [
-            ['primer', 'aria-disabled="true"'],
-            ['primer-short', 'aria-disabled="true"'],
-        ];
     }
 
     /**
@@ -409,5 +369,45 @@ final class PagerTest extends TestCase
         self::assertSame(1, Pager::sanitize('-' . \PHP_INT_MIN . '123'));
         self::assertSame(\PHP_INT_MAX, Pager::sanitize(\PHP_INT_MAX . '123'));
         self::assertSame(\PHP_INT_MAX - 1, Pager::sanitize(\PHP_INT_MAX - 1));
+    }
+
+    /**
+     * @return array<array<string>>
+     */
+    public static function viewsProvider() : array
+    {
+        return [
+            ['pagination'],
+            ['bootstrap'],
+            ['bulma'],
+            ['foundation'],
+            ['materialize'],
+            ['primer'],
+            ['semantic-ui'],
+            ['tailwind'],
+            ['w3'],
+        ];
+    }
+
+    /**
+     * @return array<array<string>>
+     */
+    public static function previousDisabledProvider() : array
+    {
+        return [
+            ['primer', 'aria-disabled="true"'],
+            ['primer-short', 'aria-disabled="true"'],
+        ];
+    }
+
+    /**
+     * @return array<array<string>>
+     */
+    public static function nextDisabledProvider() : array
+    {
+        return [
+            ['primer', 'aria-disabled="true"'],
+            ['primer-short', 'aria-disabled="true"'],
+        ];
     }
 }
