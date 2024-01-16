@@ -291,7 +291,7 @@ Example using Semantic UI with Spanish language:
     :alt: Aplus Pagination - Semantic UI View
 
 If the Pagination Library is not localized in your language, you can contribute by adding
-it with a `Merge Request <https://gitlab.com/aplus-framework/libraries/pagination/-/merge_requests>`_.
+it with a `Pull Request <https://github.com/aplus-framework/pagination/pulls>`_.
 
 It is also possible to add custom languages at runtime. See the
 `Language Library <https://gitlab.com/aplus-framework/libraries/language>`_ to know more.
