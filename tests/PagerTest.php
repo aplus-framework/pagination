@@ -68,10 +68,10 @@ final class PagerTest extends TestCase
 
     public function testClonedUrl() : void
     {
-        self::assertSame('http://localhost/', $this->pager->getUrl()->getAsString());
+        self::assertSame('http://localhost/', $this->pager->getUrl()->toString());
         $url = new URL('http://domain.tld/foo?page=2');
         $this->pager->setUrl($url);
-        self::assertSame('http://domain.tld/foo?page=2', $this->pager->getUrl()->getAsString());
+        self::assertSame('http://domain.tld/foo?page=2', $this->pager->getUrl()->toString());
         self::assertNotSame($url, $this->pager->getUrl());
     }
 
