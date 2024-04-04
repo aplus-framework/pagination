@@ -34,7 +34,7 @@
         }
     ],
     "require": {
-        "php": ">=8.1",
+        "php": ">=8.3",
         "ext-json": "*",
         "aplus/helpers": "^3.0",
         "aplus/http": "^5.3",
