@@ -14,7 +14,6 @@ use Framework\HTTP\URL;
 use Framework\Language\Language;
 use InvalidArgumentException;
 use JetBrains\PhpStorm\ArrayShape;
-use JetBrains\PhpStorm\Deprecated;
 use JetBrains\PhpStorm\Pure;
 use JsonSerializable;
 use LogicException;
@@ -577,29 +576,6 @@ class Pager implements JsonSerializable, Stringable
     public function jsonSerialize() : array
     {
         return $this->getWithUrl();
-    }
-
-    /**
-     * @param int|string $number
-     *
-     * @return int
-     *
-     * @deprecated Use sanitize method
-     *
-     * @codeCoverageIgnore
-     */
-    #[Deprecated(
-        reason: 'since version 3.1, use sanitize() instead',
-        replacement: '%class%::sanitize(%parameter0%)'
-    )]
-    public static function sanitizePageNumber(int | string $number) : int
-    {
-        \trigger_error(
-            'Method ' . __METHOD__ . ' is deprecated',
-            \E_USER_DEPRECATED
-        );
-        $number = $number < 1 || !\is_numeric($number) ? 1 : $number;
-        return $number > \PHP_INT_MAX ? \PHP_INT_MAX : (int) $number;
     }
 
     /**
