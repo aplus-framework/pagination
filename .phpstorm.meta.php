@@ -22,6 +22,8 @@ registerArgumentsSet(
     'bootstrap5-short',
     'bulma',
     'bulma-short',
+    'bulma1',
+    'bulma1-short',
     'foundation',
     'foundation-short',
     'foundation6',
