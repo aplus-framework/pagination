@@ -223,7 +223,7 @@ final class PagerTest extends TestCase
             'bulma' => \realpath(__DIR__ . '/../src/Views/bulma.php'),
             'bulma-short' => \realpath(__DIR__ . '/../src/Views/bulma-short.php'),
             'bulma1' => \realpath(__DIR__ . '/../src/Views/bulma.php'),
-            'bulma-short1' => \realpath(__DIR__ . '/../src/Views/bulma-short.php'),
+            'bulma1-short' => \realpath(__DIR__ . '/../src/Views/bulma-short.php'),
             'foundation' => \realpath(__DIR__ . '/../src/Views/foundation.php'),
             'foundation-short' => \realpath(__DIR__ . '/../src/Views/foundation-short.php'),
             'foundation6' => \realpath(__DIR__ . '/../src/Views/foundation.php'),
