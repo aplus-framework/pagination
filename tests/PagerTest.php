@@ -133,6 +133,37 @@ final class PagerTest extends TestCase
     /**
      * @runInSeparateProcess
      */
+    public function testPageUrlWithXss() : void
+    {
+        $_SERVER['HTTP_HOST'] = 'localhost';
+        $_SERVER['REQUEST_URI'] = '/?foo=<script>alert("xss")</script>';
+        $this->pager = new Pager(0, 10, 31);
+        self::assertSame(
+            'http://localhost/?foo=%3Cscript%3Ealert%28%22xss%22%29%3C%2Fscript%3E&page=1',
+            $this->pager->getCurrentPageUrl()
+        );
+        self::assertNull($this->pager->getPreviousPageUrl());
+        self::assertSame(
+            'http://localhost/?foo=%3Cscript%3Ealert%28%22xss%22%29%3C%2Fscript%3E&page=1',
+            $this->pager->getFirstPageUrl()
+        );
+        self::assertSame(
+            'http://localhost/?foo=%3Cscript%3Ealert%28%22xss%22%29%3C%2Fscript%3E&page=2',
+            $this->pager->getNextPageUrl()
+        );
+        self::assertSame(
+            'http://localhost/?foo=%3Cscript%3Ealert%28%22xss%22%29%3C%2Fscript%3E&page=4',
+            $this->pager->getLastPageUrl()
+        );
+        self::assertSame(
+            'http://localhost/?foo=%3Cscript%3Ealert%28%22xss%22%29%3C%2Fscript%3E&page=15',
+            $this->pager->getPageUrl(15)
+        );
+    }
+
+    /**
+     * @runInSeparateProcess
+     */
     public function testPreviousPagesUrlsWithSurroundGreaterThanCurrentPage() : void
     {
         $_SERVER['HTTP_HOST'] = 'domain.tld';
