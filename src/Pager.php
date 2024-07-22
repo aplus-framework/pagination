@@ -259,7 +259,7 @@ class Pager implements JsonSerializable, Stringable
      */
     public function setSurround(int $surround) : static
     {
-        $this->surround = $surround < 0 ? 0 : $surround;
+        $this->surround = \max($surround, 0);
         return $this;
     }
 
