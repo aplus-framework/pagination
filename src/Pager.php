@@ -52,9 +52,11 @@ class Pager implements JsonSerializable, Stringable
         'bootstrap-short' => __DIR__ . '/Views/bootstrap-short.php',
         'bootstrap5' => __DIR__ . '/Views/bootstrap.php',
         'bootstrap5-short' => __DIR__ . '/Views/bootstrap-short.php',
-        // Bulma 0
+        // Bulma 1
         'bulma' => __DIR__ . '/Views/bulma.php',
         'bulma-short' => __DIR__ . '/Views/bulma-short.php',
+        'bulma1' => __DIR__ . '/Views/bulma.php',
+        'bulma-short1' => __DIR__ . '/Views/bulma-short.php',
         // Foundation 6
         'foundation' => __DIR__ . '/Views/foundation.php',
         'foundation-short' => __DIR__ . '/Views/foundation-short.php',
