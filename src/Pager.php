@@ -106,8 +106,8 @@ class Pager implements JsonSerializable, Stringable
         int | string $currentPage,
         int | string $itemsPerPage,
         int $totalItems,
-        Language $language = null,
-        string $url = null
+        ?Language $language = null,
+        ?string $url = null
     ) {
         if ($language) {
             $this->setLanguage($language);
@@ -186,7 +186,7 @@ class Pager implements JsonSerializable, Stringable
      *
      * @return static
      */
-    public function setLanguage(Language $language = null) : static
+    public function setLanguage(?Language $language = null) : static
     {
         $this->language = $language ?? new Language();
         $this->language->addDirectory(__DIR__ . '/Languages');
@@ -286,7 +286,7 @@ class Pager implements JsonSerializable, Stringable
      *
      * @return static
      */
-    public function setAllowedQueries(array | null $allowed) : static
+    public function setAllowedQueries(?array $allowed) : static
     {
         $this->setUrl($this->oldUrl, $allowed);
         return $this;
@@ -303,13 +303,13 @@ class Pager implements JsonSerializable, Stringable
     }
 
     /**
-     * @param string|URL $currentPageUrl
+     * @param URL|string $currentPageUrl
      * @param array<string>|null $allowedQueries List of queries, an empty array
      * to allow only the default or null to allow all
      *
      * @return static
      */
-    public function setUrl(string | URL $currentPageUrl, array $allowedQueries = null) : static
+    public function setUrl(URL | string $currentPageUrl, ?array $allowedQueries = null) : static
     {
         $currentPageUrl = $currentPageUrl instanceof URL
             ? clone $currentPageUrl
@@ -529,7 +529,7 @@ class Pager implements JsonSerializable, Stringable
      *
      * @return string
      */
-    public function render(string $view = null) : string
+    public function render(?string $view = null) : string
     {
         $filename = $this->getView($view ?? $this->getDefaultView());
         \ob_start();
