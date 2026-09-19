@@ -13,7 +13,6 @@ use Framework\Helpers\Isolation;
 use Framework\HTTP\URL;
 use Framework\Language\Language;
 use InvalidArgumentException;
-use JetBrains\PhpStorm\ArrayShape;
 use JetBrains\PhpStorm\Pure;
 use JsonSerializable;
 use LogicException;
@@ -487,15 +486,14 @@ class Pager implements JsonSerializable, Stringable
     }
 
     /**
-     * @return array<string,int|null>
+     * @return array{
+     *      self: int,
+     *      first: int,
+     *      prev: int|null,
+     *      next: int|null,
+     *      last: int,
+     * }
      */
-    #[ArrayShape([
-        'self' => 'int',
-        'first' => 'int',
-        'prev' => 'int|null',
-        'next' => 'int|null',
-        'last' => 'int',
-    ])]
     #[Pure]
     public function get() : array
     {
@@ -509,15 +507,14 @@ class Pager implements JsonSerializable, Stringable
     }
 
     /**
-     * @return array<string,string|null>
+     * @return array{
+     *      self: string,
+     *      first: string,
+     *      prev: string|null,
+     *      next: string|null,
+     *      last: string,
+     * }
      */
-    #[ArrayShape([
-        'self' => 'string',
-        'first' => 'string',
-        'prev' => 'string|null',
-        'next' => 'string|null',
-        'last' => 'string',
-    ])]
     public function getWithUrl() : array
     {
         return [
@@ -569,15 +566,14 @@ class Pager implements JsonSerializable, Stringable
     }
 
     /**
-     * @return array<string,string|null>
+     * @return array{
+     *      self: string,
+     *      first: string,
+     *      prev: string|null,
+     *      next: string|null,
+     *      last: string,
+     * }
      */
-    #[ArrayShape([
-        'self' => 'string',
-        'first' => 'string',
-        'prev' => 'string|null',
-        'next' => 'string|null',
-        'last' => 'string',
-    ])]
     public function jsonSerialize() : array
     {
         return $this->getWithUrl();
