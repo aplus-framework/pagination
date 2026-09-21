@@ -13,7 +13,6 @@ use Framework\Helpers\Isolation;
 use Framework\HTTP\URL;
 use Framework\Language\Language;
 use InvalidArgumentException;
-use JetBrains\PhpStorm\Pure;
 use JsonSerializable;
 use LogicException;
 use Stringable;
@@ -241,7 +240,6 @@ class Pager implements JsonSerializable, Stringable
     /**
      * @return array<string,string>
      */
-    #[Pure]
     public function getViews() : array
     {
         return $this->views;
@@ -250,7 +248,6 @@ class Pager implements JsonSerializable, Stringable
     /**
      * @return int
      */
-    #[Pure]
     public function getSurround() : int
     {
         return $this->surround;
@@ -278,7 +275,6 @@ class Pager implements JsonSerializable, Stringable
         return $this;
     }
 
-    #[Pure]
     public function getQuery() : string
     {
         return $this->query;
@@ -366,7 +362,6 @@ class Pager implements JsonSerializable, Stringable
         return $this->getPageUrl($this->currentPage);
     }
 
-    #[Pure]
     public function getFirstPage() : int
     {
         return 1;
@@ -377,7 +372,6 @@ class Pager implements JsonSerializable, Stringable
         return $this->getPageUrl($this->getFirstPage());
     }
 
-    #[Pure]
     public function getLastPage() : int
     {
         return $this->lastPage;
@@ -401,7 +395,6 @@ class Pager implements JsonSerializable, Stringable
         return $this->getPageUrl($this->getLastPage());
     }
 
-    #[Pure]
     public function getPreviousPage() : ?int
     {
         return $this->previousPage;
@@ -425,7 +418,6 @@ class Pager implements JsonSerializable, Stringable
         return $this->getPageUrl($this->getPreviousPage());
     }
 
-    #[Pure]
     public function getNextPage() : ?int
     {
         return $this->nextPage;
@@ -494,7 +486,6 @@ class Pager implements JsonSerializable, Stringable
      *      last: int,
      * }
      */
-    #[Pure]
     public function get() : array
     {
         return [
@@ -559,7 +550,6 @@ class Pager implements JsonSerializable, Stringable
         return $this;
     }
 
-    #[Pure]
     public function getDefaultView() : string
     {
         return $this->defaultView;
@@ -586,7 +576,6 @@ class Pager implements JsonSerializable, Stringable
      *
      * @return int
      */
-    #[Pure]
     public static function sanitize(mixed $number) : int
     {
         if (!\is_numeric($number)) {
