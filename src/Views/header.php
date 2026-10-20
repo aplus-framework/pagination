@@ -12,7 +12,7 @@
  *
  * @see https://tools.ietf.org/html/rfc5988
  *
- * @var Framework\Pagination\Pager $pager
+ * @var Aplus\Pagination\Pager $pager
  */
 $links = '';
 

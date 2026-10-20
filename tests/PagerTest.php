@@ -9,9 +9,9 @@
  */
 namespace Tests\Pagination;
 
-use Framework\HTTP\URL;
-use Framework\Language\Language;
-use Framework\Pagination\Pager;
+use Aplus\Http\Url;
+use Aplus\Language\Language;
+use Aplus\Pagination\Pager;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -69,7 +69,7 @@ final class PagerTest extends TestCase
     public function testClonedUrl() : void
     {
         self::assertSame('http://localhost/', $this->pager->getUrl()->toString());
-        $url = new URL('http://domain.tld/foo?page=2');
+        $url = new Url('http://domain.tld/foo?page=2');
         $this->pager->setUrl($url);
         self::assertSame('http://domain.tld/foo?page=2', $this->pager->getUrl()->toString());
         self::assertNotSame($url, $this->pager->getUrl());

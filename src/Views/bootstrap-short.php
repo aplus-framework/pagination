@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 /**
- * @var Framework\Pagination\Pager $pager
+ * @var Aplus\Pagination\Pager $pager
  */
 $language = $pager->getLanguage();
 ?>

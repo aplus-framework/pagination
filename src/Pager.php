@@ -7,11 +7,11 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-namespace Framework\Pagination;
+namespace Aplus\Pagination;
 
-use Framework\Helpers\Isolation;
-use Framework\HTTP\URL;
-use Framework\Language\Language;
+use Aplus\Helpers\Isolation;
+use Aplus\Http\Url;
+use Aplus\Language\Language;
 use InvalidArgumentException;
 use JsonSerializable;
 use LogicException;
@@ -86,7 +86,7 @@ class Pager implements JsonSerializable, Stringable
         'w34-short' => __DIR__ . '/Views/w3-short.php',
     ];
     protected string $defaultView = 'pagination';
-    protected URL $url;
+    protected Url $url;
     protected string $oldUrl;
     protected string $query = 'page';
     protected Language $language;
@@ -303,17 +303,17 @@ class Pager implements JsonSerializable, Stringable
     }
 
     /**
-     * @param URL|string $currentPageUrl
+     * @param Url|string $currentPageUrl
      * @param array<string>|null $allowedQueries List of queries, an empty array
      * to allow only the default or null to allow all
      *
      * @return static
      */
-    public function setUrl(URL | string $currentPageUrl, ?array $allowedQueries = null) : static
+    public function setUrl(Url | string $currentPageUrl, ?array $allowedQueries = null) : static
     {
-        $currentPageUrl = $currentPageUrl instanceof URL
+        $currentPageUrl = $currentPageUrl instanceof Url
             ? clone $currentPageUrl
-            : new URL($currentPageUrl);
+            : new Url($currentPageUrl);
         $this->oldUrl = $currentPageUrl->toString();
         if ($allowedQueries !== null) {
             $allowedQueries[] = $this->getQuery();
@@ -326,7 +326,7 @@ class Pager implements JsonSerializable, Stringable
         return $this;
     }
 
-    public function getUrl() : URL
+    public function getUrl() : Url
     {
         return $this->url;
     }
