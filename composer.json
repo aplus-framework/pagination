@@ -36,7 +36,7 @@
     "require": {
         "php": ">=8.5",
         "ext-json": "*",
-        "aplus/helpers": "^5.0",
+        "aplus/helpers": "^6.0",
         "aplus/http": "^7.0",
         "aplus/language": "^5.0"
     },
