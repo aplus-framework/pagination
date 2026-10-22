@@ -32,7 +32,7 @@ And a Pager can be instantiated as in the example below:
 
 .. code-block:: php
 
-    use Framework\Pagination\Pager;
+    use Aplus\Pagination\Pager;
 
     $currentPage = 3;
     $itemsPerPage = 10;
@@ -269,7 +269,7 @@ To set a different language, do this in the Pager constructor:
 
 .. code-block:: php
 
-    $language = new Framework\Language\Language('es');
+    $language = new Aplus\Language\Language('es');
     $pager = new Pager($currentPage, $itemsPerPage, $totalItems, $language);
 
 Or when needed via the ``setLanguage`` method:
