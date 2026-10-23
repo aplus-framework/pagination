@@ -50,22 +50,22 @@ registerArgumentsSet(
     'w34-short',
 );
 expectedArguments(
-    \Framework\Pagination\Pager::getView(),
+    \Aplus\Pagination\Pager::getView(),
     0,
     argumentsSet('views')
 );
 expectedArguments(
-    \Framework\Pagination\Pager::render(),
+    \Aplus\Pagination\Pager::render(),
     0,
     argumentsSet('views')
 );
 expectedArguments(
-    \Framework\Pagination\Pager::setDefaultView(),
+    \Aplus\Pagination\Pager::setDefaultView(),
     0,
     argumentsSet('views')
 );
 expectedArguments(
-    \Framework\Pagination\Pager::setView(),
+    \Aplus\Pagination\Pager::setView(),
     0,
     argumentsSet('views')
 );
