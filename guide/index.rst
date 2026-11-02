@@ -112,6 +112,18 @@ See HTML below. It only has the **previous** and **next** links:
         </li>
     </ul>
 
+Optional Rendering
+^^^^^^^^^^^^^^^^^^
+
+If you want to display the pager only when there is more than one page, use the
+``hasPages`` method, as shown in the example below:
+
+.. code-block:: php
+
+    if ($pager->hasPages()) {
+        echo $pager->render();
+    }
+
 HTML Head Links
 ^^^^^^^^^^^^^^^
 
