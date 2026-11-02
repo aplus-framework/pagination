@@ -478,6 +478,22 @@ class Pager implements JsonSerializable, Stringable
     }
 
     /**
+     * Tells if the Pager can be displayed because it has more than one page.
+     *
+     * @return bool
+     */
+    public function hasPages() : bool
+    {
+        if ($this->currentPage !== 1) {
+            return true;
+        }
+        if ($this->getNextPage() === null) {
+            return false;
+        }
+        return true;
+    }
+
+    /**
      * @return array{
      *      self: int,
      *      first: int,

@@ -414,6 +414,18 @@ final class PagerTest extends TestCase
         self::assertSame(\PHP_INT_MAX - 1, Pager::sanitize(\PHP_INT_MAX - 1));
     }
 
+    public function testHasPages() : void
+    {
+        $pager = new Pager(1, 10, 8);
+        self::assertFalse($pager->hasPages());
+        $pager = new Pager(2, 10, 8);
+        self::assertTrue($pager->hasPages());
+        $pager = new Pager(1, 10, 80);
+        self::assertTrue($pager->hasPages());
+        $pager = new Pager(2, 10, 80);
+        self::assertTrue($pager->hasPages());
+    }
+
     /**
      * @return array<array<string>>
      */
