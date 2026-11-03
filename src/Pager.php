@@ -484,10 +484,7 @@ class Pager implements JsonSerializable, Stringable
      */
     public function hasPages() : bool
     {
-        if ($this->currentPage !== 1) {
-            return true;
-        }
-        if ($this->getNextPage() === null) {
+        if ($this->getPreviousPage() === null && $this->getNextPage() === null) {
             return false;
         }
         return true;
